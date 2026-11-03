@@ -145,6 +145,8 @@
 
         .map-wrap {
             position: relative;
+            z-index: 1;
+            isolation: isolate;
             min-height: 0;
             height: 100%;
             border-radius: 28px;
@@ -192,6 +194,12 @@
             z-index: 5;
         }
 
+        .scrub,
+        .charts {
+            position: relative;
+            z-index: 2;
+        }
+
         .card {
             position: relative;
             background: var(--card);
@@ -201,6 +209,7 @@
             box-shadow: 0 8px 22px rgba(120, 100, 80, 0.06);
             min-height: 118px;
             outline: none;
+            cursor: pointer;
         }
 
         .name::before {
@@ -284,14 +293,15 @@
             display: none;
             position: absolute;
             left: 0;
-            bottom: calc(100% + 8px);
-            width: max(100%, 250px);
+            bottom: calc(100% + 10px);
+            width: max(100%, 240px);
             background: #fffcf8;
             color: #4a534e;
+            border: 1px solid rgba(120, 110, 96, 0.16);
             border-radius: 18px;
-            padding: 10px 12px;
-            z-index: 20;
-            box-shadow: 0 14px 32px rgba(120, 100, 80, 0.14);
+            padding: 12px 14px;
+            z-index: 30;
+            box-shadow: 0 16px 36px rgba(90, 70, 50, 0.16);
         }
 
         .card:nth-child(4) .tip,
