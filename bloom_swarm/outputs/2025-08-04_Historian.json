@@ -1,0 +1,10 @@
+{
+  "name": "Historian",
+  "p": 0.67,
+  "reason": "Historical bloom rate for this month is moderate.",
+  "evidence": [
+    "Last year had .",
+    "Bloom rate this month in past years: 66%.",
+    "Seasonal pattern peaks in ."
+  ]
+}

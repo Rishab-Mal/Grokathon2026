@@ -1,0 +1,10 @@
+{
+  "name": "Runoff",
+  "p": 0.73,
+  "reason": "Dry period limits nutrient transport to water body.",
+  "evidence": [
+    "Nearby rivers showed elevated turbidity.",
+    "66mm fell in the past 14 days.",
+    "7 days had heavy precipitation (>10mm)."
+  ]
+}

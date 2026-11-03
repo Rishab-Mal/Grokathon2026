@@ -1,0 +1,17 @@
+{
+  "week": "2025-08-04",
+  "weather": {
+    "max_temp_avg": 31.3,
+    "rain_total_mm": 14.5,
+    "hot_days": 4
+  },
+  "runoff": {
+    "rain_last_14d_mm": 20.0,
+    "heavy_rain_days": 1
+  },
+  "satellite": null,
+  "history": {
+    "bloom_rate_this_month_past_years": 0.66
+  },
+  "actual": 0
+}

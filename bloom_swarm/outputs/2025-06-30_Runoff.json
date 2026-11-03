@@ -1,0 +1,10 @@
+{
+  "name": "Runoff",
+  "p": 0.34,
+  "reason": "Moderate runoff in past two weeks adds phosphorus load.",
+  "evidence": [
+    "Agricultural fields are in active growing season.",
+    "1 days had heavy precipitation (>10mm).",
+    "Storm drains discharged into tributaries."
+  ]
+}

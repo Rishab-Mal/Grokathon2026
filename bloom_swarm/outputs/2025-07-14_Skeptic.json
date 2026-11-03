@@ -1,0 +1,10 @@
+{
+  "name": "Skeptic",
+  "p": 0.28,
+  "reason": "Natural predators may control cyanobacteria population.",
+  "evidence": [
+    "Recent cold front disrupted stratification.",
+    "Water temperature still below optimal for blooms.",
+    "Zebra mussels may filter some algae."
+  ]
+}

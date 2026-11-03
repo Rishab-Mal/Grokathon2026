@@ -1,0 +1,10 @@
+{
+  "name": "Runoff",
+  "p": 0.91,
+  "reason": "Heavy recent rainfall washed nutrients into the lake.",
+  "evidence": [
+    "Storm drains discharged into tributaries.",
+    "Nearby rivers showed elevated turbidity.",
+    "3 days had heavy precipitation (>10mm)."
+  ]
+}

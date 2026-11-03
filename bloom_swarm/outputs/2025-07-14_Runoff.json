@@ -1,0 +1,10 @@
+{
+  "name": "Runoff",
+  "p": 0.32,
+  "reason": "Low rainfall means reduced nutrient input from land.",
+  "evidence": [
+    "1 days had heavy precipitation (>10mm).",
+    "Agricultural fields are in active growing season.",
+    "Storm drains discharged into tributaries."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "week": "2025-06-30",
+  "weather": {
+    "max_temp_avg": 21.6,
+    "rain_total_mm": 8.5,
+    "hot_days": 0
+  },
+  "runoff": {
+    "rain_last_14d_mm": 17.0,
+    "heavy_rain_days": 1
+  },
+  "satellite": {
+    "cyano_index": 0.08,
+    "change_vs_last_week": 0.08
+  },
+  "history": {
+    "bloom_rate_this_month_past_years": 0.27
+  },
+  "actual": 0
+}

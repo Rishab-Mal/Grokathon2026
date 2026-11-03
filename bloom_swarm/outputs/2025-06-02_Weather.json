@@ -1,0 +1,10 @@
+{
+  "name": "Weather",
+  "p": 0.55,
+  "reason": "Warm conditions with minimal rain create stagnant water.",
+  "evidence": [
+    "Only 35.0mm of rain recorded.",
+    "No significant cooling events observed.",
+    "Max temp averaged 26.9C this week."
+  ]
+}

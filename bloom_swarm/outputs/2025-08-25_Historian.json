@@ -1,0 +1,10 @@
+{
+  "name": "Historian",
+  "p": 0.85,
+  "reason": "Historical data shows blooms common this month.",
+  "evidence": [
+    "Long-term trend shows .",
+    "Bloom rate this month in past years: 69%.",
+    "Seasonal pattern peaks in ."
+  ]
+}

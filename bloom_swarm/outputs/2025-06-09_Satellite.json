@@ -1,0 +1,10 @@
+{
+  "name": "Satellite",
+  "p": 0.43,
+  "reason": "Low cyano index suggests minimal bloom activity.",
+  "evidence": [
+    "Thermal bands show warm surface layer.",
+    "Chlorophyll-a estimates support reading.",
+    "Surface reflectance indicates algal pigments."
+  ]
+}

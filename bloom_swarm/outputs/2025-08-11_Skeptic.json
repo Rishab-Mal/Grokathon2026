@@ -1,0 +1,10 @@
+{
+  "name": "Skeptic",
+  "p": 0.17,
+  "reason": "Wind and currents may disperse any forming blooms.",
+  "evidence": [
+    "Wind speeds averaged 15 km/h, promoting mixing.",
+    "Recent cold front disrupted stratification.",
+    "Water temperature still below optimal for blooms."
+  ]
+}
