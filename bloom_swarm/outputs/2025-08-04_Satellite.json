@@ -1,0 +1,10 @@
+{
+  "name": "Satellite",
+  "p": 0.71,
+  "reason": "Satellite detects elevated cyanobacteria concentrations.",
+  "evidence": [
+    "Chlorophyll-a estimates support reading.",
+    "Surface reflectance indicates algal pigments.",
+    "Cyano index at 0.00."
+  ]
+}

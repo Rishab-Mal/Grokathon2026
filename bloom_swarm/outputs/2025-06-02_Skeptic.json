@@ -1,0 +1,10 @@
+{
+  "name": "Skeptic",
+  "p": 0.6,
+  "reason": "Wind and currents may disperse any forming blooms.",
+  "evidence": [
+    "Lake level is higher than usual, diluting nutrients.",
+    "Wind speeds averaged 15 km/h, promoting mixing.",
+    "Recent cold front disrupted stratification."
+  ]
+}

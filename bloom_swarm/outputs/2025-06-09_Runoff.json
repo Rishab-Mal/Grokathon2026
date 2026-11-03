@@ -1,0 +1,10 @@
+{
+  "name": "Runoff",
+  "p": 0.41,
+  "reason": "Moderate runoff in past two weeks adds phosphorus load.",
+  "evidence": [
+    "Nearby rivers showed elevated turbidity.",
+    "Storm drains discharged into tributaries.",
+    "1 days had heavy precipitation (>10mm)."
+  ]
+}

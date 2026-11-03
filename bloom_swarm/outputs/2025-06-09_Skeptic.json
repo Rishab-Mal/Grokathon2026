@@ -1,0 +1,10 @@
+{
+  "name": "Skeptic",
+  "p": 0.56,
+  "reason": "Cooler nights could slow algal growth rates.",
+  "evidence": [
+    "Wind speeds averaged 15 km/h, promoting mixing.",
+    "Zebra mussels may filter some algae.",
+    "Recent cold front disrupted stratification."
+  ]
+}

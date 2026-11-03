@@ -1,0 +1,10 @@
+{
+  "name": "Weather",
+  "p": 0.44,
+  "reason": "Sustained heat promotes surface stratification.",
+  "evidence": [
+    "UV index remained high throughout week.",
+    "Only 15.7mm of rain recorded.",
+    "No significant cooling events observed."
+  ]
+}

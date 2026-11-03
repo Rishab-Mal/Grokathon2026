@@ -1,0 +1,10 @@
+{
+  "name": "Weather",
+  "p": 0.7,
+  "reason": "Six days above 30C favour cyanobacteria growth.",
+  "evidence": [
+    "Only 14.8mm of rain recorded.",
+    "4 days exceeded 30C threshold.",
+    "Max temp averaged 32.5C this week."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "Weather",
+  "p": 0.45,
+  "reason": "Hot spell combined with low precipitation increases bloom risk.",
+  "evidence": [
+    "No significant cooling events observed.",
+    "UV index remained high throughout week.",
+    "Only 2.1mm of rain recorded."
+  ]
+}

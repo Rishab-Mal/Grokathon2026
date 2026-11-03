@@ -1,0 +1,10 @@
+{
+  "name": "Runoff",
+  "p": 0.66,
+  "reason": "Heavy recent rainfall washed nutrients into the lake.",
+  "evidence": [
+    "Agricultural fields are in active growing season.",
+    "Nearby rivers showed elevated turbidity.",
+    "3 days had heavy precipitation (>10mm)."
+  ]
+}

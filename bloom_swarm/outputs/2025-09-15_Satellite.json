@@ -1,0 +1,10 @@
+{
+  "name": "Satellite",
+  "p": 0.6,
+  "reason": "Current satellite readings show moderate algae presence.",
+  "evidence": [
+    "Surface reflectance indicates algal pigments.",
+    "Index changed by -0.07 vs last week.",
+    "Chlorophyll-a estimates support reading."
+  ]
+}

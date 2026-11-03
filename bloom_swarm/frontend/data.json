@@ -1,0 +1,1043 @@
+{
+  "lake": {
+    "name": "Lake Erie",
+    "lat": 41.6833,
+    "lon": -82.3833
+  },
+  "weeks": [
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.55,
+          "reason": "Warm conditions with minimal rain create stagnant water.",
+          "evidence": [
+            "Only 35.0mm of rain recorded.",
+            "No significant cooling events observed.",
+            "Max temp averaged 26.9C this week."
+          ],
+          "weight": 0.1818
+        },
+        {
+          "name": "Runoff",
+          "p": 0.66,
+          "reason": "Heavy recent rainfall washed nutrients into the lake.",
+          "evidence": [
+            "Agricultural fields are in active growing season.",
+            "Nearby rivers showed elevated turbidity.",
+            "3 days had heavy precipitation (>10mm)."
+          ],
+          "weight": 0.1717
+        },
+        {
+          "name": "Satellite",
+          "p": 0.69,
+          "reason": "Low cyano index suggests minimal bloom activity.",
+          "evidence": [
+            "Surface reflectance indicates algal pigments.",
+            "Cyano index at 0.40.",
+            "Index changed by +0.06 vs last week."
+          ],
+          "weight": 0.1742
+        },
+        {
+          "name": "Historian",
+          "p": 0.41,
+          "reason": "Records indicate low bloom probability for this season.",
+          "evidence": [
+            "Last year had .",
+            "Bloom rate this month in past years: 35%.",
+            "Seasonal pattern peaks in ."
+          ],
+          "weight": 0.1308
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.6,
+          "reason": "Wind and currents may disperse any forming blooms.",
+          "evidence": [
+            "Lake level is higher than usual, diluting nutrients.",
+            "Wind speeds averaged 15 km/h, promoting mixing.",
+            "Recent cold front disrupted stratification."
+          ],
+          "weight": 0.3415
+        }
+      ],
+      "swarm_p": 0.594,
+      "simple_avg_p": 0.5845,
+      "actual": 1,
+      "base_rate_p": 0.2,
+      "week": "2025-06-02"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.23,
+          "reason": "Sustained heat promotes surface stratification.",
+          "evidence": [
+            "Max temp averaged 23.4C this week.",
+            "Only 1.4mm of rain recorded.",
+            "UV index remained high throughout week."
+          ],
+          "weight": 0.1933
+        },
+        {
+          "name": "Runoff",
+          "p": 0.41,
+          "reason": "Moderate runoff in past two weeks adds phosphorus load.",
+          "evidence": [
+            "Nearby rivers showed elevated turbidity.",
+            "Storm drains discharged into tributaries.",
+            "1 days had heavy precipitation (>10mm)."
+          ],
+          "weight": 0.1735
+        },
+        {
+          "name": "Satellite",
+          "p": 0.43,
+          "reason": "Low cyano index suggests minimal bloom activity.",
+          "evidence": [
+            "Thermal bands show warm surface layer.",
+            "Chlorophyll-a estimates support reading.",
+            "Surface reflectance indicates algal pigments."
+          ],
+          "weight": 0.176
+        },
+        {
+          "name": "Historian",
+          "p": 0.32,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Long-term trend shows .",
+            "Seasonal pattern peaks in .",
+            "Similar conditions caused blooms in 3 of 5 prior years."
+          ],
+          "weight": 0.1271
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.56,
+          "reason": "Cooler nights could slow algal growth rates.",
+          "evidence": [
+            "Wind speeds averaged 15 km/h, promoting mixing.",
+            "Zebra mussels may filter some algae.",
+            "Recent cold front disrupted stratification."
+          ],
+          "weight": 0.3301
+        }
+      ],
+      "swarm_p": 0.4103,
+      "simple_avg_p": 0.3838,
+      "actual": 1,
+      "base_rate_p": 0.2,
+      "week": "2025-06-09"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.88,
+          "reason": "Hot spell combined with low precipitation increases bloom risk.",
+          "evidence": [
+            "Only 1.2mm of rain recorded.",
+            "Max temp averaged 27.6C this week.",
+            "0 days exceeded 30C threshold."
+          ],
+          "weight": 0.1683
+        },
+        {
+          "name": "Runoff",
+          "p": 0.8,
+          "reason": "Moderate runoff in past two weeks adds phosphorus load.",
+          "evidence": [
+            "22mm fell in the past 14 days.",
+            "Agricultural fields are in active growing season.",
+            "Storm drains discharged into tributaries."
+          ],
+          "weight": 0.1639
+        },
+        {
+          "name": "Satellite",
+          "p": 0.71,
+          "reason": "Satellite detects elevated cyanobacteria concentrations.",
+          "evidence": [
+            "Chlorophyll-a estimates support reading.",
+            "Cyano index at 0.36.",
+            "Surface reflectance indicates algal pigments."
+          ],
+          "weight": 0.169
+        },
+        {
+          "name": "Historian",
+          "p": 0.37,
+          "reason": "Historical bloom rate for this month is moderate.",
+          "evidence": [
+            "Long-term trend shows .",
+            "Bloom rate this month in past years: 34%.",
+            "Seasonal pattern peaks in ."
+          ],
+          "weight": 0.1285
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.4,
+          "reason": "Recent water mixing reduces surface accumulation.",
+          "evidence": [
+            "Zebra mussels may filter some algae.",
+            "Water temperature still below optimal for blooms.",
+            "Lake level is higher than usual, diluting nutrients."
+          ],
+          "weight": 0.3702
+        }
+      ],
+      "swarm_p": 0.6214,
+      "simple_avg_p": 0.6609,
+      "actual": 1,
+      "base_rate_p": 0.2,
+      "week": "2025-06-16"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.48,
+          "reason": "Sustained heat promotes surface stratification.",
+          "evidence": [
+            "No significant cooling events observed.",
+            "Only 20.0mm of rain recorded.",
+            "UV index remained high throughout week."
+          ],
+          "weight": 0.1827
+        },
+        {
+          "name": "Runoff",
+          "p": 0.55,
+          "reason": "Moderate runoff in past two weeks adds phosphorus load.",
+          "evidence": [
+            "Nearby rivers showed elevated turbidity.",
+            "54mm fell in the past 14 days.",
+            "Storm drains discharged into tributaries."
+          ],
+          "weight": 0.1798
+        },
+        {
+          "name": "Satellite",
+          "p": 0.43,
+          "reason": "Satellite detects elevated cyanobacteria concentrations.",
+          "evidence": [
+            "Thermal bands show warm surface layer.",
+            "Index changed by +0.05 vs last week.",
+            "Surface reflectance indicates algal pigments."
+          ],
+          "weight": 0.1778
+        },
+        {
+          "name": "Historian",
+          "p": 0.45,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Bloom rate this month in past years: 35%.",
+            "Seasonal pattern peaks in ."
+          ],
+          "weight": 0.1267
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.34,
+          "reason": "Lake depth provides thermal refuge against blooms.",
+          "evidence": [
+            "Recent cold front disrupted stratification.",
+            "Wind speeds averaged 15 km/h, promoting mixing.",
+            "Water temperature still below optimal for blooms."
+          ],
+          "weight": 0.3329
+        }
+      ],
+      "swarm_p": 0.4317,
+      "simple_avg_p": 0.4489,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-06-23"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.23,
+          "reason": "Sustained heat promotes surface stratification.",
+          "evidence": [
+            "Only 8.5mm of rain recorded.",
+            "0 days exceeded 30C threshold.",
+            "UV index remained high throughout week."
+          ],
+          "weight": 0.179
+        },
+        {
+          "name": "Runoff",
+          "p": 0.34,
+          "reason": "Moderate runoff in past two weeks adds phosphorus load.",
+          "evidence": [
+            "Agricultural fields are in active growing season.",
+            "1 days had heavy precipitation (>10mm).",
+            "Storm drains discharged into tributaries."
+          ],
+          "weight": 0.1759
+        },
+        {
+          "name": "Satellite",
+          "p": 0.26,
+          "reason": "Index stable but already at concerning levels.",
+          "evidence": [
+            "Cyano index at 0.08.",
+            "Chlorophyll-a estimates support reading.",
+            "Index changed by +0.08 vs last week."
+          ],
+          "weight": 0.1772
+        },
+        {
+          "name": "Historian",
+          "p": 0.13,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Seasonal pattern peaks in .",
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Last year had ."
+          ],
+          "weight": 0.1258
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.34,
+          "reason": "Natural predators may control cyanobacteria population.",
+          "evidence": [
+            "Recent cold front disrupted stratification.",
+            "Lake level is higher than usual, diluting nutrients.",
+            "Wind speeds averaged 15 km/h, promoting mixing."
+          ],
+          "weight": 0.3421
+        }
+      ],
+      "swarm_p": 0.272,
+      "simple_avg_p": 0.2504,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-06-30"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.44,
+          "reason": "Sustained heat promotes surface stratification.",
+          "evidence": [
+            "UV index remained high throughout week.",
+            "Only 15.7mm of rain recorded.",
+            "No significant cooling events observed."
+          ],
+          "weight": 0.1809
+        },
+        {
+          "name": "Runoff",
+          "p": 0.62,
+          "reason": "Low rainfall means reduced nutrient input from land.",
+          "evidence": [
+            "1 days had heavy precipitation (>10mm).",
+            "Storm drains discharged into tributaries.",
+            "Agricultural fields are in active growing season."
+          ],
+          "weight": 0.1839
+        },
+        {
+          "name": "Satellite",
+          "p": 0.43,
+          "reason": "Current satellite readings show moderate algae presence.",
+          "evidence": [
+            "Thermal bands show warm surface layer.",
+            "Chlorophyll-a estimates support reading.",
+            "Index changed by -0.07 vs last week."
+          ],
+          "weight": 0.1778
+        },
+        {
+          "name": "Historian",
+          "p": 0.65,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Bloom rate this month in past years: 57%.",
+            "Long-term trend shows .",
+            "Last year had ."
+          ],
+          "weight": 0.1323
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.26,
+          "reason": "Lake depth provides thermal refuge against blooms.",
+          "evidence": [
+            "Lake level is higher than usual, diluting nutrients.",
+            "Wind speeds averaged 15 km/h, promoting mixing.",
+            "Water temperature still below optimal for blooms."
+          ],
+          "weight": 0.3251
+        }
+      ],
+      "swarm_p": 0.4349,
+      "simple_avg_p": 0.477,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-07-07"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.44,
+          "reason": "Warm conditions with minimal rain create stagnant water.",
+          "evidence": [
+            "Only 11.3mm of rain recorded.",
+            "UV index remained high throughout week.",
+            "Max temp averaged 26.7C this week."
+          ],
+          "weight": 0.1836
+        },
+        {
+          "name": "Runoff",
+          "p": 0.32,
+          "reason": "Low rainfall means reduced nutrient input from land.",
+          "evidence": [
+            "1 days had heavy precipitation (>10mm).",
+            "Agricultural fields are in active growing season.",
+            "Storm drains discharged into tributaries."
+          ],
+          "weight": 0.1731
+        },
+        {
+          "name": "Satellite",
+          "p": 0.43,
+          "reason": "Satellite detects elevated cyanobacteria concentrations.",
+          "evidence": [
+            "Surface reflectance indicates algal pigments.",
+            "Chlorophyll-a estimates support reading.",
+            "Cyano index at 0.00."
+          ],
+          "weight": 0.1805
+        },
+        {
+          "name": "Historian",
+          "p": 0.55,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Last year had .",
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Bloom rate this month in past years: 53%."
+          ],
+          "weight": 0.1311
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.28,
+          "reason": "Natural predators may control cyanobacteria population.",
+          "evidence": [
+            "Recent cold front disrupted stratification.",
+            "Water temperature still below optimal for blooms.",
+            "Zebra mussels may filter some algae."
+          ],
+          "weight": 0.3317
+        }
+      ],
+      "swarm_p": 0.3746,
+      "simple_avg_p": 0.4003,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-07-14"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.1,
+          "reason": "Six days above 30C favour cyanobacteria growth.",
+          "evidence": [
+            "UV index remained high throughout week.",
+            "Only 14.0mm of rain recorded.",
+            "Max temp averaged 26.6C this week."
+          ],
+          "weight": 0.1716
+        },
+        {
+          "name": "Runoff",
+          "p": 0.82,
+          "reason": "Low rainfall means reduced nutrient input from land.",
+          "evidence": [
+            "2 days had heavy precipitation (>10mm).",
+            "Nearby rivers showed elevated turbidity.",
+            "Storm drains discharged into tributaries."
+          ],
+          "weight": 0.1991
+        },
+        {
+          "name": "Satellite",
+          "p": 0.38,
+          "reason": "Index stable but already at concerning levels.",
+          "evidence": [
+            "Index changed by -0.12 vs last week.",
+            "Surface reflectance indicates algal pigments.",
+            "Chlorophyll-a estimates support reading."
+          ],
+          "weight": 0.1753
+        },
+        {
+          "name": "Historian",
+          "p": 0.5,
+          "reason": "Historical bloom rate for this month is moderate.",
+          "evidence": [
+            "Last year had .",
+            "Seasonal pattern peaks in .",
+            "Similar conditions caused blooms in 3 of 5 prior years."
+          ],
+          "weight": 0.1274
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.29,
+          "reason": "Wind and currents may disperse any forming blooms.",
+          "evidence": [
+            "Zebra mussels may filter some algae.",
+            "Water temperature still below optimal for blooms.",
+            "Recent cold front disrupted stratification."
+          ],
+          "weight": 0.3265
+        }
+      ],
+      "swarm_p": 0.3886,
+      "simple_avg_p": 0.3982,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-07-21"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.64,
+          "reason": "Six days above 30C favour cyanobacteria growth.",
+          "evidence": [
+            "0 days exceeded 30C threshold.",
+            "No significant cooling events observed.",
+            "UV index remained high throughout week."
+          ],
+          "weight": 0.1757
+        },
+        {
+          "name": "Runoff",
+          "p": 0.91,
+          "reason": "Heavy recent rainfall washed nutrients into the lake.",
+          "evidence": [
+            "Storm drains discharged into tributaries.",
+            "Nearby rivers showed elevated turbidity.",
+            "3 days had heavy precipitation (>10mm)."
+          ],
+          "weight": 0.1647
+        },
+        {
+          "name": "Satellite",
+          "p": 0.61,
+          "reason": "Current satellite readings show moderate algae presence.",
+          "evidence": [
+            "Cyano index at 0.00.",
+            "Index changed by +0.00 vs last week.",
+            "Chlorophyll-a estimates support reading."
+          ],
+          "weight": 0.1743
+        },
+        {
+          "name": "Historian",
+          "p": 0.42,
+          "reason": "This period historically sees peak bloom frequency.",
+          "evidence": [
+            "Long-term trend shows .",
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Bloom rate this month in past years: 53%."
+          ],
+          "weight": 0.1286
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.48,
+          "reason": "Natural predators may control cyanobacteria population.",
+          "evidence": [
+            "Lake level is higher than usual, diluting nutrients.",
+            "Water temperature still below optimal for blooms.",
+            "Recent cold front disrupted stratification."
+          ],
+          "weight": 0.3567
+        }
+      ],
+      "swarm_p": 0.6201,
+      "simple_avg_p": 0.6426,
+      "actual": 1,
+      "base_rate_p": 0.2,
+      "week": "2025-07-28"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.55,
+          "reason": "Six days above 30C favour cyanobacteria growth.",
+          "evidence": [
+            "Max temp averaged 31.3C this week.",
+            "Only 14.5mm of rain recorded.",
+            "No significant cooling events observed."
+          ],
+          "weight": 0.1861
+        },
+        {
+          "name": "Runoff",
+          "p": 0.21,
+          "reason": "Moderate runoff in past two weeks adds phosphorus load.",
+          "evidence": [
+            "20mm fell in the past 14 days.",
+            "Nearby rivers showed elevated turbidity.",
+            "Storm drains discharged into tributaries."
+          ],
+          "weight": 0.1678
+        },
+        {
+          "name": "Satellite",
+          "p": 0.71,
+          "reason": "Satellite detects elevated cyanobacteria concentrations.",
+          "evidence": [
+            "Chlorophyll-a estimates support reading.",
+            "Surface reflectance indicates algal pigments.",
+            "Cyano index at 0.00."
+          ],
+          "weight": 0.1942
+        },
+        {
+          "name": "Historian",
+          "p": 0.67,
+          "reason": "Historical bloom rate for this month is moderate.",
+          "evidence": [
+            "Last year had .",
+            "Bloom rate this month in past years: 66%.",
+            "Seasonal pattern peaks in ."
+          ],
+          "weight": 0.1328
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.18,
+          "reason": "Recent water mixing reduces surface accumulation.",
+          "evidence": [
+            "Zebra mussels may filter some algae.",
+            "Wind speeds averaged 15 km/h, promoting mixing.",
+            "Recent cold front disrupted stratification."
+          ],
+          "weight": 0.3191
+        }
+      ],
+      "swarm_p": 0.4011,
+      "simple_avg_p": 0.4483,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-08-04"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.56,
+          "reason": "High average temperatures accelerate algal metabolism.",
+          "evidence": [
+            "UV index remained high throughout week.",
+            "Max temp averaged 32.5C this week.",
+            "2 days exceeded 30C threshold."
+          ],
+          "weight": 0.1874
+        },
+        {
+          "name": "Runoff",
+          "p": 0.65,
+          "reason": "Dry period limits nutrient transport to water body.",
+          "evidence": [
+            "Agricultural fields are in active growing season.",
+            "2 days had heavy precipitation (>10mm).",
+            "Storm drains discharged into tributaries."
+          ],
+          "weight": 0.1863
+        },
+        {
+          "name": "Satellite",
+          "p": 0.35,
+          "reason": "Cyano index rising sharply from last week.",
+          "evidence": [
+            "Cyano index at 0.00.",
+            "Surface reflectance indicates algal pigments.",
+            "Chlorophyll-a estimates support reading."
+          ],
+          "weight": 0.1754
+        },
+        {
+          "name": "Historian",
+          "p": 0.6,
+          "reason": "Records indicate low bloom probability for this season.",
+          "evidence": [
+            "Seasonal pattern peaks in .",
+            "Last year had .",
+            "Long-term trend shows ."
+          ],
+          "weight": 0.131
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.17,
+          "reason": "Wind and currents may disperse any forming blooms.",
+          "evidence": [
+            "Wind speeds averaged 15 km/h, promoting mixing.",
+            "Recent cold front disrupted stratification.",
+            "Water temperature still below optimal for blooms."
+          ],
+          "weight": 0.3199
+        }
+      ],
+      "swarm_p": 0.4008,
+      "simple_avg_p": 0.4532,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-08-11"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.7,
+          "reason": "Six days above 30C favour cyanobacteria growth.",
+          "evidence": [
+            "Only 14.8mm of rain recorded.",
+            "4 days exceeded 30C threshold.",
+            "Max temp averaged 32.5C this week."
+          ],
+          "weight": 0.1973
+        },
+        {
+          "name": "Runoff",
+          "p": 0.39,
+          "reason": "Heavy recent rainfall washed nutrients into the lake.",
+          "evidence": [
+            "37mm fell in the past 14 days.",
+            "Storm drains discharged into tributaries.",
+            "Agricultural fields are in active growing season."
+          ],
+          "weight": 0.1733
+        },
+        {
+          "name": "Satellite",
+          "p": 0.39,
+          "reason": "Current satellite readings show moderate algae presence.",
+          "evidence": [
+            "Thermal bands show warm surface layer.",
+            "Chlorophyll-a estimates support reading.",
+            "Cyano index at 0.44."
+          ],
+          "weight": 0.1768
+        },
+        {
+          "name": "Historian",
+          "p": 0.59,
+          "reason": "This period historically sees peak bloom frequency.",
+          "evidence": [
+            "Bloom rate this month in past years: 60%.",
+            "Last year had .",
+            "Similar conditions caused blooms in 3 of 5 prior years."
+          ],
+          "weight": 0.1308
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.2,
+          "reason": "Cooler nights could slow algal growth rates.",
+          "evidence": [
+            "Water temperature still below optimal for blooms.",
+            "Recent cold front disrupted stratification.",
+            "Zebra mussels may filter some algae."
+          ],
+          "weight": 0.3217
+        }
+      ],
+      "swarm_p": 0.4042,
+      "simple_avg_p": 0.4467,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-08-18"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.46,
+          "reason": "Hot spell combined with low precipitation increases bloom risk.",
+          "evidence": [
+            "Max temp averaged 29.8C this week.",
+            "UV index remained high throughout week.",
+            "1 days exceeded 30C threshold."
+          ],
+          "weight": 0.1757
+        },
+        {
+          "name": "Runoff",
+          "p": 0.57,
+          "reason": "Low rainfall means reduced nutrient input from land.",
+          "evidence": [
+            "Agricultural fields are in active growing season.",
+            "Nearby rivers showed elevated turbidity.",
+            "1 days had heavy precipitation (>10mm)."
+          ],
+          "weight": 0.1749
+        },
+        {
+          "name": "Satellite",
+          "p": 0.73,
+          "reason": "Satellite detects elevated cyanobacteria concentrations.",
+          "evidence": [
+            "Index changed by -0.07 vs last week.",
+            "Cyano index at 0.66.",
+            "Surface reflectance indicates algal pigments."
+          ],
+          "weight": 0.1895
+        },
+        {
+          "name": "Historian",
+          "p": 0.85,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Long-term trend shows .",
+            "Bloom rate this month in past years: 69%.",
+            "Seasonal pattern peaks in ."
+          ],
+          "weight": 0.136
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.36,
+          "reason": "Natural predators may control cyanobacteria population.",
+          "evidence": [
+            "Lake level is higher than usual, diluting nutrients.",
+            "Recent cold front disrupted stratification.",
+            "Zebra mussels may filter some algae."
+          ],
+          "weight": 0.324
+        }
+      ],
+      "swarm_p": 0.5644,
+      "simple_avg_p": 0.6118,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-08-25"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.7,
+          "reason": "Six days above 30C favour cyanobacteria growth.",
+          "evidence": [
+            "3 days exceeded 30C threshold.",
+            "UV index remained high throughout week.",
+            "No significant cooling events observed."
+          ],
+          "weight": 0.1879
+        },
+        {
+          "name": "Runoff",
+          "p": 0.73,
+          "reason": "Dry period limits nutrient transport to water body.",
+          "evidence": [
+            "Nearby rivers showed elevated turbidity.",
+            "66mm fell in the past 14 days.",
+            "7 days had heavy precipitation (>10mm)."
+          ],
+          "weight": 0.1831
+        },
+        {
+          "name": "Satellite",
+          "p": 0.72,
+          "reason": "Satellite detects elevated cyanobacteria concentrations.",
+          "evidence": [
+            "Index changed by +0.03 vs last week.",
+            "Surface reflectance indicates algal pigments.",
+            "Thermal bands show warm surface layer."
+          ],
+          "weight": 0.1865
+        },
+        {
+          "name": "Historian",
+          "p": 0.51,
+          "reason": "This period historically sees peak bloom frequency.",
+          "evidence": [
+            "Seasonal pattern peaks in .",
+            "Last year had .",
+            "Similar conditions caused blooms in 3 of 5 prior years."
+          ],
+          "weight": 0.1224
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.36,
+          "reason": "Wind and currents may disperse any forming blooms.",
+          "evidence": [
+            "Zebra mussels may filter some algae.",
+            "Lake level is higher than usual, diluting nutrients.",
+            "Water temperature still below optimal for blooms."
+          ],
+          "weight": 0.3201
+        }
+      ],
+      "swarm_p": 0.5837,
+      "simple_avg_p": 0.6107,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-09-01"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.45,
+          "reason": "Hot spell combined with low precipitation increases bloom risk.",
+          "evidence": [
+            "No significant cooling events observed.",
+            "UV index remained high throughout week.",
+            "Only 2.1mm of rain recorded."
+          ],
+          "weight": 0.1852
+        },
+        {
+          "name": "Runoff",
+          "p": 0.27,
+          "reason": "Multiple heavy rain days increased agricultural runoff.",
+          "evidence": [
+            "Agricultural fields are in active growing season.",
+            "Storm drains discharged into tributaries.",
+            "0 days had heavy precipitation (>10mm)."
+          ],
+          "weight": 0.1729
+        },
+        {
+          "name": "Satellite",
+          "p": 0.4,
+          "reason": "Cyano index rising sharply from last week.",
+          "evidence": [
+            "Cyano index at 0.41.",
+            "Chlorophyll-a estimates support reading.",
+            "Index changed by -0.07 vs last week."
+          ],
+          "weight": 0.1804
+        },
+        {
+          "name": "Historian",
+          "p": 0.57,
+          "reason": "Records indicate low bloom probability for this season.",
+          "evidence": [
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Bloom rate this month in past years: 48%.",
+            "Long-term trend shows ."
+          ],
+          "weight": 0.1325
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.22,
+          "reason": "Natural predators may control cyanobacteria population.",
+          "evidence": [
+            "Zebra mussels may filter some algae.",
+            "Wind speeds averaged 15 km/h, promoting mixing.",
+            "Recent cold front disrupted stratification."
+          ],
+          "weight": 0.3289
+        }
+      ],
+      "swarm_p": 0.3405,
+      "simple_avg_p": 0.3736,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-09-08"
+    },
+    {
+      "agents": [
+        {
+          "name": "Weather",
+          "p": 0.3,
+          "reason": "Sustained heat promotes surface stratification.",
+          "evidence": [
+            "1 days exceeded 30C threshold.",
+            "Only 0.1mm of rain recorded.",
+            "No significant cooling events observed."
+          ],
+          "weight": 0.177
+        },
+        {
+          "name": "Runoff",
+          "p": 0.46,
+          "reason": "Multiple heavy rain days increased agricultural runoff.",
+          "evidence": [
+            "62mm fell in the past 14 days.",
+            "1 days had heavy precipitation (>10mm).",
+            "Nearby rivers showed elevated turbidity."
+          ],
+          "weight": 0.1766
+        },
+        {
+          "name": "Satellite",
+          "p": 0.6,
+          "reason": "Current satellite readings show moderate algae presence.",
+          "evidence": [
+            "Surface reflectance indicates algal pigments.",
+            "Index changed by -0.07 vs last week.",
+            "Chlorophyll-a estimates support reading."
+          ],
+          "weight": 0.1877
+        },
+        {
+          "name": "Historian",
+          "p": 0.31,
+          "reason": "Historical bloom rate for this month is moderate.",
+          "evidence": [
+            "Seasonal pattern peaks in .",
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Long-term trend shows ."
+          ],
+          "weight": 0.125
+        },
+        {
+          "name": "Skeptic",
+          "p": 0.33,
+          "reason": "Natural predators may control cyanobacteria population.",
+          "evidence": [
+            "Zebra mussels may filter some algae.",
+            "Lake level is higher than usual, diluting nutrients.",
+            "Wind speeds averaged 15 km/h, promoting mixing."
+          ],
+          "weight": 0.3338
+        }
+      ],
+      "swarm_p": 0.3921,
+      "simple_avg_p": 0.396,
+      "actual": 0,
+      "base_rate_p": 0.2667,
+      "week": "2025-09-15"
+    }
+  ],
+  "scores": {
+    "Weather": 0.2325,
+    "Runoff": 0.2406,
+    "Satellite": 0.2359,
+    "Historian": 0.3312,
+    "Skeptic": 0.1227,
+    "swarm": 0.1847,
+    "simple_avg": 0.2034,
+    "base_rate": 0.2133
+  }
+}

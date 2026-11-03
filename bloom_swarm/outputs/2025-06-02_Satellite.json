@@ -1,0 +1,10 @@
+{
+  "name": "Satellite",
+  "p": 0.69,
+  "reason": "Low cyano index suggests minimal bloom activity.",
+  "evidence": [
+    "Surface reflectance indicates algal pigments.",
+    "Cyano index at 0.40.",
+    "Index changed by +0.06 vs last week."
+  ]
+}

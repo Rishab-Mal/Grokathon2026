@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloom Swarm - Algal Bloom Prediction</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        body {
+            font-family: monospace;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        h1 { margin-bottom: 10px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section { margin-bottom: 20px; padding: 15px; background: white; border: 1px solid #ccc; }
+        .section h2 { margin-top: 0; }
+        select { padding: 5px; font-size: 16px; }
+        #map { height: 300px; width: 100%; }
+        .agent-list { list-style: none; padding: 0; }
+        .agent-list li { padding: 10px; margin: 5px 0; background: #f0f0f0; border-left: 4px solid #666; }
+        .agent-name { font-weight: bold; }
+        .agent-p { font-size: 1.2em; color: #333; }
+        .agent-reason { font-style: italic; color: #666; }
+        .swarm-p { font-size: 2em; font-weight: bold; }
+        .actual-bloom { color: #c00; }
+        .actual-no-bloom { color: #0a0; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #eee; }
+        .best-score { background: #d4edda; }
+        #chart-container { height: 300px; }
+        .loading { color: #666; font-style: italic; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <!--
+    =================================================================
+    PERSON 1 OWNS THIS FILE
+
+    Planned sections:
+    1. [DONE] Map - Leaflet map showing lake location
+    2. [TODO] Agent cards - styled cards for each agent
+    3. [TODO] Week slider - replace dropdown with range slider
+    4. [TODO] Backtest chart - Chart.js line chart of predictions vs actuals
+    5. [DONE] Scoreboard - Brier scores table
+
+    Current status: Minimal working version. Ugly but functional.
+    =================================================================
+    -->
+
+    <div class="container">
+        <h1>Bloom Swarm</h1>
+        <p id="lake-info" class="loading">Loading...</p>
+
+        <!-- Week Selector -->
+        <div class="section">
+            <h2>Select Week</h2>
+            <select id="week-select">
+                <option value="">Loading weeks...</option>
+            </select>
+        </div>
+
+        <!-- Map -->
+        <div class="section">
+            <h2>Lake Location</h2>
+            <div id="map"></div>
+        </div>
+
+        <!-- Swarm Prediction -->
+        <div class="section">
+            <h2>Swarm Prediction</h2>
+            <p>Probability: <span id="swarm-p" class="swarm-p">-</span></p>
+            <p>Actual: <span id="actual">-</span></p>
+            <p>Simple Average: <span id="simple-avg">-</span> | Base Rate: <span id="base-rate">-</span></p>
+        </div>
+
+        <!-- Agent List -->
+        <div class="section">
+            <h2>Agent Predictions</h2>
+            <ul id="agent-list" class="agent-list">
+                <li class="loading">Loading agents...</li>
+            </ul>
+        </div>
+
+        <!-- Backtest Chart -->
+        <div class="section">
+            <h2>Backtest Chart</h2>
+            <div id="chart-container">
+                <canvas id="backtest-chart"></canvas>
+            </div>
+        </div>
+
+        <!-- Scoreboard -->
+        <div class="section">
+            <h2>Scoreboard (Brier Score - lower is better)</h2>
+            <table id="scoreboard">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Name</th>
+                        <th>Brier Score</th>
+                    </tr>
+                </thead>
+                <tbody id="scoreboard-body">
+                    <tr><td colspan="3" class="loading">Loading...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        let data = null;
+        let map = null;
+        let chart = null;
+
+        async function loadData() {
+            try {
+                const response = await fetch('data.json');
+                if (!response.ok) throw new Error('Failed to load data.json');
+                data = await response.json();
+                initializeUI();
+            } catch (error) {
+                document.getElementById('lake-info').textContent = 'Error: ' + error.message;
+                document.getElementById('lake-info').className = 'error';
+            }
+        }
+
+        function initializeUI() {
+            // Lake info
+            document.getElementById('lake-info').textContent =
+                `${data.lake.name} (${data.lake.lat.toFixed(4)}, ${data.lake.lon.toFixed(4)})`;
+            document.getElementById('lake-info').className = '';
+
+            // Initialize map
+            initMap();
+
+            // Populate week selector
+            const select = document.getElementById('week-select');
+            select.innerHTML = '';
+            data.weeks.forEach((week, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = week.week + (week.actual ? ' (BLOOM)' : '');
+                select.appendChild(option);
+            });
+            select.addEventListener('change', () => updateWeekDisplay(parseInt(select.value)));
+
+            // Initialize scoreboard
+            updateScoreboard();
+
+            // Initialize chart
+            initChart();
+
+            // Show first week
+            if (data.weeks.length > 0) {
+                updateWeekDisplay(0);
+            }
+        }
+
+        function initMap() {
+            map = L.map('map').setView([data.lake.lat, data.lake.lon], 10);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+            L.marker([data.lake.lat, data.lake.lon])
+                .addTo(map)
+                .bindPopup(data.lake.name);
+        }
+
+        function updateWeekDisplay(weekIndex) {
+            const week = data.weeks[weekIndex];
+
+            // Swarm prediction
+            document.getElementById('swarm-p').textContent = (week.swarm_p * 100).toFixed(1) + '%';
+
+            // Actual outcome
+            const actualSpan = document.getElementById('actual');
+            if (week.actual === 1) {
+                actualSpan.textContent = 'BLOOM';
+                actualSpan.className = 'actual-bloom';
+            } else {
+                actualSpan.textContent = 'No bloom';
+                actualSpan.className = 'actual-no-bloom';
+            }
+
+            // Baselines
+            document.getElementById('simple-avg').textContent = (week.simple_avg_p * 100).toFixed(1) + '%';
+            document.getElementById('base-rate').textContent = (week.base_rate_p * 100).toFixed(1) + '%';
+
+            // Agent list
+            const agentList = document.getElementById('agent-list');
+            agentList.innerHTML = '';
+            week.agents.forEach(agent => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <span class="agent-name">${agent.name}</span>
+                    <span class="agent-p">(${(agent.p * 100).toFixed(0)}%, weight: ${(agent.weight * 100).toFixed(1)}%)</span>
+                    <br>
+                    <span class="agent-reason">${agent.reason}</span>
+                    <br>
+                    <small>Evidence: ${agent.evidence.join(' | ')}</small>
+                `;
+                agentList.appendChild(li);
+            });
+
+            // Update chart highlight
+            if (chart) {
+                chart.options.plugins.annotation = {
+                    annotations: {
+                        selectedWeek: {
+                            type: 'line',
+                            xMin: weekIndex,
+                            xMax: weekIndex,
+                            borderColor: 'rgba(255, 99, 132, 0.5)',
+                            borderWidth: 2,
+                        }
+                    }
+                };
+                chart.update();
+            }
+        }
+
+        function updateScoreboard() {
+            const tbody = document.getElementById('scoreboard-body');
+            tbody.innerHTML = '';
+
+            // Sort scores (lower is better)
+            const scores = Object.entries(data.scores)
+                .filter(([_, score]) => score !== null)
+                .sort((a, b) => a[1] - b[1]);
+
+            const bestScore = scores.length > 0 ? scores[0][1] : null;
+
+            scores.forEach(([name, score], index) => {
+                const tr = document.createElement('tr');
+                if (score === bestScore) tr.className = 'best-score';
+                tr.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${name}</td>
+                    <td>${score.toFixed(4)}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('backtest-chart').getContext('2d');
+
+            const labels = data.weeks.map(w => w.week);
+            const swarmData = data.weeks.map(w => w.swarm_p);
+            const actualData = data.weeks.map(w => w.actual);
+            const baseRateData = data.weeks.map(w => w.base_rate_p);
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'Swarm Prediction',
+                            data: swarmData,
+                            borderColor: 'rgb(75, 192, 192)',
+                            backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                            tension: 0.1,
+                        },
+                        {
+                            label: 'Actual',
+                            data: actualData,
+                            borderColor: 'rgb(255, 99, 132)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                            stepped: true,
+                        },
+                        {
+                            label: 'Base Rate',
+                            data: baseRateData,
+                            borderColor: 'rgb(201, 203, 207)',
+                            borderDash: [5, 5],
+                            tension: 0.1,
+                        },
+                    ],
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: 1,
+                            title: { display: true, text: 'Probability' }
+                        },
+                        x: {
+                            title: { display: true, text: 'Week' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'top' },
+                        title: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Load data on page load
+        loadData();
+    </script>
+</body>
+</html>
