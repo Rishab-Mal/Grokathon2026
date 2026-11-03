@@ -32,6 +32,10 @@ agents-debate:
 agents-check:
 	python scripts/agents/check_outputs.py --debate
 
+# Bankroll race + blind-vs-debate data for frontend/bankroll.html
+bankroll:
+	python scripts/agents/bankroll.py
+
 # Aggregate agent outputs into frontend/data.json
 swarm:
 	python scripts/swarm/aggregate.py
@@ -63,6 +67,7 @@ help:
 	@echo "  make agents-force  Run agents, overwriting existing outputs"
 	@echo "  make agents-dry  Print prompts without calling API"
 	@echo "  make swarm       Aggregate outputs to frontend/data.json"
+	@echo "  make bankroll    Bankroll race data for frontend/bankroll.html"
 	@echo "  make serve       Start local server at http://localhost:8000"
 	@echo "  make demo        Full pipeline: fake + swarm + serve"
 	@echo "  make clean       Remove generated files"

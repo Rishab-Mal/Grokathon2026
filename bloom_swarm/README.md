@@ -46,6 +46,7 @@ cd frontend && python -m http.server 8000
 | `make agents` | Run LLM agents against week data (requires ANTHROPIC_API_KEY); replaces fake outputs |
 | `make agents-debate` | Blind round, then a group-chat round where agents read each other's bets (`outputs_debate/`) |
 | `make agents-check` | Flag missing or fake outputs and agents stuck at one value |
+| `make bankroll` | Bankroll race + blind-vs-debate data for `frontend/bankroll.html` (open http://localhost:8000/bankroll.html) |
 | `make agents-force` | Run agents, overwriting existing outputs |
 | `make agents-dry` | Print prompts without calling the API |
 | `make swarm` | Aggregate outputs into `frontend/data.json` |
