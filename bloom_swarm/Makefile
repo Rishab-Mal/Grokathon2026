@@ -45,7 +45,7 @@ serve:
 	cd frontend && python -m http.server 8000
 
 # Full demo: generate fake data, aggregate, and serve
-demo: fake swarm serve
+demo: fake swarm bankroll serve
 
 # Clean generated files
 clean:
@@ -69,12 +69,13 @@ test:
 # Generate figures only (Person 4)
 figures:
 	python scripts/swarm/aggregate.py --figures
+	python scripts/agents/bankroll.py
 
 # Full final run: check + swarm + figures (Person 4)
-final: check swarm
+final: check swarm bankroll
 
 # Demo without serve: fake + swarm + figures (Person 4)
-demo-no-serve: fake swarm
+demo-no-serve: fake swarm bankroll
 
 # Show help
 help:
@@ -96,11 +97,11 @@ help:
 	@echo "  make check       Run integration validation checks"
 	@echo "  make test        Run unit tests"
 	@echo "  make figures     Generate figures only"
-	@echo "  make final       Full pipeline: check + swarm"
+	@echo "  make final       Full pipeline: check + swarm + bankroll"
 	@echo ""
 	@echo "Frontend:"
 	@echo "  make serve       Start local server at http://localhost:8000"
-	@echo "  make demo        Full pipeline: fake + swarm + serve"
+	@echo "  make demo        Full pipeline: fake + swarm + bankroll + serve"
 	@echo "  make validate    Validate week data files"
 	@echo ""
 	@echo "Quick start:"
