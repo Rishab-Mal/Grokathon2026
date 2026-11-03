@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.45,
+  "reason": "We got a decent 47 mm over two weeks, but only the one heavy day, so the fields sent some nutrients down without a big flush, and with early July warmth a bloom could be getting started but I wouldn't bet the farm on it.",
+  "evidence": [
+    "rain_last_14d_mm: 47.4 is a moderate amount, enough to move some litter and fertilizer",
+    "heavy_rain_days: 1 means just one real washout event, not a string of them",
+    "Early July timing fits the one-to-two week lag after that rain for warm, settled water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "7b79c0f4029aaded"
+}

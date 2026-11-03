@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.45,
+  "reason": "We had a decent soaking, about 50 mm over two weeks with one heavy day, so some litter and fertilizer likely washed in and mid-July heat could set a bloom going, but one big rain isn't a flood.",
+  "evidence": [
+    "rain_last_14d_mm: 50.8 is a moderate wetting, enough to move some nutrients off the fields",
+    "heavy_rain_days: 1 means only a single big runoff event, not a repeated flushing",
+    "Mid July timing fits the one-to-two-week lag after rain when warm, settled water favors blooms"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "0e5470bf62dabe5a"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.12,
+  "reason": "Index reads low at 0.057 with only a marginal weekly uptick, so the signal does not support a bloom.",
+  "evidence": [
+    "cyano_index 0.057 (low on 0-1 scale)",
+    "change_vs_last_week +0.008 (negligible rise)",
+    "mid October: no seasonal weather data provided to offset low reading"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "b9c95761758c9e02"
+}

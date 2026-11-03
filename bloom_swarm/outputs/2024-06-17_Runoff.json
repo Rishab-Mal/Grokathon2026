@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.2,
+  "reason": "Only 23 mm over two weeks and not a single heavy rain day means the fields haven't sent much litter or fertilizer into the lake, so I don't expect a bloom to be fed up yet.",
+  "evidence": [
+    "rain_last_14d_mm: 23.0, which is light for two weeks",
+    "heavy_rain_days: 0, so no big washout event to kick off a bloom",
+    "Mid June timing means the water is warming, but my numbers show little new nutrient input"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "fc192f2c13158c04"
+}

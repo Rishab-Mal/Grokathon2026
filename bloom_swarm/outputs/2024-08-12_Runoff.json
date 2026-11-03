@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.6,
+  "reason": "Three heavy rain days and over 50 mm in the last two weeks means a good dose of litter and fertilizer washed in, and with mid-August heat the lake is right in the window where a bloom tends to follow.",
+  "evidence": [
+    "rain_last_14d_mm: 50.7 mm, a decent soaking over two weeks",
+    "heavy_rain_days: 3, enough to wash nutrients off the fields",
+    "Mid August timing fits the one-to-two-week lag after big rain"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "3d76623d3329028d"
+}

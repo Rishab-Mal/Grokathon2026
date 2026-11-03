@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.12,
+  "reason": "Folks, a mid-October week with highs averaging just 15.5C and not a single hot day is too cool for cyanobacteria to really take off, even though the calm, dry 1.0 mm of rain means the water isn't being flushed.",
+  "evidence": [
+    "Average max temp of 15.5C, well below the 30C+ heat that fuels blooms",
+    "Zero hot days this week",
+    "Only 1.0 mm total rain, so little flushing, but not enough warmth to compensate",
+    "Mid-October timing means shorter days and cooling water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "535f353e3e9586c5"
+}

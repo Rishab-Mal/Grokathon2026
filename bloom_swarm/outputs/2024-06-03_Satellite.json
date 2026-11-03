@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.05,
+  "reason": "Cyano index 0.003, near floor, with a negligible +0.001 weekly change: no bloom signal from orbit.",
+  "evidence": [
+    "cyano_index 0.003 (near zero on 0-1 scale)",
+    "change_vs_last_week +0.001 (flat, no upward trend)",
+    "Early June: no satellite signal of bloom onset"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "e33733dc6461dbe5"
+}

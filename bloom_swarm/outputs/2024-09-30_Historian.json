@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.93,
+  "reason": "The ledgers show a bloom in every recorded past year for this month, so I anchor near certainty yet hold back a little, as no archive can promise that the future will repeat the past.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 1.0 (blooms recorded in every past year for this month)",
+    "Time of year: late September, which falls within the month covered by that record",
+    "No this-week observations are in my ledger, so I make only a modest step back from the base rate"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "029381aa8870e9d1"
+}

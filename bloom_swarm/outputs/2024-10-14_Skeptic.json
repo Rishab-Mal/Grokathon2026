@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.3,
+  "reason": "Cool 15.5 C highs, zero hot days and a barely-moving satellite index argue against a bloom, and the 0.667 historical rate is the only thing keeping me from going lower.",
+  "evidence": [
+    "max_temp_avg 15.5 with hot_days 0 means cooling water that doesn't favor cyanobacteria growth",
+    "cyano_index 0.057 with weekly change of only +0.008 is a weak, borderline signal",
+    "rain_total_mm 1.0 this week, so no fresh runoff pulse, though 41.9 mm over 14 days with 2 heavy rain days could have left nutrients behind",
+    "bloom_rate_this_month_past_years 0.667 is a real prior, but it's a base rate and not evidence about this week"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "881670d74b1d4787"
+}

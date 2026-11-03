@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.45,
+  "reason": "We got a decent 47.9 mm over two weeks but only one heavy day, so there's some fertilizer and litter washing in, though not a flood of it, and early August is when the lake is warm enough to use it.",
+  "evidence": [
+    "rain_last_14d_mm: 47.9, a moderate amount of rain, enough to move some nutrients off the fields",
+    "heavy_rain_days: 1, so only a single big washout event and not a repeated flushing",
+    "Early August timing fits the one-to-two-week lag from rain to bloom in warm water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "67eb5356fefac397"
+}

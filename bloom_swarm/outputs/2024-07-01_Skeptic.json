@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.55,
+  "reason": "The satellite index jumped sharply and July has a high historical bloom rate, but the absolute index of 0.066 is still low and the heat is only moderate, so I won't call it a bloom just yet.",
+  "evidence": [
+    "cyano_index 0.066 is a low absolute value, and the weekly rise of 0.057 means last week's index was only about 0.009, so one noisy reading could account for it",
+    "max_temp_avg 27.0 with only 1 hot day is warm but not the sustained heat that drives blooms",
+    "rain_last_14d_mm 26.0 with 1 heavy rain day could bring nutrients, but it could equally cause mixing and dilution",
+    "bloom_rate_this_month_past_years 0.833 is a strong prior, though it is a base rate and not an observation of this lake this week"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "248c301219275f7c"
+}

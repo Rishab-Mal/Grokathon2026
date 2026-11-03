@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.93,
+  "reason": "The ledgers show a bloom in every recorded past year for this month, so I hold close to certainty, shaded slightly below the ceiling because a perfect record is still only a finite one.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 1.0 (blooms recorded in all past years for this month)",
+    "Time of year: early August, falling within the month covered by that record",
+    "No this-week observations used, in keeping with the archive-only mandate"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "a72ed743ce8c1e01"
+}

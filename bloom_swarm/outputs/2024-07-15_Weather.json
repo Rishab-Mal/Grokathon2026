@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.5,
+  "reason": "Folks, it's a decent mid-July setup with a 27.8C average high and only 6.8 mm of rain, but just 2 days topped the 30C mark, so the heat isn't quite in full bloom-fueling mode.",
+  "evidence": [
+    "Average max temperature of 27.8C is warm but below the 30C threshold",
+    "Only 2 hot days this week, so sustained extreme heat is limited",
+    "Rain total of 6.8 mm is light, so there's little flushing or mixing",
+    "Mid-July timing falls in peak bloom season"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "61c285323720209b"
+}

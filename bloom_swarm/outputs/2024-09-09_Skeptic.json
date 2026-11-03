@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.72,
+  "reason": "I'll grant that a cyano index of 0.312 rising 0.129 in a week with a perfect September bloom history is hard to wave off, but 26 C with zero hot days and almost no runoff isn't classic bloom fuel, and one satellite reading can be glint or noise.",
+  "evidence": [
+    "cyano_index 0.312, up 0.129 vs last week: a real jump, but a single-pass reading with no confirmation",
+    "bloom_rate_this_month_past_years 1.0: strong prior, though it says nothing about this week's conditions",
+    "max_temp_avg 26.0 with hot_days 0: warm but not peak-heat conditions",
+    "rain_last_14d_mm 2.0 and heavy_rain_days 0: little nutrient input to explain rapid growth"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "c49c1b647203b06f"
+}

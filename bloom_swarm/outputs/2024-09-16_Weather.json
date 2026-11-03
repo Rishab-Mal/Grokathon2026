@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.5,
+  "reason": "Folks, this is a pretty decent setup for algae with a warm 27.0C average high and just 4.6 mm of rain keeping the water fairly calm, but only 2 truly hot days and mid-September's fading sun keep me from calling it a slam dunk.",
+  "evidence": [
+    "Average max temp of 27.0C is warm enough to support cyanobacteria growth",
+    "Only 4.6 mm of rain total, too little to flush or mix the lake",
+    "Just 2 hot days, so no sustained heat wave to push a bloom strongly",
+    "Mid September timing means declining sunlight and heat compared with peak summer"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "3fcecdd8a2cfd23e"
+}

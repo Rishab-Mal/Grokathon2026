@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.25,
+  "reason": "Barely any rain these past two weeks and not one heavy-rain day, so there's little fresh fertilizer or litter washing into the lake, though whatever's already built up in the water from earlier could still feed a late-summer bloom.",
+  "evidence": [
+    "rain_last_14d_mm: 6.7, which is very dry for two weeks",
+    "heavy_rain_days: 0, so no big wash-off event to drive a bloom in the next week or two",
+    "Early September timing means any bloom would depend on nutrients already in the lake, which I can't see from runoff numbers"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "52772b0da282bb33"
+}

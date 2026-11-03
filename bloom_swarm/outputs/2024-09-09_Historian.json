@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.93,
+  "reason": "As a careful archivist, I note that every past year on record shows a bloom this month, so I rest my forecast near that unbroken pattern while leaving room for the rare exception that no ledger yet contains.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 1.0 (a bloom in every recorded year)",
+    "Time of year: early September, the period this record covers",
+    "No this-week observations provided, so no basis to move far from the base rate"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "a03191356c8765ed"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.55,
+  "reason": "History says every past August had a bloom, which I grudgingly respect, but a 25.4 C weekly max, one hot day, and 21 mm of rain on top of 47.9 mm over 14 days point to mixing and dilution, and a cyano index of 0.135 is hardly a smoking gun.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 1.0, the one strong pro-bloom signal",
+    "max_temp_avg 25.4 C with only 1 hot day, which is lukewarm for bloom growth",
+    "rain_total_mm 21.0 this week and 47.9 mm over 14 days, which favors mixing and dilution",
+    "cyano_index 0.135, up only 0.022 from last week, a modest rise that could be noise"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "a43d11592d309d27"
+}

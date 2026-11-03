@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.4,
+  "reason": "We got a fair bit of rain these last two weeks, 42.8 mm with a couple of heavy days, so some litter and fertilizer likely washed in, but it's early October and the water's cooling, so I wouldn't bet big on a bloom.",
+  "evidence": [
+    "rain_last_14d_mm: 42.8 mm, a moderate amount of runoff-driving rain",
+    "heavy_rain_days: 2, enough to wash nutrients off the fields",
+    "Early October timing means cooling water that may limit bloom growth after the nutrient push"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "2f6b0c7172d402aa"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.35,
+  "reason": "We only got a modest 37 mm over two weeks with one heavy day, so there's some nutrient washed in for a bloom to feed on, but it's no big flush and the season's winding down.",
+  "evidence": [
+    "rain_last_14d_mm: 37.4 is moderate, not a soaking",
+    "heavy_rain_days: 1 means just one real washout event in the window",
+    "Late September means cooling water, so a runoff-fed bloom has less time and warmth to build"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "9d1496e0a178176c"
+}

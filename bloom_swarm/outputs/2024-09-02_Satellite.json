@@ -1,0 +1,14 @@
+{
+  "name": "Satellite",
+  "p": 0.15,
+  "reason": "Cyano index 0.183 and down sharply week over week: low and falling, which argues against a bloom, though early September leaves some residual risk.",
+  "evidence": [
+    "cyano_index 0.183 (low on 0-1 scale)",
+    "change_vs_last_week -0.097 (sharp decline)",
+    "Prior week index implied ~0.280, now receding",
+    "Time of year: early September, late-season bloom still possible"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "4882bde7a85f26c1"
+}

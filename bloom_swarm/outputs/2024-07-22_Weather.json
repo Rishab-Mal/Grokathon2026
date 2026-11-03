@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.5,
+  "reason": "Folks, we've got a warm, nearly dry late-July week with highs averaging 27.2C and just 1.7 mm of rain, which sets a decent stage for algae, but with only one day topping the hot threshold it's not the full-blown heat dome a bloom loves.",
+  "evidence": [
+    "Average max temperature of 27.2C is warm but below the 30C bloom-boosting mark",
+    "Only 1 hot day this week, so sustained heat is limited",
+    "Rain total of just 1.7 mm means little mixing or flushing of the lake",
+    "Late July timing is peak season for warm, stratified water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "6ecce0f5134237cc"
+}

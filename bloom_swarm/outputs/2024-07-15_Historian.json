@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.83,
+  "reason": "The ledgers show that bloom has been recorded in roughly five of every six past Julys, so I anchor close to that rate and decline to be swayed by any single week's anecdote.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 0.833",
+    "Mid July falls within the month for which that historical rate was recorded",
+    "No other data is in my ledger, so I make no adjustment beyond the base rate"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "23f389f4f9d254dd"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.06,
+  "reason": "Warm-ish weather and a bit of runoff are the only things leaning toward a bloom, while a barely-there satellite index and a zero historical June bloom rate make this look like a quiet week.",
+  "evidence": [
+    "cyano_index 0.005 with only +0.002 change vs last week is near baseline",
+    "bloom_rate_this_month_past_years is 0.0",
+    "max_temp_avg 25.8 with just 2 hot days is not strong bloom heat",
+    "rain_last_14d_mm 18.1 with 1 heavy rain day is modest nutrient input"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "ebede0aada4c3c8d"
+}

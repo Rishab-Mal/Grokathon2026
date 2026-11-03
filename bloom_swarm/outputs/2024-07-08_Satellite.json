@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.1,
+  "reason": "Cyano index reads low at 0.057 and fell week-over-week, so the signal argues against a bloom despite early-July season.",
+  "evidence": [
+    "cyano_index 0.057 (low on 0-1 scale)",
+    "change_vs_last_week -0.009 (declining)",
+    "No rising trend detected in this week's reading"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "28bda5ad9001da23"
+}

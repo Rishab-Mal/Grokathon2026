@@ -1,0 +1,13 @@
+{
+  "name": "Weather",
+  "p": 0.2,
+  "reason": "Folks, it's a dry, calm-ish week with just 0.7 mm of rain, but highs averaging only 18.8C and zero days anywhere near 30C mean the heat that fuels a bloom simply isn't there in late October.",
+  "evidence": [
+    "Average max temperature of 18.8C is well below the 30C bloom-favouring threshold",
+    "Zero hot days this week",
+    "Only 0.7 mm of total rain, so little flushing or mixing from storms"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "bf998d40210908f6"
+}

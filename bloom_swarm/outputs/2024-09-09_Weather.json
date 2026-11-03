@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.45,
+  "reason": "Folks, we've got a bone-dry week with zero rain to flush the lake, but highs averaging just 26.0C and no days topping 30C keep this from being a classic bloom-fueling heatwave.",
+  "evidence": [
+    "Average max temperature of 26.0C is warm but below the 30C bloom-boosting threshold",
+    "0.0 mm total rain means no flushing or mixing from storms",
+    "0 hot days (above 30C) limits the extreme heat that accelerates cyanobacteria growth",
+    "Early September timing is still within the late-summer bloom season"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "0e5114338180516b"
+}

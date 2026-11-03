@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.93,
+  "reason": "As a careful archivist, I note that every past year on record shows a bloom in this month, so I anchor near certainty but leave room for the rare exception that the ledger has not yet recorded.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 1.0 (blooms in every recorded year for this month)",
+    "Time of year: mid August, within the month the record covers",
+    "No other data used; forecast capped below 0.97 to allow for an unrecorded exception"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "606b5d3fe7e38ee1"
+}

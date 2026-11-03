@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.1,
+  "reason": "Index 0.064 is low and nearly flat (+0.007 w/w), with late-October timing, so no bloom signature detected.",
+  "evidence": [
+    "cyano_index 0.064 (low on 0-1 scale)",
+    "change_vs_last_week +0.007 (negligible rise)",
+    "Time of year: late October (seasonally past peak)"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "f859a9dbe8162be7"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.2,
+  "reason": "Barely any rain has fallen in two weeks and no day came close to a washout, so there's little fresh litter or fertilizer reaching the lake from my side of things.",
+  "evidence": [
+    "rain_last_14d_mm: 8.5, which is very light for two weeks",
+    "heavy_rain_days: 0, so no big runoff event to set off a bloom",
+    "Dry spell means little new phosphorus or nitrogen input, though late July warmth and old nutrients already in the lake keep this from going lower"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "cc576be5f72f5b03"
+}

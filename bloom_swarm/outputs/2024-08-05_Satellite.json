@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.35,
+  "reason": "Index reads low-to-moderate at 0.135 with a slight weekly rise, so signal is weakly positive but below clear bloom levels.",
+  "evidence": [
+    "cyano_index 0.135 (scale 0-1, low-moderate)",
+    "change_vs_last_week +0.022 (slight rise)",
+    "Early August: seasonal peak window, no weather data provided"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "a3a9c369266234a8"
+}

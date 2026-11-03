@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.62,
+  "reason": "The history is hard to dismiss at 83% for this month, but the weather is only moderately warm and the satellite index is a small rise from a low base, so I won't pay full price for it.",
+  "evidence": [
+    "bloom_rate_this_month_past_years 0.833 is a strong prior, which I concede, though it is a base rate and not a measurement of this week",
+    "cyano_index 0.074 with change_vs_last_week +0.017 is a modest, ambiguous signal that could be noise",
+    "max_temp_avg 27.8 with only 2 hot_days is warm but not a heat-driven surge",
+    "rain_last_14d_mm 50.8 with 1 heavy_rain_day may have delivered nutrients, but could also dilute and mix the water column"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "b758c3702496a944"
+}

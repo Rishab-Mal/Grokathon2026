@@ -1,0 +1,14 @@
+{
+  "name": "Satellite",
+  "p": 0.12,
+  "reason": "Index 0.021 is very low; the +0.016 weekly rise is a small absolute change from a near-zero baseline, so no bloom signal yet.",
+  "evidence": [
+    "cyano_index 0.021 (scale 0-1, near floor)",
+    "change_vs_last_week +0.016, rising but small in absolute terms",
+    "Prior week implied ~0.005, negligible",
+    "Mid June: early season, rise worth monitoring"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "49106ae487995b2c"
+}

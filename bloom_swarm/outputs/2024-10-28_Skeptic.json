@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.2,
+  "reason": "Satellite index is low and falling fast, temperatures are cool with zero hot days, so the 0.667 historical October rate looks like a base rate being asked to do too much work.",
+  "evidence": [
+    "cyano_index 0.025 with change_vs_last_week -0.039, so the signal is low and dropping",
+    "max_temp_avg 18.8 C with hot_days 0, which is weak support for growth",
+    "rain_last_14d_mm 1.4 and heavy_rain_days 0, so little nutrient runoff to fuel a new surge",
+    "bloom_rate_this_month_past_years 0.667 is the one real point for a bloom, but it is only a prior and the current data pulls against it"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "5583afaa40bdb756"
+}

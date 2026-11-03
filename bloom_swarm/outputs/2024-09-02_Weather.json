@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.3,
+  "reason": "Folks, this week is dry with only 2.0 mm of rain, which keeps the water calm, but highs averaging just 22.8C and a single hot day leave the heat a bit short of what a bloom really wants.",
+  "evidence": [
+    "Average max temperature 22.8C, well below the 30C threshold that favors blooms",
+    "Only 1 hot day this week, so there was no sustained heat run",
+    "Rain total of 2.0 mm means little flushing or mixing of the water",
+    "Early September: warmth is still present, but the season is starting to fade"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "03e485dd4feb43a5"
+}

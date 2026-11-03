@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.55,
+  "reason": "The history is loud at 83% for this month, but this week's heat is modest, the satellite index is only middling, and I won't pay full price for a base rate when the current signals are lukewarm.",
+  "evidence": [
+    "max_temp_avg 27.2 with only 1 hot day, warm but not a heatwave",
+    "cyano_index 0.097, up just 0.023 vs last week, a small rise that could be noise",
+    "rain_last_14d_mm 8.5 and 0 heavy rain days, so little nutrient pulse but also no flushing or mixing",
+    "bloom_rate_this_month_past_years 0.833, the main argument for a bloom, and it is a prior, not a measurement"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "bc236016c4876519"
+}

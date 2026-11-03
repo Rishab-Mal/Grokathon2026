@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.05,
+  "reason": "Satellite cyano index is low and falling, history shows no June blooms, and the weather is merely warm with a rain-mixing week, so I see little to justify a bloom call.",
+  "evidence": [
+    "cyano_index 0.009, down 0.012 vs last week",
+    "bloom_rate_this_month_past_years 0.0",
+    "max_temp_avg 26.4 with only 1 hot day",
+    "rain_total_mm 22.6 this week, with 1 heavy rain day, likely mixing and diluting the water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "5562cb4e3c92d3c7"
+}

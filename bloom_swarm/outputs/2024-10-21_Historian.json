@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.65,
+  "reason": "As a careful archivist, I note that the ledgers show blooms in about two of every three past Octobers, and with no this-week anecdotes to weigh, I stay close to that record, shaded slightly lower because late October sits at the tail of the month.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 0.667",
+    "Only the historical base rate is available to me; no current-week observations were provided",
+    "Late October falls late in the month, which justifies only a slight downward nudge from 0.667"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "f9b7d592d27d6b03"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.5,
+  "reason": "Folks, it's a mild-to-warm, nearly bone-dry week with calm conditions building, so the setup leans favorable for a bloom, but with highs averaging only 25.8C and just 2 hot days we're not yet in full-blown bloom heat.",
+  "evidence": [
+    "Average max temp 25.8C, warm but below the 30C bloom-boosting threshold",
+    "Only 0.8 mm of rain all week, so no flushing or mixing from storms",
+    "2 hot days, enough to warm surface water but not a sustained heat run",
+    "Early June timing means the water may still be warming up"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "569ae362edd24bf7"
+}

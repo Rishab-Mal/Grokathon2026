@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.2,
+  "reason": "A cyano index that fell by 0.191 in a week, cool 18.8 C highs, no hot days and 40.9 mm of rain mixing and diluting the lake all point away from a bloom, and only the 0.667 historical October rate keeps me from going lower.",
+  "evidence": [
+    "cyano_index 0.049 with change_vs_last_week -0.191, a sharp drop",
+    "max_temp_avg 18.8 C and hot_days 0, so little warmth to sustain growth",
+    "rain_total_mm 40.9 with 2 heavy_rain_days, favoring mixing and dilution",
+    "bloom_rate_this_month_past_years 0.667 is the one real argument for a bloom"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "7364b53b5fdc9ca8"
+}

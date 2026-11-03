@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.82,
+  "reason": "The ledgers show that late July has hosted a bloom in roughly five of every six past years, so I hold close to that rate and shade only slightly toward caution, since I have no this-week entry to justify moving further.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 0.833, meaning about 83% of past years had a bloom this month",
+    "Only the historical base rate is in my records; no current-week observations are available",
+    "Final p of 0.82 sits just below the 0.833 base rate, a modest adjustment"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "ccebee2abf830cf0"
+}

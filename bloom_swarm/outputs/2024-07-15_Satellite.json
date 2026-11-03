@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.2,
+  "reason": "Index reads low at 0.074 with a slight weekly rise of +0.017, so no strong bloom signal yet, though the upward drift in mid July keeps it from being ruled out.",
+  "evidence": [
+    "cyano_index 0.074 (low on 0-1 scale)",
+    "change_vs_last_week +0.017 (slight rise)",
+    "Time of year: mid July (bloom season, upward drift warrants watch)"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "3c138e91162d0cc0"
+}

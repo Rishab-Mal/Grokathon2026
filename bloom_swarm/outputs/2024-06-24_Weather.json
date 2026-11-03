@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.3,
+  "reason": "Folks, this week's setup is only lukewarm for blooms, with highs averaging a modest 26.4C and a decent 22.6 mm of rain stirring the water, so I'm leaning against a bloom but not ruling it out.",
+  "evidence": [
+    "Average max temp of 26.4C is warm but below the 30C bloom-favouring threshold",
+    "Only 1 hot day this week, so no sustained heat run",
+    "22.6 mm of rain total can mix and flush the water column",
+    "Late June timing means the season is warming, keeping some bloom chance alive"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "d85c44fc91422973"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.05,
+  "reason": "Nothing here argues for a bloom: no hot days, a barely-there satellite signal, and a past-June bloom rate of zero, so I see no reason to get excited.",
+  "evidence": [
+    "cyano_index 0.003 with change_vs_last_week of only +0.001, which is basically noise",
+    "hot_days 0 and max_temp_avg 25.3, so little heat to drive growth",
+    "bloom_rate_this_month_past_years 0.0",
+    "rain_last_14d_mm 36.8 with 1 heavy rain day could bring nutrients, but also mixing and dilution"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "4107ac2dfc836c10"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.07,
+  "reason": "Folks, this is a cool, wet pattern with highs averaging only 18.8C and nearly 41 mm of rain stirring and flushing the lake, which is just about the worst setup for a bloom.",
+  "evidence": [
+    "Average max temperature of 18.8C is well below the 30C threshold that favours cyanobacteria",
+    "Zero hot days this week, so no sustained heat to stratify the water",
+    "Rain total of 40.9 mm means heavy mixing and flushing",
+    "Early October timing means declining sunshine and cooling water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "e399018c71bedd8e"
+}

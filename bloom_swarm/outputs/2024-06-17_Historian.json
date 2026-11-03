@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.05,
+  "reason": "The ledgers show no bloom recorded in mid June in any past year, so I place my forecast near the floor of the scale, leaving only a small margin for the chance that this year departs from the record.",
+  "evidence": [
+    "bloom_rate_this_month_past_years: 0.0",
+    "Time of year: mid June",
+    "No other records are in my ledger, so I make only a modest adjustment away from the base rate"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "8268101c56f6548e"
+}

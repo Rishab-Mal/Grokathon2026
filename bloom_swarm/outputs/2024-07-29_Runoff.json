@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.35,
+  "reason": "Only 28.6 mm over two weeks and not a single heavy rain day means no big wash of litter and fertilizer off my fields, so I'm leaning a bit below even odds, though late July heat could still keep a bloom going on nutrients already in the lake.",
+  "evidence": [
+    "rain_last_14d_mm: 28.6 is modest, not a soaking",
+    "heavy_rain_days: 0, so no major runoff event in the last two weeks",
+    "Late July timing means warm water, so nutrients already in the lake could still fuel a bloom"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "05ff36e1549484b7"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.05,
+  "reason": "Cyano index 0.009 and falling; orbital reading shows negligible cyanobacteria, no bloom signal.",
+  "evidence": [
+    "cyano_index 0.009 (near floor of 0-1 scale)",
+    "change_vs_last_week -0.012 (declining)",
+    "Late June: seasonal risk exists, but no signal in reading"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "bad4cc9b9a53b8a1"
+}

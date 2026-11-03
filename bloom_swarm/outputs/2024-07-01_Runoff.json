@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.3,
+  "reason": "Only one heavy rain day and a modest 26 mm over two weeks means not much litter or fertilizer got washed in, so I'd lean against a bloom, though early July heat keeps it from being unlikely.",
+  "evidence": [
+    "rain_last_14d_mm: 26.0, a fairly light total for two weeks",
+    "heavy_rain_days: 1, only a single big washout event",
+    "Early July timing, when warm water can still feed a bloom on nutrients already in the lake"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "3d2c4742365ecd5b"
+}

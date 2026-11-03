@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.2,
+  "reason": "Only about 18 mm of rain in two weeks and one heavy day means not much fertilizer or litter got washed into the lake, so I don't figure there's a big nutrient push behind a bloom yet.",
+  "evidence": [
+    "rain_last_14d_mm: 18.1, which is a fairly light amount over two weeks",
+    "heavy_rain_days: 1, so only a single day with real runoff potential",
+    "Early June timing, so warming is just getting started and the lake hasn't had a long nutrient build-up shown in my data"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "35cdaccab8caf5b6"
+}

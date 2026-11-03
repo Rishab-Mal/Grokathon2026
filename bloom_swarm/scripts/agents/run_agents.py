@@ -127,11 +127,8 @@ def parse_forecast(text: str, agent_name: str) -> dict:
 
 
 def request_options(model: str) -> dict:
-    """Low effort keeps one-sentence forecasts fast and cheap; Sonnet/Opus get server-side refusal fallback."""
-    opts = {"output_config": {"effort": "low", "format": {"type": "json_schema", "schema": FORECAST_SCHEMA}}}
-    if model.startswith(("claude-sonnet-5-5", "claude-opus-5")):
-        opts |= {"betas": ["server-side-fallback-2026-07-01"], "fallbacks": "default"}
-    return opts
+    """Low effort keeps one-sentence forecasts fast and cheap."""
+    return {"max_tokens": 1024}
 
 
 async def forecast(ctx, agent_name: str, user_message: str) -> tuple[dict, str]:
@@ -139,9 +136,8 @@ async def forecast(ctx, agent_name: str, user_message: str) -> tuple[dict, str]:
     err = None
     for _ in range(2):
         async with ctx.sem:
-            response = await ctx.client.beta.messages.create(
+            response = await ctx.client.messages.create(
                 model=ctx.model,
-                max_tokens=4000,
                 system=get_system_prompt(agent_name),
                 messages=[{"role": "user", "content": user_message}],
                 **request_options(ctx.model),

@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.72,
+  "reason": "The history is a perfect bloom record for this month and the index is still elevated, so I will concede most of the case, but the falling index, only 2 hot days and almost no runoff keep me from going higher.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 1.0, which is strong but may reflect a small sample",
+    "cyano_index 0.268 with change_vs_last_week -0.044, so the signal is declining",
+    "max_temp_avg 27.0 with only 2 hot_days, which is warm but not intense",
+    "rain_last_14d_mm 4.6 and 0 heavy_rain_days, so there is little new nutrient input but also no dilution or mixing event"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "7b108c30a686d3ec"
+}

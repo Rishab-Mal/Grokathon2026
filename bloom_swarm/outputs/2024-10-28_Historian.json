@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.65,
+  "reason": "The ledgers show blooms in about two of every three past Octobers, so I keep my estimate close to that rate and nudge it down slightly because it is late in the month and the records give me no evidence from this week.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 0.667",
+    "Only the historical base rate is available to me; no this-week observations are in my ledger",
+    "Late October timing suggests a modest downward adjustment from the monthly rate"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "f9b7d592d27d6b03"
+}

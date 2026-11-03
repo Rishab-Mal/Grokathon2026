@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.93,
+  "reason": "The ledgers show a bloom in every past year for this month, so I anchor near the ceiling of my range and shade only slightly below it, as no archive is ever perfectly complete.",
+  "evidence": [
+    "bloom_rate_this_month_past_years: 1.0",
+    "Time of year: late August, the same window the historical record covers",
+    "No this-week observations are in my ledger, so I make no adjustment from anecdote"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "dabe9c2bd1d0049a"
+}

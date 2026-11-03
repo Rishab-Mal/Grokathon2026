@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.3,
+  "reason": "Heat and a satellite uptick are real, but a 0.021 index is still low, history shows no June blooms, and 22 mm of rain with no heavy-rain days is hardly a nutrient flood, so I'll concede some risk but not a bloom.",
+  "evidence": [
+    "cyano_index 0.021 is a low absolute value, even with +0.016 vs last week",
+    "bloom_rate_this_month_past_years 0.0, so no June precedent in the record",
+    "max_temp_avg 31.8 with 6 hot days does favor growth, which I grudgingly concede",
+    "rain_last_14d_mm 23.0 with 0 heavy_rain_days suggests modest runoff and little nutrient pulse"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "bfeec7e2c26c4b38"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.65,
+  "reason": "The ledgers show that roughly two of every three past Octobers recorded a bloom, so I keep my estimate close to that rate and decline to be swayed by anything outside the record.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 0.667",
+    "Base rate is the sole input available; no this-week observations are consulted",
+    "Forecast of 0.65 sits just below the historical rate as a modest, cautious adjustment"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "5fb2544d6a0ca87a"
+}

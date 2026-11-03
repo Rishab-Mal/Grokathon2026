@@ -1,0 +1,14 @@
+{
+  "name": "Satellite",
+  "p": 0.3,
+  "reason": "Index moderate at 0.268 but down 0.044 week-over-week, so the signal is weakening and leans against a bloom.",
+  "evidence": [
+    "cyano_index 0.268 (moderate, not high)",
+    "change_vs_last_week -0.044 (falling)",
+    "Implied prior week index ~0.312, so the decline is from a higher level",
+    "Mid September: late-season, no weather data in this slice"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "0a4ad31a5c81fbac"
+}

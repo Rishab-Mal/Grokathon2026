@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.3,
+  "reason": "Hardly any rain fell these two weeks, so there's no fresh load of litter and fertilizer washing in, but late August is deep into bloom season and nutrients from earlier rains could still be sitting in the lake.",
+  "evidence": [
+    "rain_last_14d_mm of 5.8 is very little, so little new runoff nutrient input",
+    "heavy_rain_days of 0 means no big wash-off event to trigger a bloom in the 1-2 week window",
+    "Late August timing leaves room for a bloom to be running on nutrients already in the water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "ba60c3c1612e3134"
+}

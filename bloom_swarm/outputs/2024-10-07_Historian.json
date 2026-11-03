@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.65,
+  "reason": "As a keeper of the lake's records, I note that roughly two Octobers in three have shown a bloom, so I hold close to that rate and, lacking any record for this particular week, I make only a slight adjustment for early October's position in the month.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 0.667",
+    "Time of year: early October",
+    "No current-week observations in my records, so I stay near the historical base rate"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "8ec6c207c0953b86"
+}

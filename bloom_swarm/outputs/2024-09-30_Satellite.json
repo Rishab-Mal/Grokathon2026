@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.2,
+  "reason": "Index 0.24 and falling week over week, so the signal argues against a bloom, though it is not at a clear-water floor.",
+  "evidence": [
+    "cyano_index 0.24 on a 0-1 scale: moderate-low level",
+    "change_vs_last_week -0.047: declining, about 16% drop from the prior reading of ~0.287",
+    "Late September: seasonal decline plausible, consistent with the falling trend"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "5153035676071e0f"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.8,
+  "reason": "I'd love to talk you out of it, but with hot, dry, calm-looking weather, a rising satellite index and a 100% history for this month, the best I can do is shave off the satellite noise and the odds that the index is just reading something else.",
+  "evidence": [
+    "Hot weather: max_temp_avg 30.5 with 4 hot days favors cyanobacteria growth, so little cooling to lean on",
+    "Dry conditions: rain_last_14d_mm 5.8 and 0 heavy rain days means no dilution or flushing, though also little nutrient runoff pulse",
+    "Satellite cyano_index 0.28 is only up 0.042 week over week, a modest rise and not clearly above a bloom threshold",
+    "History: bloom_rate_this_month_past_years 1.0, but that is a base rate and not a confirmation for this week"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "a250894e9f5fef9f"
+}

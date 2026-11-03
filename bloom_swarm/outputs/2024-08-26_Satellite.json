@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.68,
+  "reason": "Cyano index 0.28 and rising +0.042 week-over-week in late August: moderately elevated and climbing, leaning toward bloom present.",
+  "evidence": [
+    "cyano_index = 0.28 (moderate-to-elevated on 0-1 scale)",
+    "change_vs_last_week = +0.042 (rising, ~17% increase from prior ~0.238)",
+    "Time of year: late August (seasonally favorable for blooms)"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "9479604654c8bc55"
+}

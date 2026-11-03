@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.3,
+  "reason": "Folks, this week's forecast is a mixed bag for blue-greens: mid-August warmth at 27.1C is decent, but zero days above 30C and a hefty 29.7 mm of rain would stir and flush the water, so I'm leaning against a bloom.",
+  "evidence": [
+    "Average max temperature of 27.1C is warm but below the 30C threshold that favours blooms",
+    "Zero hot days (>30C) this week, so no sustained heat spike",
+    "Rain total of 29.7 mm is enough to mix and flush the water column",
+    "Mid-August timing keeps some seasonal bloom potential alive"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "7c6cbff5b10cf37b"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.3,
+  "reason": "Index is low at 0.066 but jumped +0.057 in one week, meaning it was near zero before, so early rise is flagged but no bloom-level reading yet.",
+  "evidence": [
+    "cyano_index 0.066 (low absolute level)",
+    "change_vs_last_week +0.057 (prior week ~0.009, roughly 7x increase)",
+    "Early July timing: seasonal growth window opening"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "eec0ec66cc022efc"
+}

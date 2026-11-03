@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.5,
+  "reason": "Two heavy rain days and about 31 mm over the last two weeks is a decent shove of fertilizer and litter into the lake, and mid August heat is when it tends to turn, but it's not a soaking, so I'm sitting near even odds.",
+  "evidence": [
+    "rain_last_14d_mm: 30.8, a moderate total, not a drought and not a flood",
+    "heavy_rain_days: 2, enough to wash some nutrients off the fields",
+    "Mid August timing, which is within the one to two week lag for blooms after rain"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "0064ce22b0456bac"
+}

@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.4,
+  "reason": "The 83% July base rate is real, but with the satellite index low and falling, a single hot day, and 44 mm of rain stirring and diluting the water, I'd shade well below the history.",
+  "evidence": [
+    "cyano_index 0.057, down 0.009 vs last week, so the signal is weak and fading",
+    "rain_total_mm 44.0 this week (47.4 mm over 14d) with 1 heavy rain day, which suggests mixing and dilution",
+    "hot_days only 1, max_temp_avg 27.7, warm but not a sustained heat push",
+    "bloom_rate_this_month_past_years 0.833 is the main argument for a bloom, and it is only a prior"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "30a0d184b419d3c9"
+}

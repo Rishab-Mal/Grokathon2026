@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.68,
+  "reason": "Folks, with six scorching days above 30C and a 31.8C average high, this lake is basking in a near-perfect bloom setup, and only that 22.2 mm of rain keeps me from going higher.",
+  "evidence": [
+    "Average max temperature 31.8C, well above the 30C bloom-favouring threshold",
+    "6 hot days this week, a sustained heat run that stratifies the water",
+    "22.2 mm total rain, moderate enough to cause some mixing and nutrient input but not a major flush",
+    "Mid-June timing, when the water is warming toward peak growth conditions"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "6997392e563fb3bb"
+}

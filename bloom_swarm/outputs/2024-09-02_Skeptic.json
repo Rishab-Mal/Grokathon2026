@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.5,
+  "reason": "History says every past September had a bloom, but cooler highs of 22.8, a falling satellite index, and almost no runoff give me plenty of room to doubt it this week.",
+  "evidence": [
+    "max_temp_avg 22.8 with only 1 hot day, which is mild for bloom growth",
+    "cyano_index 0.183, down 0.097 vs last week, so the trend is toward decline",
+    "rain_last_14d_mm 6.7 and 0 heavy rain days, so little nutrient runoff to fuel growth",
+    "bloom_rate_this_month_past_years 1.0, the one strong argument for a bloom, but it is a base rate and not this week's reading"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "2f975387177f04e0"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.22,
+  "reason": "Cyano index 0.113, low with a slight weekly rise, so the signal is weak and does not support a bloom.",
+  "evidence": [
+    "cyano_index 0.113 (low on 0-1 scale)",
+    "change_vs_last_week +0.016 (slight rise)",
+    "Late July is peak season, so the small upward drift is worth monitoring"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "0dcd52c804bb5fe8"
+}

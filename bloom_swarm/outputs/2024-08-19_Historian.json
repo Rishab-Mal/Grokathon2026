@@ -1,0 +1,13 @@
+{
+  "name": "Historian",
+  "p": 0.93,
+  "reason": "The ledgers show a bloom in every past year for this month, so I anchor very near certainty, yet I hold back slightly because a perfect record is still a finite one.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 1.0 (blooms recorded in every past year for this month)",
+    "No this-week observations in my slice, so I rely on the base rate alone",
+    "Forecast capped below the 0.97 ceiling to allow for the chance that this year breaks the pattern"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "606b5d3fe7e38ee1"
+}

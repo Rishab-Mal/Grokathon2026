@@ -1,0 +1,14 @@
+{
+  "name": "Satellite",
+  "p": 0.04,
+  "reason": "Cyano index 0.025 and falling sharply week over week; low and declining reading argues strongly against a bloom.",
+  "evidence": [
+    "cyano_index 0.025 (low on 0-1 scale)",
+    "change_vs_last_week -0.039 (steep decline)",
+    "Prior week index approx 0.064, now near floor",
+    "Late October timing consistent with seasonal decline"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "aabf0b2fce61473e"
+}

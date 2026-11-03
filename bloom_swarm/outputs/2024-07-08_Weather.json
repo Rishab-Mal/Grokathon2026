@@ -1,0 +1,13 @@
+{
+  "name": "Weather",
+  "p": 0.27,
+  "reason": "Folks, this week's setup is more flush than flourish: 44 mm of rain and only one hot day mean the lake is being stirred and diluted rather than baking into a calm, stable soup, even though early-July warmth at 27.7C keeps a bloom from being off the table.",
+  "evidence": [
+    "Rain total of 44.0 mm is heavy enough to mix and flush the water column",
+    "Only 1 hot day (above 30C) this week, so no sustained heat run",
+    "Average max temp of 27.7C is warm but below the 30C bloom-favouring threshold"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "72ec7c144eb162c6"
+}

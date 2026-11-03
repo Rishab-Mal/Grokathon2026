@@ -1,0 +1,14 @@
+{
+  "name": "Skeptic",
+  "p": 0.68,
+  "reason": "Heat, a high historical July bloom rate and a rising satellite index all point toward a bloom, but the index is only modestly elevated, the weekly rise is small, and the rain could be diluting things, so I'll shave the confident reading.",
+  "evidence": [
+    "max_temp_avg 31.1 with 6 hot days supports warm conditions, so I concede this one",
+    "bloom_rate_this_month_past_years 0.833 is a strong prior, but it is a base rate and not this week's observation",
+    "cyano_index 0.113 with change_vs_last_week only +0.016 is a modest signal that could be noise",
+    "rain_total_mm 26.9 with 0 heavy_rain_days means no major flushing but some possible mixing or dilution"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "4bd48798a0348eb5"
+}

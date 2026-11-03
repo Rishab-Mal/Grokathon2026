@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.3,
+  "reason": "Folks, it's a dry, quiet week with just 1.9 mm of rain and no flushing, but with highs averaging only 22.4C and zero days near the 30C mark, the heat that fuels a big bloom simply isn't here.",
+  "evidence": [
+    "max_temp_avg 22.4C, well below the 30C bloom-favouring threshold",
+    "hot_days 0, no sustained heat run",
+    "rain_total_mm 1.9, little flushing or mixing from rain",
+    "late September, so seasonal warmth is fading"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "546033822410812f"
+}

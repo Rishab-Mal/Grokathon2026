@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.72,
+  "reason": "Folks, with six days topping 30C and a weekly average high of 31.1C, this lake is basically a warm bathtub primed for blue-green growth, and only that 26.9 mm of rain keeps me from going higher.",
+  "evidence": [
+    "6 hot days (above 30C) this week",
+    "Average max temperature of 31.1C",
+    "Rain total of 26.9 mm, moderate and could cause some mixing or nutrient runoff",
+    "Late July timing, peak season for warm stratified water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "b1616b97e4b86f63"
+}

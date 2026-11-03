@@ -1,0 +1,13 @@
+{
+  "name": "Weather",
+  "p": 0.15,
+  "reason": "Folks, it's a dry, calm late-October week, but with highs averaging only 18.5C and not a single day near 30C, the water just isn't getting the heat that blooms need to really take off.",
+  "evidence": [
+    "max_temp_avg 18.5C, well below the 30C bloom-favouring threshold",
+    "hot_days = 0 for the week",
+    "rain_total_mm 0.7, so little flushing or mixing from rain, which only partly offsets the cool temperatures"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "c8bc7f645b4014e1"
+}

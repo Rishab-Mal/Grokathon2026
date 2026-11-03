@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.2,
+  "reason": "Hardly a drop of rain in two weeks means no fresh litter or fertilizer washing off my fields, so there's no big nutrient push to feed a bloom right now, though early September heat and old nutrients already in the lake keep me from ruling it out.",
+  "evidence": [
+    "rain_last_14d_mm: 2.0, a very dry stretch",
+    "heavy_rain_days: 0, so no runoff pulse in the past two weeks",
+    "Early September, still late-season bloom time, so leftover nutrients could carry a bloom"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "4a8a3f66fcd69ac4"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Satellite",
+  "p": 0.8,
+  "reason": "Cyano index 0.312 and up 0.129 week-over-week: moderately high and rising sharply, consistent with bloom onset or expansion.",
+  "evidence": [
+    "cyano_index 0.312 (0-1 scale), moderately elevated",
+    "change_vs_last_week +0.129, a steep rise implying the index was about 0.183 last week",
+    "Early September timing, no contradicting data in this slice"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "d66dbd5ba1e198ca"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.3,
+  "reason": "We got a decent 41.9 mm over the last two weeks with a couple of heavy days, so there's nutrient washed in, but it's mid October and the water's cooling down, which holds a bloom back.",
+  "evidence": [
+    "rain_last_14d_mm: 41.9 is a moderate amount of rain, enough to move some litter and fertilizer",
+    "heavy_rain_days: 2 means a couple of real washout events within the one-to-two-week bloom window",
+    "Mid October timing means cooler water, so the runoff may not turn into a bloom"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "fb003444111e5902"
+}

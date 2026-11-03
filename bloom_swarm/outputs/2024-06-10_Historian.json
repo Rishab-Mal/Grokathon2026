@@ -1,0 +1,12 @@
+{
+  "name": "Historian",
+  "p": 0.04,
+  "reason": "The ledgers show no bloom recorded in early June across the past years, so I keep my forecast near the floor and allow only a small margin for the first exception in the record.",
+  "evidence": [
+    "bloom_rate_this_month_past_years = 0.0",
+    "No other data in my slice, so I do not move far from the historical base rate"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "3dfec4e43386b560"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.1,
+  "reason": "Hardly a drop has fallen in two weeks, so there's no fresh fertilizer or litter washing into the lake to feed a bloom, and it's late October besides.",
+  "evidence": [
+    "rain_last_14d_mm: 1.7, essentially a dry spell",
+    "heavy_rain_days: 0, so no big wash-off event to trigger a bloom",
+    "Late October, so the lake is cooling and a late bloom is less likely"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "59ecd10c2ccd4bee"
+}

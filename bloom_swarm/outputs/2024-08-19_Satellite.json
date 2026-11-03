@@ -1,0 +1,14 @@
+{
+  "name": "Satellite",
+  "p": 0.68,
+  "reason": "Index 0.238 and up 0.067 week-over-week: moderate level, clear upward trend, mid-August season, leaning bloom present.",
+  "evidence": [
+    "cyano_index 0.238 on 0-1 scale (moderate)",
+    "change_vs_last_week +0.067 (rising, ~39% increase from prior ~0.171)",
+    "Mid August: seasonal peak window for cyanobacteria",
+    "No weather data supplied to corroborate"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "cc3a021920a1c04e"
+}

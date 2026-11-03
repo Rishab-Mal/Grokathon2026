@@ -1,0 +1,14 @@
+{
+  "name": "Satellite",
+  "p": 0.42,
+  "reason": "Cyano index 0.171 is low-to-moderate on the 0-1 scale but rising, so the signal leans toward early bloom development without confirming one.",
+  "evidence": [
+    "cyano_index 0.171 (low-moderate on 0-1 scale)",
+    "change_vs_last_week +0.036, about +27% from roughly 0.135",
+    "Mid August: seasonal window for bloom development",
+    "Single-week trend only; no confirmation of a sustained high level"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "eb03732a1e4c9de9"
+}

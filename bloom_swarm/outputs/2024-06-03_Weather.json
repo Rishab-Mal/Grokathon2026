@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.2,
+  "reason": "Folks, this week's forecast is lukewarm for algae: highs averaging only 25.3C with zero days above 30C and a soaking 17.3 mm of rain stirring the lake, so conditions lean against a bloom.",
+  "evidence": [
+    "Average max temperature of 25.3C is warm but well below the 30C bloom-boosting threshold",
+    "Zero hot days (above 30C) this week, so no sustained heat to stratify the water",
+    "Rain total of 17.3 mm can mix and flush the water column",
+    "Early June timing means the lake is still warming up"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "28f308cd054f49cf"
+}

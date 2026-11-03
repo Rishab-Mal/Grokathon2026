@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.2,
+  "reason": "Ground's been near dry these two weeks, so there's hardly any fresh litter or fertilizer washing into the lake to feed a bloom.",
+  "evidence": [
+    "rain_last_14d_mm: 4.6 mm, very little rain",
+    "heavy_rain_days: 0, no big washout event",
+    "Mid September, so any bloom would have to be running on older nutrients already in the water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "1fa640b055335fda"
+}

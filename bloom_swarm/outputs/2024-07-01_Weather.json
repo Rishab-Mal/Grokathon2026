@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.45,
+  "reason": "Folks, this week's setup is warm and mostly dry with only 3.4 mm of rain, but with highs averaging just 27.0C and a single hot day, it's a decent-but-not-spectacular recipe for a bloom.",
+  "evidence": [
+    "Average max temperature of 27.0C is warm but below the 30C threshold that strongly favours blooms",
+    "Only 1 hot day this week, so no sustained heat run",
+    "Rain total of 3.4 mm is light, so little flushing or mixing of the water",
+    "Early July timing means the season is warming up toward peak bloom conditions"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "b6f0b16b9cc87af4"
+}

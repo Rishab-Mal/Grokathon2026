@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.72,
+  "reason": "Folks, this is a textbook bloom-brewing setup: a late-August week averaging 30.5C with four hot days and barely a drizzle at 4.7 mm means warm, stable, stratified water that cyanobacteria love.",
+  "evidence": [
+    "Average max temperature of 30.5C, above the 30C threshold favouring blooms",
+    "4 hot days this week, a sustained heat run",
+    "Only 4.7 mm of rain total, too little to mix or flush the lake",
+    "Late August timing is peak warm-water season"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "dd562fde9a5e34e2"
+}

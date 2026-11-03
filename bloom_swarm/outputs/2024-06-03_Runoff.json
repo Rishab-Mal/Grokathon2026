@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.3,
+  "reason": "Only one heavy rain day and a modest 36.8 mm over two weeks means some fertilizer and litter got washed in, but it's not the big flush that sets off a bloom, and it's still early in the season.",
+  "evidence": [
+    "rain_last_14d_mm: 36.8, a moderate total, not a soaking",
+    "heavy_rain_days: 1, so only a single big runoff event",
+    "Early June, so the water may not have warmed enough yet for a bloom to take hold"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "1fb3e4b2e549a733"
+}

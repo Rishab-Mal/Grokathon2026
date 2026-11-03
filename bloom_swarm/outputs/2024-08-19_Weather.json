@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.45,
+  "reason": "Folks, it's a dry, settled week with just 1.1 mm of rain, which lets the water stay calm, but highs averaging only 25.1C and a single hot day leave the heat a bit short of true bloom-fueling territory.",
+  "evidence": [
+    "Average max temp 25.1C, below the 30C threshold that strongly favors blooms",
+    "Only 1 hot day this week, so sustained heat is limited",
+    "Rain total just 1.1 mm, so little mixing or flushing of the lake",
+    "Mid August timing is within the seasonal peak window for warm water"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "43218734146c53e9"
+}

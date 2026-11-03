@@ -1,0 +1,13 @@
+{
+  "name": "Runoff",
+  "p": 0.35,
+  "reason": "We got a decent bit of rain but only one real heavy day, so there's some fertilizer and litter washing in, just not the big flush that usually sets off a bloom.",
+  "evidence": [
+    "rain_last_14d_mm: 44.8 mm, a moderate total over two weeks",
+    "heavy_rain_days: 1, only a single big washout day",
+    "Late June timing means warm water, so the nutrients that did wash in could get used"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "e90dff3a0625fbf2"
+}

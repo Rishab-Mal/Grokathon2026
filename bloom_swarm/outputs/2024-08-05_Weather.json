@@ -1,0 +1,14 @@
+{
+  "name": "Weather",
+  "p": 0.35,
+  "reason": "Folks, this week's setup is a mixed bag: early August warmth is there, but a 25.4C average high and 21 mm of rain keep the water from locking into the hot, calm pattern blooms love.",
+  "evidence": [
+    "Average max temp of 25.4C is below the 30C threshold that favours blooms",
+    "Only 1 hot day this week, so no sustained heat run",
+    "21.0 mm of rain total can mix and flush the water column",
+    "Early August timing keeps seasonal bloom potential from being negligible"
+  ],
+  "model": "claude-sonnet-5-5",
+  "mode": "blind",
+  "prompt_hash": "b4c091219a2aaed6"
+}
