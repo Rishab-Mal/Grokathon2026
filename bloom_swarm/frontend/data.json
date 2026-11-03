@@ -6,17 +6,18 @@
   },
   "weeks": [
     {
+      "week": "2025-06-02",
       "agents": [
         {
-          "name": "Weather",
-          "p": 0.55,
-          "reason": "Warm conditions with minimal rain create stagnant water.",
+          "name": "Historian",
+          "p": 0.41,
+          "reason": "Records indicate low bloom probability for this season.",
           "evidence": [
-            "Only 35.0mm of rain recorded.",
-            "No significant cooling events observed.",
-            "Max temp averaged 26.9C this week."
+            "Last year had .",
+            "Bloom rate this month in past years: 35%.",
+            "Seasonal pattern peaks in ."
           ],
-          "weight": 0.1818
+          "weight": 0.1278
         },
         {
           "name": "Runoff",
@@ -27,7 +28,7 @@
             "Nearby rivers showed elevated turbidity.",
             "3 days had heavy precipitation (>10mm)."
           ],
-          "weight": 0.1717
+          "weight": 0.1694
         },
         {
           "name": "Satellite",
@@ -38,18 +39,7 @@
             "Cyano index at 0.40.",
             "Index changed by +0.06 vs last week."
           ],
-          "weight": 0.1742
-        },
-        {
-          "name": "Historian",
-          "p": 0.41,
-          "reason": "Records indicate low bloom probability for this season.",
-          "evidence": [
-            "Last year had .",
-            "Bloom rate this month in past years: 35%.",
-            "Seasonal pattern peaks in ."
-          ],
-          "weight": 0.1308
+          "weight": 0.172
         },
         {
           "name": "Skeptic",
@@ -60,27 +50,76 @@
             "Wind speeds averaged 15 km/h, promoting mixing.",
             "Recent cold front disrupted stratification."
           ],
-          "weight": 0.3415
-        }
-      ],
-      "swarm_p": 0.594,
-      "simple_avg_p": 0.5845,
-      "actual": 1,
-      "base_rate_p": 0.2,
-      "week": "2025-06-02"
-    },
-    {
-      "agents": [
+          "weight": 0.3509
+        },
         {
           "name": "Weather",
-          "p": 0.23,
-          "reason": "Sustained heat promotes surface stratification.",
+          "p": 0.55,
+          "reason": "Warm conditions with minimal rain create stagnant water.",
           "evidence": [
-            "Max temp averaged 23.4C this week.",
-            "Only 1.4mm of rain recorded.",
-            "UV index remained high throughout week."
+            "Only 35.0mm of rain recorded.",
+            "No significant cooling events observed.",
+            "Max temp averaged 26.9C this week."
           ],
-          "weight": 0.1933
+          "weight": 0.1799
+        }
+      ],
+      "swarm_p": 0.5943,
+      "simple_avg_p": 0.5845,
+      "base_rate_p": 0.2,
+      "actual": 1,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2,
+          "wf": 0.5845
+        },
+        "equal_linear": {
+          "loo": 0.582,
+          "wf": 0.5845
+        },
+        "equal_logodds": {
+          "loo": 0.5845,
+          "wf": 0.5845
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.5943,
+          "wf": 0.5845
+        },
+        "bates_granger": {
+          "loo": 0.6217,
+          "wf": 0.5845
+        },
+        "stacked_logistic": {
+          "loo": 0.8026,
+          "wf": 0.5845
+        },
+        "extremized_primary": {
+          "loo": 0.7221,
+          "wf": 0.5845
+        },
+        "best_agent_selected": {
+          "loo": 0.6,
+          "wf": 0.5845
+        },
+        "hedge_online": {
+          "loo": 0.6015,
+          "wf": 0.5845
+        }
+      }
+    },
+    {
+      "week": "2025-06-09",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.32,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Long-term trend shows .",
+            "Seasonal pattern peaks in .",
+            "Similar conditions caused blooms in 3 of 5 prior years."
+          ],
+          "weight": 0.124
         },
         {
           "name": "Runoff",
@@ -91,7 +130,7 @@
             "Storm drains discharged into tributaries.",
             "1 days had heavy precipitation (>10mm)."
           ],
-          "weight": 0.1735
+          "weight": 0.1713
         },
         {
           "name": "Satellite",
@@ -102,18 +141,7 @@
             "Chlorophyll-a estimates support reading.",
             "Surface reflectance indicates algal pigments."
           ],
-          "weight": 0.176
-        },
-        {
-          "name": "Historian",
-          "p": 0.32,
-          "reason": "Historical data shows blooms common this month.",
-          "evidence": [
-            "Long-term trend shows .",
-            "Seasonal pattern peaks in .",
-            "Similar conditions caused blooms in 3 of 5 prior years."
-          ],
-          "weight": 0.1271
+          "weight": 0.1739
         },
         {
           "name": "Skeptic",
@@ -124,27 +152,76 @@
             "Zebra mussels may filter some algae.",
             "Recent cold front disrupted stratification."
           ],
-          "weight": 0.3301
-        }
-      ],
-      "swarm_p": 0.4103,
-      "simple_avg_p": 0.3838,
-      "actual": 1,
-      "base_rate_p": 0.2,
-      "week": "2025-06-09"
-    },
-    {
-      "agents": [
+          "weight": 0.339
+        },
         {
           "name": "Weather",
-          "p": 0.88,
-          "reason": "Hot spell combined with low precipitation increases bloom risk.",
+          "p": 0.23,
+          "reason": "Sustained heat promotes surface stratification.",
           "evidence": [
-            "Only 1.2mm of rain recorded.",
-            "Max temp averaged 27.6C this week.",
-            "0 days exceeded 30C threshold."
+            "Max temp averaged 23.4C this week.",
+            "Only 1.4mm of rain recorded.",
+            "UV index remained high throughout week."
           ],
-          "weight": 0.1683
+          "weight": 0.1918
+        }
+      ],
+      "swarm_p": 0.4122,
+      "simple_avg_p": 0.3838,
+      "base_rate_p": 0.2,
+      "actual": 1,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2,
+          "wf": 0.3838
+        },
+        "equal_linear": {
+          "loo": 0.39,
+          "wf": 0.3838
+        },
+        "equal_logodds": {
+          "loo": 0.3838,
+          "wf": 0.3838
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.4122,
+          "wf": 0.3838
+        },
+        "bates_granger": {
+          "loo": 0.4066,
+          "wf": 0.3838
+        },
+        "stacked_logistic": {
+          "loo": 0.0926,
+          "wf": 0.3838
+        },
+        "extremized_primary": {
+          "loo": 0.2917,
+          "wf": 0.3838
+        },
+        "best_agent_selected": {
+          "loo": 0.56,
+          "wf": 0.3838
+        },
+        "hedge_online": {
+          "loo": 0.5305,
+          "wf": 0.3838
+        }
+      }
+    },
+    {
+      "week": "2025-06-16",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.37,
+          "reason": "Historical bloom rate for this month is moderate.",
+          "evidence": [
+            "Long-term trend shows .",
+            "Bloom rate this month in past years: 34%.",
+            "Seasonal pattern peaks in ."
+          ],
+          "weight": 0.1251
         },
         {
           "name": "Runoff",
@@ -155,7 +232,7 @@
             "Agricultural fields are in active growing season.",
             "Storm drains discharged into tributaries."
           ],
-          "weight": 0.1639
+          "weight": 0.1609
         },
         {
           "name": "Satellite",
@@ -166,18 +243,7 @@
             "Cyano index at 0.36.",
             "Surface reflectance indicates algal pigments."
           ],
-          "weight": 0.169
-        },
-        {
-          "name": "Historian",
-          "p": 0.37,
-          "reason": "Historical bloom rate for this month is moderate.",
-          "evidence": [
-            "Long-term trend shows .",
-            "Bloom rate this month in past years: 34%.",
-            "Seasonal pattern peaks in ."
-          ],
-          "weight": 0.1285
+          "weight": 0.1662
         },
         {
           "name": "Skeptic",
@@ -188,27 +254,76 @@
             "Water temperature still below optimal for blooms.",
             "Lake level is higher than usual, diluting nutrients."
           ],
-          "weight": 0.3702
-        }
-      ],
-      "swarm_p": 0.6214,
-      "simple_avg_p": 0.6609,
-      "actual": 1,
-      "base_rate_p": 0.2,
-      "week": "2025-06-16"
-    },
-    {
-      "agents": [
+          "weight": 0.3824
+        },
         {
           "name": "Weather",
-          "p": 0.48,
-          "reason": "Sustained heat promotes surface stratification.",
+          "p": 0.88,
+          "reason": "Hot spell combined with low precipitation increases bloom risk.",
           "evidence": [
-            "No significant cooling events observed.",
-            "Only 20.0mm of rain recorded.",
-            "UV index remained high throughout week."
+            "Only 1.2mm of rain recorded.",
+            "Max temp averaged 27.6C this week.",
+            "0 days exceeded 30C threshold."
           ],
-          "weight": 0.1827
+          "weight": 0.1654
+        }
+      ],
+      "swarm_p": 0.6177,
+      "simple_avg_p": 0.6609,
+      "base_rate_p": 0.2,
+      "actual": 1,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2,
+          "wf": 0.6609
+        },
+        "equal_linear": {
+          "loo": 0.632,
+          "wf": 0.6609
+        },
+        "equal_logodds": {
+          "loo": 0.6609,
+          "wf": 0.6609
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.6177,
+          "wf": 0.6609
+        },
+        "bates_granger": {
+          "loo": 0.5955,
+          "wf": 0.6609
+        },
+        "stacked_logistic": {
+          "loo": 0.4899,
+          "wf": 0.6609
+        },
+        "extremized_primary": {
+          "loo": 0.7685,
+          "wf": 0.6609
+        },
+        "best_agent_selected": {
+          "loo": 0.4,
+          "wf": 0.6609
+        },
+        "hedge_online": {
+          "loo": 0.4179,
+          "wf": 0.6609
+        }
+      }
+    },
+    {
+      "week": "2025-06-23",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.45,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Bloom rate this month in past years: 35%.",
+            "Seasonal pattern peaks in ."
+          ],
+          "weight": 0.1238
         },
         {
           "name": "Runoff",
@@ -219,7 +334,7 @@
             "54mm fell in the past 14 days.",
             "Storm drains discharged into tributaries."
           ],
-          "weight": 0.1798
+          "weight": 0.1779
         },
         {
           "name": "Satellite",
@@ -230,18 +345,7 @@
             "Index changed by +0.05 vs last week.",
             "Surface reflectance indicates algal pigments."
           ],
-          "weight": 0.1778
-        },
-        {
-          "name": "Historian",
-          "p": 0.45,
-          "reason": "Historical data shows blooms common this month.",
-          "evidence": [
-            "Similar conditions caused blooms in 3 of 5 prior years.",
-            "Bloom rate this month in past years: 35%.",
-            "Seasonal pattern peaks in ."
-          ],
-          "weight": 0.1267
+          "weight": 0.1758
         },
         {
           "name": "Skeptic",
@@ -252,27 +356,76 @@
             "Wind speeds averaged 15 km/h, promoting mixing.",
             "Water temperature still below optimal for blooms."
           ],
-          "weight": 0.3329
-        }
-      ],
-      "swarm_p": 0.4317,
-      "simple_avg_p": 0.4489,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-06-23"
-    },
-    {
-      "agents": [
+          "weight": 0.3416
+        },
         {
           "name": "Weather",
-          "p": 0.23,
+          "p": 0.48,
           "reason": "Sustained heat promotes surface stratification.",
           "evidence": [
-            "Only 8.5mm of rain recorded.",
-            "0 days exceeded 30C threshold.",
+            "No significant cooling events observed.",
+            "Only 20.0mm of rain recorded.",
             "UV index remained high throughout week."
           ],
-          "weight": 0.179
+          "weight": 0.1808
+        }
+      ],
+      "swarm_p": 0.4305,
+      "simple_avg_p": 0.4489,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.4489
+        },
+        "equal_linear": {
+          "loo": 0.45,
+          "wf": 0.4489
+        },
+        "equal_logodds": {
+          "loo": 0.4489,
+          "wf": 0.4489
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.4305,
+          "wf": 0.4489
+        },
+        "bates_granger": {
+          "loo": 0.4252,
+          "wf": 0.4489
+        },
+        "stacked_logistic": {
+          "loo": 0.1628,
+          "wf": 0.4489
+        },
+        "extremized_primary": {
+          "loo": 0.3319,
+          "wf": 0.4489
+        },
+        "best_agent_selected": {
+          "loo": 0.34,
+          "wf": 0.4489
+        },
+        "hedge_online": {
+          "loo": 0.3529,
+          "wf": 0.4489
+        }
+      }
+    },
+    {
+      "week": "2025-06-30",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.13,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Seasonal pattern peaks in .",
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Last year had ."
+          ],
+          "weight": 0.1229
         },
         {
           "name": "Runoff",
@@ -283,7 +436,7 @@
             "1 days had heavy precipitation (>10mm).",
             "Storm drains discharged into tributaries."
           ],
-          "weight": 0.1759
+          "weight": 0.1738
         },
         {
           "name": "Satellite",
@@ -294,18 +447,7 @@
             "Chlorophyll-a estimates support reading.",
             "Index changed by +0.08 vs last week."
           ],
-          "weight": 0.1772
-        },
-        {
-          "name": "Historian",
-          "p": 0.13,
-          "reason": "Historical data shows blooms common this month.",
-          "evidence": [
-            "Seasonal pattern peaks in .",
-            "Similar conditions caused blooms in 3 of 5 prior years.",
-            "Last year had ."
-          ],
-          "weight": 0.1258
+          "weight": 0.1751
         },
         {
           "name": "Skeptic",
@@ -316,27 +458,76 @@
             "Lake level is higher than usual, diluting nutrients.",
             "Wind speeds averaged 15 km/h, promoting mixing."
           ],
-          "weight": 0.3421
-        }
-      ],
-      "swarm_p": 0.272,
-      "simple_avg_p": 0.2504,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-06-30"
-    },
-    {
-      "agents": [
+          "weight": 0.3513
+        },
         {
           "name": "Weather",
-          "p": 0.44,
+          "p": 0.23,
           "reason": "Sustained heat promotes surface stratification.",
           "evidence": [
-            "UV index remained high throughout week.",
-            "Only 15.7mm of rain recorded.",
-            "No significant cooling events observed."
+            "Only 8.5mm of rain recorded.",
+            "0 days exceeded 30C threshold.",
+            "UV index remained high throughout week."
           ],
-          "weight": 0.1809
+          "weight": 0.177
+        }
+      ],
+      "swarm_p": 0.2731,
+      "simple_avg_p": 0.2504,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.75
+        },
+        "equal_linear": {
+          "loo": 0.26,
+          "wf": 0.26
+        },
+        "equal_logodds": {
+          "loo": 0.2504,
+          "wf": 0.2504
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.2731,
+          "wf": 0.266
+        },
+        "bates_granger": {
+          "loo": 0.3075,
+          "wf": 0.2926
+        },
+        "stacked_logistic": {
+          "loo": 0.4285,
+          "wf": 0.7254
+        },
+        "extremized_primary": {
+          "loo": 0.0797,
+          "wf": 0.1161
+        },
+        "best_agent_selected": {
+          "loo": 0.34,
+          "wf": 0.26
+        },
+        "hedge_online": {
+          "loo": 0.3348,
+          "wf": 0.2786
+        }
+      }
+    },
+    {
+      "week": "2025-07-07",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.65,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Bloom rate this month in past years: 57%.",
+            "Long-term trend shows .",
+            "Last year had ."
+          ],
+          "weight": 0.1295
         },
         {
           "name": "Runoff",
@@ -347,7 +538,7 @@
             "Storm drains discharged into tributaries.",
             "Agricultural fields are in active growing season."
           ],
-          "weight": 0.1839
+          "weight": 0.1822
         },
         {
           "name": "Satellite",
@@ -358,18 +549,7 @@
             "Chlorophyll-a estimates support reading.",
             "Index changed by -0.07 vs last week."
           ],
-          "weight": 0.1778
-        },
-        {
-          "name": "Historian",
-          "p": 0.65,
-          "reason": "Historical data shows blooms common this month.",
-          "evidence": [
-            "Bloom rate this month in past years: 57%.",
-            "Long-term trend shows .",
-            "Last year had ."
-          ],
-          "weight": 0.1323
+          "weight": 0.176
         },
         {
           "name": "Skeptic",
@@ -380,27 +560,76 @@
             "Wind speeds averaged 15 km/h, promoting mixing.",
             "Water temperature still below optimal for blooms."
           ],
-          "weight": 0.3251
-        }
-      ],
-      "swarm_p": 0.4349,
-      "simple_avg_p": 0.477,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-07-07"
-    },
-    {
-      "agents": [
+          "weight": 0.3332
+        },
         {
           "name": "Weather",
           "p": 0.44,
-          "reason": "Warm conditions with minimal rain create stagnant water.",
+          "reason": "Sustained heat promotes surface stratification.",
           "evidence": [
-            "Only 11.3mm of rain recorded.",
             "UV index remained high throughout week.",
-            "Max temp averaged 26.7C this week."
+            "Only 15.7mm of rain recorded.",
+            "No significant cooling events observed."
           ],
-          "weight": 0.1836
+          "weight": 0.1791
+        }
+      ],
+      "swarm_p": 0.4324,
+      "simple_avg_p": 0.477,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.6
+        },
+        "equal_linear": {
+          "loo": 0.48,
+          "wf": 0.48
+        },
+        "equal_logodds": {
+          "loo": 0.477,
+          "wf": 0.477
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.4324,
+          "wf": 0.4639
+        },
+        "bates_granger": {
+          "loo": 0.3995,
+          "wf": 0.429
+        },
+        "stacked_logistic": {
+          "loo": 0.0345,
+          "wf": 0.5705
+        },
+        "extremized_primary": {
+          "loo": 0.3363,
+          "wf": 0.4106
+        },
+        "best_agent_selected": {
+          "loo": 0.26,
+          "wf": 0.43
+        },
+        "hedge_online": {
+          "loo": 0.2825,
+          "wf": 0.4522
+        }
+      }
+    },
+    {
+      "week": "2025-07-14",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.55,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Last year had .",
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Bloom rate this month in past years: 53%."
+          ],
+          "weight": 0.1283
         },
         {
           "name": "Runoff",
@@ -411,7 +640,7 @@
             "Agricultural fields are in active growing season.",
             "Storm drains discharged into tributaries."
           ],
-          "weight": 0.1731
+          "weight": 0.1711
         },
         {
           "name": "Satellite",
@@ -422,18 +651,7 @@
             "Chlorophyll-a estimates support reading.",
             "Cyano index at 0.00."
           ],
-          "weight": 0.1805
-        },
-        {
-          "name": "Historian",
-          "p": 0.55,
-          "reason": "Historical data shows blooms common this month.",
-          "evidence": [
-            "Last year had .",
-            "Similar conditions caused blooms in 3 of 5 prior years.",
-            "Bloom rate this month in past years: 53%."
-          ],
-          "weight": 0.1311
+          "weight": 0.1786
         },
         {
           "name": "Skeptic",
@@ -444,27 +662,76 @@
             "Water temperature still below optimal for blooms.",
             "Zebra mussels may filter some algae."
           ],
-          "weight": 0.3317
-        }
-      ],
-      "swarm_p": 0.3746,
-      "simple_avg_p": 0.4003,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-07-14"
-    },
-    {
-      "agents": [
+          "weight": 0.3402
+        },
         {
           "name": "Weather",
-          "p": 0.1,
-          "reason": "Six days above 30C favour cyanobacteria growth.",
+          "p": 0.44,
+          "reason": "Warm conditions with minimal rain create stagnant water.",
           "evidence": [
+            "Only 11.3mm of rain recorded.",
             "UV index remained high throughout week.",
-            "Only 14.0mm of rain recorded.",
-            "Max temp averaged 26.6C this week."
+            "Max temp averaged 26.7C this week."
           ],
-          "weight": 0.1716
+          "weight": 0.1818
+        }
+      ],
+      "swarm_p": 0.3732,
+      "simple_avg_p": 0.4003,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.5
+        },
+        "equal_linear": {
+          "loo": 0.404,
+          "wf": 0.404
+        },
+        "equal_logodds": {
+          "loo": 0.4003,
+          "wf": 0.4003
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.3732,
+          "wf": 0.3877
+        },
+        "bates_granger": {
+          "loo": 0.3381,
+          "wf": 0.36
+        },
+        "stacked_logistic": {
+          "loo": 0.03,
+          "wf": 0.1427
+        },
+        "extremized_primary": {
+          "loo": 0.2147,
+          "wf": 0.2419
+        },
+        "best_agent_selected": {
+          "loo": 0.28,
+          "wf": 0.43
+        },
+        "hedge_online": {
+          "loo": 0.2903,
+          "wf": 0.3739
+        }
+      }
+    },
+    {
+      "week": "2025-07-21",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.5,
+          "reason": "Historical bloom rate for this month is moderate.",
+          "evidence": [
+            "Last year had .",
+            "Seasonal pattern peaks in .",
+            "Similar conditions caused blooms in 3 of 5 prior years."
+          ],
+          "weight": 0.1246
         },
         {
           "name": "Runoff",
@@ -475,7 +742,7 @@
             "Nearby rivers showed elevated turbidity.",
             "Storm drains discharged into tributaries."
           ],
-          "weight": 0.1991
+          "weight": 0.1979
         },
         {
           "name": "Satellite",
@@ -486,18 +753,7 @@
             "Surface reflectance indicates algal pigments.",
             "Chlorophyll-a estimates support reading."
           ],
-          "weight": 0.1753
-        },
-        {
-          "name": "Historian",
-          "p": 0.5,
-          "reason": "Historical bloom rate for this month is moderate.",
-          "evidence": [
-            "Last year had .",
-            "Seasonal pattern peaks in .",
-            "Similar conditions caused blooms in 3 of 5 prior years."
-          ],
-          "weight": 0.1274
+          "weight": 0.1733
         },
         {
           "name": "Skeptic",
@@ -508,27 +764,76 @@
             "Water temperature still below optimal for blooms.",
             "Recent cold front disrupted stratification."
           ],
-          "weight": 0.3265
-        }
-      ],
-      "swarm_p": 0.3886,
-      "simple_avg_p": 0.3982,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-07-21"
-    },
-    {
-      "agents": [
+          "weight": 0.3347
+        },
         {
           "name": "Weather",
-          "p": 0.64,
+          "p": 0.1,
           "reason": "Six days above 30C favour cyanobacteria growth.",
           "evidence": [
-            "0 days exceeded 30C threshold.",
-            "No significant cooling events observed.",
-            "UV index remained high throughout week."
+            "UV index remained high throughout week.",
+            "Only 14.0mm of rain recorded.",
+            "Max temp averaged 26.6C this week."
           ],
-          "weight": 0.1757
+          "weight": 0.1695
+        }
+      ],
+      "swarm_p": 0.3877,
+      "simple_avg_p": 0.3982,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.4286
+        },
+        "equal_linear": {
+          "loo": 0.418,
+          "wf": 0.418
+        },
+        "equal_logodds": {
+          "loo": 0.3982,
+          "wf": 0.3982
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.3877,
+          "wf": 0.3881
+        },
+        "bates_granger": {
+          "loo": 0.4212,
+          "wf": 0.3744
+        },
+        "stacked_logistic": {
+          "loo": 0.1294,
+          "wf": 0.1811
+        },
+        "extremized_primary": {
+          "loo": 0.2419,
+          "wf": 0.2427
+        },
+        "best_agent_selected": {
+          "loo": 0.29,
+          "wf": 0.29
+        },
+        "hedge_online": {
+          "loo": 0.3199,
+          "wf": 0.3747
+        }
+      }
+    },
+    {
+      "week": "2025-07-28",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.42,
+          "reason": "This period historically sees peak bloom frequency.",
+          "evidence": [
+            "Long-term trend shows .",
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Bloom rate this month in past years: 53%."
+          ],
+          "weight": 0.1254
         },
         {
           "name": "Runoff",
@@ -539,7 +844,7 @@
             "Nearby rivers showed elevated turbidity.",
             "3 days had heavy precipitation (>10mm)."
           ],
-          "weight": 0.1647
+          "weight": 0.1619
         },
         {
           "name": "Satellite",
@@ -550,18 +855,7 @@
             "Index changed by +0.00 vs last week.",
             "Chlorophyll-a estimates support reading."
           ],
-          "weight": 0.1743
-        },
-        {
-          "name": "Historian",
-          "p": 0.42,
-          "reason": "This period historically sees peak bloom frequency.",
-          "evidence": [
-            "Long-term trend shows .",
-            "Similar conditions caused blooms in 3 of 5 prior years.",
-            "Bloom rate this month in past years: 53%."
-          ],
-          "weight": 0.1286
+          "weight": 0.1718
         },
         {
           "name": "Skeptic",
@@ -572,27 +866,76 @@
             "Water temperature still below optimal for blooms.",
             "Recent cold front disrupted stratification."
           ],
-          "weight": 0.3567
-        }
-      ],
-      "swarm_p": 0.6201,
-      "simple_avg_p": 0.6426,
-      "actual": 1,
-      "base_rate_p": 0.2,
-      "week": "2025-07-28"
-    },
-    {
-      "agents": [
+          "weight": 0.3676
+        },
         {
           "name": "Weather",
-          "p": 0.55,
+          "p": 0.64,
           "reason": "Six days above 30C favour cyanobacteria growth.",
           "evidence": [
-            "Max temp averaged 31.3C this week.",
-            "Only 14.5mm of rain recorded.",
-            "No significant cooling events observed."
+            "0 days exceeded 30C threshold.",
+            "No significant cooling events observed.",
+            "UV index remained high throughout week."
           ],
-          "weight": 0.1861
+          "weight": 0.1733
+        }
+      ],
+      "swarm_p": 0.6181,
+      "simple_avg_p": 0.6426,
+      "base_rate_p": 0.2,
+      "actual": 1,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2,
+          "wf": 0.375
+        },
+        "equal_linear": {
+          "loo": 0.612,
+          "wf": 0.612
+        },
+        "equal_logodds": {
+          "loo": 0.6426,
+          "wf": 0.6426
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.6181,
+          "wf": 0.6257
+        },
+        "bates_granger": {
+          "loo": 0.6309,
+          "wf": 0.6173
+        },
+        "stacked_logistic": {
+          "loo": 0.7185,
+          "wf": 0.8197
+        },
+        "extremized_primary": {
+          "loo": 0.7691,
+          "wf": 0.7832
+        },
+        "best_agent_selected": {
+          "loo": 0.48,
+          "wf": 0.48
+        },
+        "hedge_online": {
+          "loo": 0.4937,
+          "wf": 0.5897
+        }
+      }
+    },
+    {
+      "week": "2025-08-04",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.67,
+          "reason": "Historical bloom rate for this month is moderate.",
+          "evidence": [
+            "Last year had .",
+            "Bloom rate this month in past years: 66%.",
+            "Seasonal pattern peaks in ."
+          ],
+          "weight": 0.1301
         },
         {
           "name": "Runoff",
@@ -603,7 +946,7 @@
             "Nearby rivers showed elevated turbidity.",
             "Storm drains discharged into tributaries."
           ],
-          "weight": 0.1678
+          "weight": 0.1657
         },
         {
           "name": "Satellite",
@@ -614,18 +957,7 @@
             "Surface reflectance indicates algal pigments.",
             "Cyano index at 0.00."
           ],
-          "weight": 0.1942
-        },
-        {
-          "name": "Historian",
-          "p": 0.67,
-          "reason": "Historical bloom rate for this month is moderate.",
-          "evidence": [
-            "Last year had .",
-            "Bloom rate this month in past years: 66%.",
-            "Seasonal pattern peaks in ."
-          ],
-          "weight": 0.1328
+          "weight": 0.1929
         },
         {
           "name": "Skeptic",
@@ -636,27 +968,76 @@
             "Wind speeds averaged 15 km/h, promoting mixing.",
             "Recent cold front disrupted stratification."
           ],
-          "weight": 0.3191
-        }
-      ],
-      "swarm_p": 0.4011,
-      "simple_avg_p": 0.4483,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-08-04"
-    },
-    {
-      "agents": [
+          "weight": 0.3267
+        },
         {
           "name": "Weather",
-          "p": 0.56,
-          "reason": "High average temperatures accelerate algal metabolism.",
+          "p": 0.55,
+          "reason": "Six days above 30C favour cyanobacteria growth.",
           "evidence": [
-            "UV index remained high throughout week.",
-            "Max temp averaged 32.5C this week.",
-            "2 days exceeded 30C threshold."
+            "Max temp averaged 31.3C this week.",
+            "Only 14.5mm of rain recorded.",
+            "No significant cooling events observed."
           ],
-          "weight": 0.1874
+          "weight": 0.1846
+        }
+      ],
+      "swarm_p": 0.3982,
+      "simple_avg_p": 0.4483,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.4444
+        },
+        "equal_linear": {
+          "loo": 0.464,
+          "wf": 0.464
+        },
+        "equal_logodds": {
+          "loo": 0.4483,
+          "wf": 0.4483
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.3982,
+          "wf": 0.4414
+        },
+        "bates_granger": {
+          "loo": 0.3288,
+          "wf": 0.406
+        },
+        "stacked_logistic": {
+          "loo": 0.03,
+          "wf": 0.0745
+        },
+        "extremized_primary": {
+          "loo": 0.2625,
+          "wf": 0.357
+        },
+        "best_agent_selected": {
+          "loo": 0.18,
+          "wf": 0.71
+        },
+        "hedge_online": {
+          "loo": 0.2166,
+          "wf": 0.4396
+        }
+      }
+    },
+    {
+      "week": "2025-08-11",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.6,
+          "reason": "Records indicate low bloom probability for this season.",
+          "evidence": [
+            "Seasonal pattern peaks in .",
+            "Last year had .",
+            "Long-term trend shows ."
+          ],
+          "weight": 0.1283
         },
         {
           "name": "Runoff",
@@ -667,7 +1048,7 @@
             "2 days had heavy precipitation (>10mm).",
             "Storm drains discharged into tributaries."
           ],
-          "weight": 0.1863
+          "weight": 0.1848
         },
         {
           "name": "Satellite",
@@ -678,18 +1059,7 @@
             "Surface reflectance indicates algal pigments.",
             "Chlorophyll-a estimates support reading."
           ],
-          "weight": 0.1754
-        },
-        {
-          "name": "Historian",
-          "p": 0.6,
-          "reason": "Records indicate low bloom probability for this season.",
-          "evidence": [
-            "Seasonal pattern peaks in .",
-            "Last year had .",
-            "Long-term trend shows ."
-          ],
-          "weight": 0.131
+          "weight": 0.1735
         },
         {
           "name": "Skeptic",
@@ -700,27 +1070,76 @@
             "Recent cold front disrupted stratification.",
             "Water temperature still below optimal for blooms."
           ],
-          "weight": 0.3199
-        }
-      ],
-      "swarm_p": 0.4008,
-      "simple_avg_p": 0.4532,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-08-11"
-    },
-    {
-      "agents": [
+          "weight": 0.3275
+        },
         {
           "name": "Weather",
-          "p": 0.7,
-          "reason": "Six days above 30C favour cyanobacteria growth.",
+          "p": 0.56,
+          "reason": "High average temperatures accelerate algal metabolism.",
           "evidence": [
-            "Only 14.8mm of rain recorded.",
-            "4 days exceeded 30C threshold.",
-            "Max temp averaged 32.5C this week."
+            "UV index remained high throughout week.",
+            "Max temp averaged 32.5C this week.",
+            "2 days exceeded 30C threshold."
           ],
-          "weight": 0.1973
+          "weight": 0.186
+        }
+      ],
+      "swarm_p": 0.3976,
+      "simple_avg_p": 0.4532,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.4
+        },
+        "equal_linear": {
+          "loo": 0.466,
+          "wf": 0.466
+        },
+        "equal_logodds": {
+          "loo": 0.4532,
+          "wf": 0.4532
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.3976,
+          "wf": 0.4156
+        },
+        "bates_granger": {
+          "loo": 0.3644,
+          "wf": 0.3735
+        },
+        "stacked_logistic": {
+          "loo": 0.03,
+          "wf": 0.03
+        },
+        "extremized_primary": {
+          "loo": 0.2614,
+          "wf": 0.299
+        },
+        "best_agent_selected": {
+          "loo": 0.17,
+          "wf": 0.17
+        },
+        "hedge_online": {
+          "loo": 0.2023,
+          "wf": 0.3241
+        }
+      }
+    },
+    {
+      "week": "2025-08-18",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.59,
+          "reason": "This period historically sees peak bloom frequency.",
+          "evidence": [
+            "Bloom rate this month in past years: 60%.",
+            "Last year had .",
+            "Similar conditions caused blooms in 3 of 5 prior years."
+          ],
+          "weight": 0.128
         },
         {
           "name": "Runoff",
@@ -731,7 +1150,7 @@
             "Storm drains discharged into tributaries.",
             "Agricultural fields are in active growing season."
           ],
-          "weight": 0.1733
+          "weight": 0.1714
         },
         {
           "name": "Satellite",
@@ -742,18 +1161,7 @@
             "Chlorophyll-a estimates support reading.",
             "Cyano index at 0.44."
           ],
-          "weight": 0.1768
-        },
-        {
-          "name": "Historian",
-          "p": 0.59,
-          "reason": "This period historically sees peak bloom frequency.",
-          "evidence": [
-            "Bloom rate this month in past years: 60%.",
-            "Last year had .",
-            "Similar conditions caused blooms in 3 of 5 prior years."
-          ],
-          "weight": 0.1308
+          "weight": 0.175
         },
         {
           "name": "Skeptic",
@@ -764,27 +1172,76 @@
             "Recent cold front disrupted stratification.",
             "Zebra mussels may filter some algae."
           ],
-          "weight": 0.3217
-        }
-      ],
-      "swarm_p": 0.4042,
-      "simple_avg_p": 0.4467,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-08-18"
-    },
-    {
-      "agents": [
+          "weight": 0.3295
+        },
         {
           "name": "Weather",
-          "p": 0.46,
-          "reason": "Hot spell combined with low precipitation increases bloom risk.",
+          "p": 0.7,
+          "reason": "Six days above 30C favour cyanobacteria growth.",
           "evidence": [
-            "Max temp averaged 29.8C this week.",
-            "UV index remained high throughout week.",
-            "1 days exceeded 30C threshold."
+            "Only 14.8mm of rain recorded.",
+            "4 days exceeded 30C threshold.",
+            "Max temp averaged 32.5C this week."
           ],
-          "weight": 0.1757
+          "weight": 0.1962
+        }
+      ],
+      "swarm_p": 0.4016,
+      "simple_avg_p": 0.4467,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.3636
+        },
+        "equal_linear": {
+          "loo": 0.454,
+          "wf": 0.454
+        },
+        "equal_logodds": {
+          "loo": 0.4467,
+          "wf": 0.4467
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.4016,
+          "wf": 0.4095
+        },
+        "bates_granger": {
+          "loo": 0.3541,
+          "wf": 0.3571
+        },
+        "stacked_logistic": {
+          "loo": 0.03,
+          "wf": 0.0353
+        },
+        "extremized_primary": {
+          "loo": 0.2695,
+          "wf": 0.2859
+        },
+        "best_agent_selected": {
+          "loo": 0.2,
+          "wf": 0.2
+        },
+        "hedge_online": {
+          "loo": 0.2337,
+          "wf": 0.3073
+        }
+      }
+    },
+    {
+      "week": "2025-08-25",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.85,
+          "reason": "Historical data shows blooms common this month.",
+          "evidence": [
+            "Long-term trend shows .",
+            "Bloom rate this month in past years: 69%.",
+            "Seasonal pattern peaks in ."
+          ],
+          "weight": 0.1331
         },
         {
           "name": "Runoff",
@@ -795,7 +1252,7 @@
             "Nearby rivers showed elevated turbidity.",
             "1 days had heavy precipitation (>10mm)."
           ],
-          "weight": 0.1749
+          "weight": 0.1728
         },
         {
           "name": "Satellite",
@@ -806,18 +1263,7 @@
             "Cyano index at 0.66.",
             "Surface reflectance indicates algal pigments."
           ],
-          "weight": 0.1895
-        },
-        {
-          "name": "Historian",
-          "p": 0.85,
-          "reason": "Historical data shows blooms common this month.",
-          "evidence": [
-            "Long-term trend shows .",
-            "Bloom rate this month in past years: 69%.",
-            "Seasonal pattern peaks in ."
-          ],
-          "weight": 0.136
+          "weight": 0.188
         },
         {
           "name": "Skeptic",
@@ -828,27 +1274,76 @@
             "Recent cold front disrupted stratification.",
             "Zebra mussels may filter some algae."
           ],
-          "weight": 0.324
-        }
-      ],
-      "swarm_p": 0.5644,
-      "simple_avg_p": 0.6118,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-08-25"
-    },
-    {
-      "agents": [
+          "weight": 0.3323
+        },
         {
           "name": "Weather",
-          "p": 0.7,
-          "reason": "Six days above 30C favour cyanobacteria growth.",
+          "p": 0.46,
+          "reason": "Hot spell combined with low precipitation increases bloom risk.",
           "evidence": [
-            "3 days exceeded 30C threshold.",
+            "Max temp averaged 29.8C this week.",
             "UV index remained high throughout week.",
-            "No significant cooling events observed."
+            "1 days exceeded 30C threshold."
           ],
-          "weight": 0.1879
+          "weight": 0.1737
+        }
+      ],
+      "swarm_p": 0.5616,
+      "simple_avg_p": 0.6118,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.3333
+        },
+        "equal_linear": {
+          "loo": 0.594,
+          "wf": 0.594
+        },
+        "equal_logodds": {
+          "loo": 0.6118,
+          "wf": 0.6118
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.5616,
+          "wf": 0.5677
+        },
+        "bates_granger": {
+          "loo": 0.4971,
+          "wf": 0.5105
+        },
+        "stacked_logistic": {
+          "loo": 0.0664,
+          "wf": 0.2559
+        },
+        "extremized_primary": {
+          "loo": 0.65,
+          "wf": 0.6639
+        },
+        "best_agent_selected": {
+          "loo": 0.36,
+          "wf": 0.36
+        },
+        "hedge_online": {
+          "loo": 0.3905,
+          "wf": 0.4527
+        }
+      }
+    },
+    {
+      "week": "2025-09-01",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.51,
+          "reason": "This period historically sees peak bloom frequency.",
+          "evidence": [
+            "Seasonal pattern peaks in .",
+            "Last year had .",
+            "Similar conditions caused blooms in 3 of 5 prior years."
+          ],
+          "weight": 0.1194
         },
         {
           "name": "Runoff",
@@ -859,7 +1354,7 @@
             "66mm fell in the past 14 days.",
             "7 days had heavy precipitation (>10mm)."
           ],
-          "weight": 0.1831
+          "weight": 0.1814
         },
         {
           "name": "Satellite",
@@ -870,18 +1365,7 @@
             "Surface reflectance indicates algal pigments.",
             "Thermal bands show warm surface layer."
           ],
-          "weight": 0.1865
-        },
-        {
-          "name": "Historian",
-          "p": 0.51,
-          "reason": "This period historically sees peak bloom frequency.",
-          "evidence": [
-            "Seasonal pattern peaks in .",
-            "Last year had .",
-            "Similar conditions caused blooms in 3 of 5 prior years."
-          ],
-          "weight": 0.1224
+          "weight": 0.1848
         },
         {
           "name": "Skeptic",
@@ -892,27 +1376,76 @@
             "Lake level is higher than usual, diluting nutrients.",
             "Water temperature still below optimal for blooms."
           ],
-          "weight": 0.3201
-        }
-      ],
-      "swarm_p": 0.5837,
-      "simple_avg_p": 0.6107,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-09-01"
-    },
-    {
-      "agents": [
+          "weight": 0.3281
+        },
         {
           "name": "Weather",
-          "p": 0.45,
-          "reason": "Hot spell combined with low precipitation increases bloom risk.",
+          "p": 0.7,
+          "reason": "Six days above 30C favour cyanobacteria growth.",
           "evidence": [
-            "No significant cooling events observed.",
+            "3 days exceeded 30C threshold.",
             "UV index remained high throughout week.",
-            "Only 2.1mm of rain recorded."
+            "No significant cooling events observed."
           ],
-          "weight": 0.1852
+          "weight": 0.1863
+        }
+      ],
+      "swarm_p": 0.5815,
+      "simple_avg_p": 0.6107,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.3077
+        },
+        "equal_linear": {
+          "loo": 0.604,
+          "wf": 0.604
+        },
+        "equal_logodds": {
+          "loo": 0.6107,
+          "wf": 0.6107
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.5815,
+          "wf": 0.584
+        },
+        "bates_granger": {
+          "loo": 0.582,
+          "wf": 0.5779
+        },
+        "stacked_logistic": {
+          "loo": 0.5673,
+          "wf": 0.6353
+        },
+        "extremized_primary": {
+          "loo": 0.6946,
+          "wf": 0.7001
+        },
+        "best_agent_selected": {
+          "loo": 0.36,
+          "wf": 0.36
+        },
+        "hedge_online": {
+          "loo": 0.412,
+          "wf": 0.4358
+        }
+      }
+    },
+    {
+      "week": "2025-09-08",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.57,
+          "reason": "Records indicate low bloom probability for this season.",
+          "evidence": [
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Bloom rate this month in past years: 48%.",
+            "Long-term trend shows ."
+          ],
+          "weight": 0.1298
         },
         {
           "name": "Runoff",
@@ -923,7 +1456,7 @@
             "Storm drains discharged into tributaries.",
             "0 days had heavy precipitation (>10mm)."
           ],
-          "weight": 0.1729
+          "weight": 0.1709
         },
         {
           "name": "Satellite",
@@ -934,18 +1467,7 @@
             "Chlorophyll-a estimates support reading.",
             "Index changed by -0.07 vs last week."
           ],
-          "weight": 0.1804
-        },
-        {
-          "name": "Historian",
-          "p": 0.57,
-          "reason": "Records indicate low bloom probability for this season.",
-          "evidence": [
-            "Similar conditions caused blooms in 3 of 5 prior years.",
-            "Bloom rate this month in past years: 48%.",
-            "Long-term trend shows ."
-          ],
-          "weight": 0.1325
+          "weight": 0.1786
         },
         {
           "name": "Skeptic",
@@ -956,27 +1478,76 @@
             "Wind speeds averaged 15 km/h, promoting mixing.",
             "Recent cold front disrupted stratification."
           ],
-          "weight": 0.3289
-        }
-      ],
-      "swarm_p": 0.3405,
-      "simple_avg_p": 0.3736,
-      "actual": 0,
-      "base_rate_p": 0.2667,
-      "week": "2025-09-08"
-    },
-    {
-      "agents": [
+          "weight": 0.3372
+        },
         {
           "name": "Weather",
-          "p": 0.3,
-          "reason": "Sustained heat promotes surface stratification.",
+          "p": 0.45,
+          "reason": "Hot spell combined with low precipitation increases bloom risk.",
           "evidence": [
-            "1 days exceeded 30C threshold.",
-            "Only 0.1mm of rain recorded.",
-            "No significant cooling events observed."
+            "No significant cooling events observed.",
+            "UV index remained high throughout week.",
+            "Only 2.1mm of rain recorded."
           ],
-          "weight": 0.177
+          "weight": 0.1835
+        }
+      ],
+      "swarm_p": 0.3386,
+      "simple_avg_p": 0.3736,
+      "base_rate_p": 0.2667,
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.2857
+        },
+        "equal_linear": {
+          "loo": 0.382,
+          "wf": 0.382
+        },
+        "equal_logodds": {
+          "loo": 0.3736,
+          "wf": 0.3736
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.3386,
+          "wf": 0.3375
+        },
+        "bates_granger": {
+          "loo": 0.2935,
+          "wf": 0.2924
+        },
+        "stacked_logistic": {
+          "loo": 0.03,
+          "wf": 0.03
+        },
+        "extremized_primary": {
+          "loo": 0.158,
+          "wf": 0.1562
+        },
+        "best_agent_selected": {
+          "loo": 0.22,
+          "wf": 0.22
+        },
+        "hedge_online": {
+          "loo": 0.233,
+          "wf": 0.2357
+        }
+      }
+    },
+    {
+      "week": "2025-09-15",
+      "agents": [
+        {
+          "name": "Historian",
+          "p": 0.31,
+          "reason": "Historical bloom rate for this month is moderate.",
+          "evidence": [
+            "Seasonal pattern peaks in .",
+            "Similar conditions caused blooms in 3 of 5 prior years.",
+            "Long-term trend shows ."
+          ],
+          "weight": 0.1221
         },
         {
           "name": "Runoff",
@@ -987,7 +1558,7 @@
             "1 days had heavy precipitation (>10mm).",
             "Nearby rivers showed elevated turbidity."
           ],
-          "weight": 0.1766
+          "weight": 0.1745
         },
         {
           "name": "Satellite",
@@ -998,18 +1569,7 @@
             "Index changed by -0.07 vs last week.",
             "Chlorophyll-a estimates support reading."
           ],
-          "weight": 0.1877
-        },
-        {
-          "name": "Historian",
-          "p": 0.31,
-          "reason": "Historical bloom rate for this month is moderate.",
-          "evidence": [
-            "Seasonal pattern peaks in .",
-            "Similar conditions caused blooms in 3 of 5 prior years.",
-            "Long-term trend shows ."
-          ],
-          "weight": 0.125
+          "weight": 0.186
         },
         {
           "name": "Skeptic",
@@ -1020,24 +1580,1955 @@
             "Lake level is higher than usual, diluting nutrients.",
             "Wind speeds averaged 15 km/h, promoting mixing."
           ],
-          "weight": 0.3338
+          "weight": 0.3425
+        },
+        {
+          "name": "Weather",
+          "p": 0.3,
+          "reason": "Sustained heat promotes surface stratification.",
+          "evidence": [
+            "1 days exceeded 30C threshold.",
+            "Only 0.1mm of rain recorded.",
+            "No significant cooling events observed."
+          ],
+          "weight": 0.1749
         }
       ],
-      "swarm_p": 0.3921,
+      "swarm_p": 0.3915,
       "simple_avg_p": 0.396,
-      "actual": 0,
       "base_rate_p": 0.2667,
-      "week": "2025-09-15"
+      "actual": 0,
+      "methods": {
+        "base_rate": {
+          "loo": 0.2667,
+          "wf": 0.2667
+        },
+        "equal_linear": {
+          "loo": 0.4,
+          "wf": 0.4
+        },
+        "equal_logodds": {
+          "loo": 0.396,
+          "wf": 0.396
+        },
+        "inverse_brier_logodds": {
+          "loo": 0.3915,
+          "wf": 0.3915
+        },
+        "bates_granger": {
+          "loo": 0.4021,
+          "wf": 0.4021
+        },
+        "stacked_logistic": {
+          "loo": 0.1837,
+          "wf": 0.1837
+        },
+        "extremized_primary": {
+          "loo": 0.2493,
+          "wf": 0.2493
+        },
+        "best_agent_selected": {
+          "loo": 0.33,
+          "wf": 0.33
+        },
+        "hedge_online": {
+          "loo": 0.3423,
+          "wf": 0.3423
+        }
+      }
     }
   ],
   "scores": {
-    "Weather": 0.2325,
+    "Historian": 0.3312,
     "Runoff": 0.2406,
     "Satellite": 0.2359,
-    "Historian": 0.3312,
     "Skeptic": 0.1227,
-    "swarm": 0.1847,
-    "simple_avg": 0.2034,
+    "Weather": 0.2325,
+    "swarm": 0.1836,
+    "simple_avg": 0.2035,
     "base_rate": 0.2133
+  },
+  "evaluation": {
+    "config": {
+      "primary_method": "inverse_brier_logodds",
+      "clip": [
+        0.03,
+        0.97
+      ],
+      "seed": 7,
+      "walk_forward_warmup": 4,
+      "hedge_eta": 2.0,
+      "extremize_grid": [
+        1.0,
+        1.25,
+        1.5,
+        2.0,
+        2.5
+      ],
+      "stack_l2_grid": [
+        0.3,
+        1.0,
+        3.0,
+        10.0
+      ],
+      "bg_shrinkage": 0.5,
+      "bootstrap_n": 5000,
+      "block_length": 3,
+      "permutation_n": 10000,
+      "calibration_bins": 5,
+      "cost_loss_grid_n": 49
+    },
+    "primary_method": "inverse_brier_logodds",
+    "n_weeks": 16,
+    "leaderboard": {
+      "loo": [
+        {
+          "name": "stacked_logistic",
+          "kind": "method",
+          "brier": 0.11214390691988359,
+          "log_loss": 0.3635068769455858,
+          "bss": 0.4743254363130458,
+          "auc": 0.875,
+          "ece": 0.07157721560197827
+        },
+        {
+          "name": "best_agent_selected",
+          "kind": "method",
+          "brier": 0.12269375,
+          "log_loss": 0.4183419738738349,
+          "bss": 0.42487304687500005,
+          "auc": 1.0,
+          "ece": 0.33062500000000006
+        },
+        {
+          "name": "Skeptic",
+          "kind": "agent",
+          "brier": 0.12269375,
+          "log_loss": 0.4183419738738349,
+          "bss": 0.42487304687500005,
+          "auc": 1.0,
+          "ece": 0.33062500000000006
+        },
+        {
+          "name": "hedge_online",
+          "kind": "method",
+          "brier": 0.13210243213914863,
+          "log_loss": 0.4419223099885069,
+          "bss": 0.38076984934774094,
+          "auc": 1.0,
+          "ece": 0.2964599525208808
+        },
+        {
+          "name": "extremized_primary",
+          "kind": "method",
+          "brier": 0.13888282055801926,
+          "log_loss": 0.4446792805312567,
+          "bss": 0.34898677863428484,
+          "auc": 0.9166666666666666,
+          "ece": 0.14382561399818208
+        },
+        {
+          "name": "bates_granger",
+          "kind": "method",
+          "brier": 0.1701100968079908,
+          "log_loss": 0.5284566810570774,
+          "bss": 0.20260892121254326,
+          "auc": 0.9166666666666666,
+          "ece": 0.2789421236811964
+        },
+        {
+          "name": "inverse_brier_logodds",
+          "kind": "method",
+          "brier": 0.18362085506269418,
+          "log_loss": 0.5568372238978088,
+          "bss": 0.13927724189362123,
+          "auc": 0.9166666666666666,
+          "ece": 0.2961409381457022
+        },
+        {
+          "name": "equal_logodds",
+          "kind": "method",
+          "brier": 0.20345236455536697,
+          "log_loss": 0.5971518078506661,
+          "bss": 0.04631704114671753,
+          "auc": 0.75,
+          "ece": 0.22418546097149825
+        },
+        {
+          "name": "equal_linear",
+          "kind": "method",
+          "brier": 0.208336,
+          "log_loss": 0.6075251718810584,
+          "bss": 0.02342500000000025,
+          "auc": 0.75,
+          "ece": 0.24350000000000005
+        },
+        {
+          "name": "base_rate",
+          "kind": "method",
+          "brier": 0.21333333333333337,
+          "log_loss": 0.6349756743364047,
+          "bss": 0.0,
+          "auc": 0.0,
+          "ece": 0.0
+        },
+        {
+          "name": "Weather",
+          "kind": "agent",
+          "brier": 0.23250625,
+          "log_loss": 0.6512533827322058,
+          "bss": -0.08987304687499975,
+          "auc": 0.6666666666666666,
+          "ece": 0.27687500000000004
+        },
+        {
+          "name": "Satellite",
+          "kind": "agent",
+          "brier": 0.23586875,
+          "log_loss": 0.6681054359987568,
+          "bss": -0.10563476562499963,
+          "auc": 0.7083333333333334,
+          "ece": 0.26687500000000003
+        },
+        {
+          "name": "Runoff",
+          "kind": "agent",
+          "brier": 0.24063125000000002,
+          "log_loss": 0.6731673077345182,
+          "bss": -0.12795898437499997,
+          "auc": 0.7916666666666666,
+          "ece": 0.294375
+        },
+        {
+          "name": "Historian",
+          "kind": "agent",
+          "brier": 0.331175,
+          "log_loss": 0.8695885258134073,
+          "bss": -0.5523828124999997,
+          "auc": 0.16666666666666666,
+          "ece": 0.36875
+        }
+      ],
+      "wf": [
+        {
+          "name": "stacked_logistic",
+          "kind": "method",
+          "brier": 0.14485694649365471,
+          "log_loss": 0.4297774328259229,
+          "bss": 0.3309062159929189,
+          "auc": 0.8541666666666666,
+          "ece": 0.17770654286597248
+        },
+        {
+          "name": "extremized_primary",
+          "kind": "method",
+          "brier": 0.15821846781633492,
+          "log_loss": 0.4900710156925201,
+          "bss": 0.2691893906815763,
+          "auc": 0.8333333333333334,
+          "ece": 0.1615134727071127
+        },
+        {
+          "name": "hedge_online",
+          "kind": "method",
+          "brier": 0.1599917048071588,
+          "log_loss": 0.5062467264240248,
+          "bss": 0.2609988145521558,
+          "auc": 0.8958333333333334,
+          "ece": 0.21018095644677934
+        },
+        {
+          "name": "best_agent_selected",
+          "kind": "method",
+          "brier": 0.1656415878650198,
+          "log_loss": 0.5122082469969883,
+          "bss": 0.23490202233137458,
+          "auc": 0.8541666666666666,
+          "ece": 0.1448812799682374
+        },
+        {
+          "name": "bates_granger",
+          "kind": "method",
+          "brier": 0.1767769316192726,
+          "log_loss": 0.542273485537492,
+          "bss": 0.18346790426456183,
+          "auc": 0.875,
+          "ece": 0.28215953066300925
+        },
+        {
+          "name": "inverse_brier_logodds",
+          "kind": "method",
+          "brier": 0.19135385927163176,
+          "log_loss": 0.5724074505056096,
+          "bss": 0.11613712090760575,
+          "auc": 0.7916666666666666,
+          "ece": 0.29897421531007595
+        },
+        {
+          "name": "equal_logodds",
+          "kind": "method",
+          "brier": 0.20345236455536697,
+          "log_loss": 0.5971518078506661,
+          "bss": 0.06025416274046902,
+          "auc": 0.75,
+          "ece": 0.22418546097149825
+        },
+        {
+          "name": "equal_linear",
+          "kind": "method",
+          "brier": 0.20734333786501982,
+          "log_loss": 0.6053422134731836,
+          "bss": 0.04228176916015691,
+          "auc": 0.75,
+          "ece": 0.24139440084649327
+        },
+        {
+          "name": "base_rate",
+          "kind": "method",
+          "brier": 0.21649722349254658,
+          "log_loss": 0.6257037938903056,
+          "bss": 0.0,
+          "auc": 0.6458333333333334,
+          "ece": 0.19582245684691432
+        }
+      ]
+    },
+    "decomposition": {
+      "base_rate": {
+        "reliability": 0.0,
+        "resolution": 0.0,
+        "uncertainty": 0.1875,
+        "gap": 0.025833333333333375
+      },
+      "equal_linear": {
+        "reliability": 0.0866210666666667,
+        "resolution": 0.04791666666666666,
+        "uncertainty": 0.1875,
+        "gap": 0.017868400000000034
+      },
+      "equal_logodds": {
+        "reliability": 0.05792439727536144,
+        "resolution": 0.02142857142857143,
+        "uncertainty": 0.1875,
+        "gap": 0.020543461291423037
+      },
+      "inverse_brier_logodds": {
+        "reliability": 0.0946165940074016,
+        "resolution": 0.09821428571428571,
+        "uncertainty": 0.1875,
+        "gap": 0.00028145323042169657
+      },
+      "bates_granger": {
+        "reliability": 0.0840720442968913,
+        "resolution": 0.09821428571428571,
+        "uncertainty": 0.1875,
+        "gap": 0.0032476617746148018
+      },
+      "stacked_logistic": {
+        "reliability": 0.012488720879514024,
+        "resolution": 0.08901515151515152,
+        "uncertainty": 0.1875,
+        "gap": 0.001170337555521081
+      },
+      "extremized_primary": {
+        "reliability": 0.021117804619415675,
+        "resolution": 0.05694444444444444,
+        "uncertainty": 0.1875,
+        "gap": 0.01279053961695198
+      },
+      "best_agent_selected": {
+        "reliability": 0.119355625,
+        "resolution": 0.1875,
+        "uncertainty": 0.1875,
+        "gap": 0.0033381249999999973
+      },
+      "hedge_online": {
+        "reliability": 0.08858635574266752,
+        "resolution": 0.140625,
+        "uncertainty": 0.1875,
+        "gap": 0.0033589236035188874
+      },
+      "Historian": {
+        "reliability": 0.1684402777777778,
+        "resolution": 0.048611111111111105,
+        "uncertainty": 0.1875,
+        "gap": 0.02384583333333329
+      },
+      "Runoff": {
+        "reliability": 0.09348364583333334,
+        "resolution": 0.05208333333333333,
+        "uncertainty": 0.1875,
+        "gap": 0.01173093750000001
+      },
+      "Satellite": {
+        "reliability": 0.07483229166666668,
+        "resolution": 0.04166666666666667,
+        "uncertainty": 0.1875,
+        "gap": 0.015203124999999984
+      },
+      "Skeptic": {
+        "reliability": 0.119355625,
+        "resolution": 0.1875,
+        "uncertainty": 0.1875,
+        "gap": 0.0033381249999999973
+      },
+      "Weather": {
+        "reliability": 0.09232786458333335,
+        "resolution": 0.049479166666666664,
+        "uncertainty": 0.1875,
+        "gap": 0.0021575520833333195
+      }
+    },
+    "calibration": {
+      "base_rate": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.25,
+          "observed": 0.25,
+          "count": 16,
+          "ci90": [
+            0.1175,
+            0.4548
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.5,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.7,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "equal_linear": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.344,
+          "observed": 0.3333,
+          "count": 3,
+          "ci90": [
+            0.0783,
+            0.7465
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.4712,
+          "observed": 0.1,
+          "count": 10,
+          "ci90": [
+            0.0226,
+            0.3477
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.616,
+          "observed": 0.6667,
+          "count": 3,
+          "ci90": [
+            0.2535,
+            0.9217
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "equal_logodds": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.3604,
+          "observed": 0.2,
+          "count": 5,
+          "ci90": [
+            0.046,
+            0.5647
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.4656,
+          "observed": 0.1429,
+          "count": 7,
+          "ci90": [
+            0.0325,
+            0.4523
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.6315,
+          "observed": 0.5,
+          "count": 4,
+          "ci90": [
+            0.1824,
+            0.8176
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "inverse_brier_logodds": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.3657,
+          "observed": 0.0,
+          "count": 7,
+          "ci90": [
+            0.0,
+            0.2788
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.4877,
+          "observed": 0.2857,
+          "count": 7,
+          "ci90": [
+            0.0996,
+            0.5914
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.6179,
+          "observed": 1.0,
+          "count": 2,
+          "ci90": [
+            0.425,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "bates_granger": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.3408,
+          "observed": 0.0,
+          "count": 7,
+          "ci90": [
+            0.0,
+            0.2788
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.4757,
+          "observed": 0.2857,
+          "count": 7,
+          "ci90": [
+            0.0996,
+            0.5914
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.6263,
+          "observed": 1.0,
+          "count": 2,
+          "ci90": [
+            0.425,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "stacked_logistic": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.0745,
+          "observed": 0.0909,
+          "count": 11,
+          "ci90": [
+            0.0205,
+            0.3228
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.3,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.4952,
+          "observed": 0.3333,
+          "count": 3,
+          "ci90": [
+            0.0783,
+            0.7465
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.7185,
+          "observed": 1.0,
+          "count": 1,
+          "ci90": [
+            0.2698,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.8026,
+          "observed": 1.0,
+          "count": 1,
+          "ci90": [
+            0.2698,
+            1.0
+          ]
+        }
+      ],
+      "extremized_primary": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1188,
+          "observed": 0.0,
+          "count": 2,
+          "ci90": [
+            0.0,
+            0.575
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.2733,
+          "observed": 0.1111,
+          "count": 9,
+          "ci90": [
+            0.0252,
+            0.3768
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.5,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.7209,
+          "observed": 0.6,
+          "count": 5,
+          "ci90": [
+            0.2725,
+            0.8573
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "best_agent_selected": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.175,
+          "observed": 0.0,
+          "count": 2,
+          "ci90": [
+            0.0,
+            0.575
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.298,
+          "observed": 0.0,
+          "count": 10,
+          "ci90": [
+            0.0,
+            0.213
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.51,
+          "observed": 1.0,
+          "count": 4,
+          "ci90": [
+            0.5965,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.7,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "hedge_online": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.2908,
+          "observed": 0.0,
+          "count": 11,
+          "ci90": [
+            0.0,
+            0.1974
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.4635,
+          "observed": 0.75,
+          "count": 4,
+          "ci90": [
+            0.3561,
+            0.9421
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.6015,
+          "observed": 1.0,
+          "count": 1,
+          "ci90": [
+            0.2698,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "Historian": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.13,
+          "observed": 0.0,
+          "count": 1,
+          "ci90": [
+            0.0,
+            0.7302
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.3333,
+          "observed": 0.6667,
+          "count": 3,
+          "ci90": [
+            0.2535,
+            0.9217
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.5111,
+          "observed": 0.2222,
+          "count": 9,
+          "ci90": [
+            0.0765,
+            0.4964
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.66,
+          "observed": 0.0,
+          "count": 2,
+          "ci90": [
+            0.0,
+            0.575
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.85,
+          "observed": 0.0,
+          "count": 1,
+          "ci90": [
+            0.0,
+            0.7302
+          ]
+        }
+      ],
+      "Runoff": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.306,
+          "observed": 0.0,
+          "count": 5,
+          "ci90": [
+            0.0,
+            0.3512
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.4975,
+          "observed": 0.25,
+          "count": 4,
+          "ci90": [
+            0.0579,
+            0.6439
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.665,
+          "observed": 0.25,
+          "count": 4,
+          "ci90": [
+            0.0579,
+            0.6439
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.8433,
+          "observed": 0.6667,
+          "count": 3,
+          "ci90": [
+            0.2535,
+            0.9217
+          ]
+        }
+      ],
+      "Satellite": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.345,
+          "observed": 0.0,
+          "count": 4,
+          "ci90": [
+            0.0,
+            0.4035
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.4533,
+          "observed": 0.1667,
+          "count": 6,
+          "ci90": [
+            0.0381,
+            0.5024
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.695,
+          "observed": 0.5,
+          "count": 6,
+          "ci90": [
+            0.2212,
+            0.7788
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "Skeptic": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.175,
+          "observed": 0.0,
+          "count": 2,
+          "ci90": [
+            0.0,
+            0.575
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.298,
+          "observed": 0.0,
+          "count": 10,
+          "ci90": [
+            0.0,
+            0.213
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.51,
+          "observed": 1.0,
+          "count": 4,
+          "ci90": [
+            0.5965,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.7,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.9,
+          "observed": 0.0,
+          "count": 0,
+          "ci90": [
+            0.0,
+            1.0
+          ]
+        }
+      ],
+      "Weather": [
+        {
+          "bin": "0.0 to 0.2",
+          "mean_p": 0.1,
+          "observed": 0.0,
+          "count": 1,
+          "ci90": [
+            0.0,
+            0.7302
+          ]
+        },
+        {
+          "bin": "0.2 to 0.4",
+          "mean_p": 0.2533,
+          "observed": 0.3333,
+          "count": 3,
+          "ci90": [
+            0.0783,
+            0.7465
+          ]
+        },
+        {
+          "bin": "0.4 to 0.6",
+          "mean_p": 0.4913,
+          "observed": 0.125,
+          "count": 8,
+          "ci90": [
+            0.0284,
+            0.4112
+          ]
+        },
+        {
+          "bin": "0.6 to 0.8",
+          "mean_p": 0.68,
+          "observed": 0.3333,
+          "count": 3,
+          "ci90": [
+            0.0783,
+            0.7465
+          ]
+        },
+        {
+          "bin": "0.8 to 1.0",
+          "mean_p": 0.88,
+          "observed": 1.0,
+          "count": 1,
+          "ci90": [
+            0.2698,
+            1.0
+          ]
+        }
+      ]
+    },
+    "significance": [
+      {
+        "vs": "base_rate",
+        "dm_stat": -0.4486060653919307,
+        "dm_p": 0.6537158575718107,
+        "boot_mean": -0.011958859361514885,
+        "boot_ci90": [
+          -0.1422029675059731,
+          0.10005230452379495
+        ],
+        "boot_win_rate": 0.5436,
+        "perm_p": 0.6452354764523548,
+        "d_mean": -0.029712478270639178,
+        "holm_p": 0.6452354764523548,
+        "verdict": "better but not significant"
+      },
+      {
+        "vs": "equal_logodds",
+        "dm_stat": -3.0322584248236955,
+        "dm_p": 0.002427312991753361,
+        "boot_mean": -0.020653472331314215,
+        "boot_ci90": [
+          -0.032441480514846265,
+          -0.0089972249614591
+        ],
+        "boot_win_rate": 0.9988,
+        "perm_p": 0.0082991700829917,
+        "d_mean": -0.019831509492672764,
+        "holm_p": 0.0580941905809419,
+        "verdict": "significantly better"
+      },
+      {
+        "vs": "best_agent_selected",
+        "dm_stat": 2.1220149952257836,
+        "dm_p": 0.033836478835697736,
+        "boot_mean": 0.06191965869404069,
+        "boot_ci90": [
+          0.013282884984266255,
+          0.11019121960715604
+        ],
+        "boot_win_rate": 0.0172,
+        "perm_p": 0.0446955304469553,
+        "d_mean": 0.06092710506269417,
+        "holm_p": 0.26817318268173185,
+        "verdict": "worse but not significant"
+      },
+      {
+        "vs": "Historian",
+        "dm_stat": -4.235176177505145,
+        "dm_p": 2.2837258596197785e-05,
+        "boot_mean": -0.1550177163059593,
+        "boot_ci90": [
+          -0.20067180908146756,
+          -0.1069578645887026
+        ],
+        "boot_win_rate": 1.0,
+        "perm_p": 0.000999900009999,
+        "d_mean": -0.14755414493730584,
+        "holm_p": 0.007999200079992,
+        "verdict": "significantly better"
+      },
+      {
+        "vs": "Runoff",
+        "dm_stat": -1.2962642425803275,
+        "dm_p": 0.1948844632800164,
+        "boot_mean": -0.06562787880595929,
+        "boot_ci90": [
+          -0.11536694383142322,
+          -0.021446938696903225
+        ],
+        "boot_win_rate": 0.9934,
+        "perm_p": 0.21107889211078892,
+        "d_mean": -0.05701039493730581,
+        "holm_p": 0.4868513148685132,
+        "verdict": "better but not significant"
+      },
+      {
+        "vs": "Satellite",
+        "dm_stat": -1.6986144990416523,
+        "dm_p": 0.08939184276263923,
+        "boot_mean": -0.051754863805959304,
+        "boot_ci90": [
+          -0.10040780044022674,
+          -0.0043530232143977115
+        ],
+        "boot_win_rate": 0.9658,
+        "perm_p": 0.10998900109989002,
+        "d_mean": -0.05224789493730582,
+        "holm_p": 0.43995600439956006,
+        "verdict": "better but not significant"
+      },
+      {
+        "vs": "Skeptic",
+        "dm_stat": 2.1220149952257836,
+        "dm_p": 0.033836478835697736,
+        "boot_mean": 0.06191965869404069,
+        "boot_ci90": [
+          0.013282884984266255,
+          0.11019121960715604
+        ],
+        "boot_win_rate": 0.0172,
+        "perm_p": 0.0446955304469553,
+        "d_mean": 0.06092710506269417,
+        "holm_p": 0.26817318268173185,
+        "verdict": "worse but not significant"
+      },
+      {
+        "vs": "Weather",
+        "dm_stat": -1.4224091884042052,
+        "dm_p": 0.15490749726659203,
+        "boot_mean": -0.0493505150559593,
+        "boot_ci90": [
+          -0.09981821902265783,
+          -0.003410947509512275
+        ],
+        "boot_win_rate": 0.9604,
+        "perm_p": 0.16228377162283772,
+        "d_mean": -0.048885394937305815,
+        "holm_p": 0.4868513148685132,
+        "verdict": "better but not significant"
+      }
+    ],
+    "diversity": {
+      "corr": [
+        [
+          1.0,
+          0.8636691881518584,
+          0.9423615507570425,
+          0.9191568597024466,
+          0.9097489119647788
+        ],
+        [
+          0.8636691881518584,
+          1.0,
+          0.8529483204673071,
+          0.8702749854170362,
+          0.8267867175397203
+        ],
+        [
+          0.9423615507570425,
+          0.8529483204673071,
+          1.0,
+          0.9234427043632462,
+          0.9127852521378936
+        ],
+        [
+          0.9191568597024466,
+          0.8702749854170362,
+          0.9234427043632462,
+          1.0,
+          0.8348637080481677
+        ],
+        [
+          0.9097489119647788,
+          0.8267867175397203,
+          0.9127852521378936,
+          0.8348637080481677,
+          1.0
+        ]
+      ],
+      "agents": [
+        "Historian",
+        "Runoff",
+        "Satellite",
+        "Skeptic",
+        "Weather"
+      ],
+      "effective_n": 1.206813154123226,
+      "theorem": {
+        "crowd": 0.208336,
+        "avg_individual": 0.232575,
+        "diversity": 0.024239
+      }
+    },
+    "shapley": {
+      "Historian": -0.04131364719725055,
+      "Runoff": -0.0028904943048711916,
+      "Satellite": -0.005961841774223235,
+      "Skeptic": 0.0802816974141019,
+      "Weather": -0.0004032358671177267
+    },
+    "ablation": {
+      "Historian": -0.016022369296731814,
+      "Runoff": -0.003228589975322771,
+      "Satellite": -0.008621337414870561,
+      "Skeptic": 0.054061459455890554,
+      "Weather": -0.003173089303967286
+    },
+    "most_valuable_agent": "Skeptic",
+    "economic_value": {
+      "r": [
+        0.02,
+        0.04,
+        0.06,
+        0.08,
+        0.1,
+        0.12000000000000001,
+        0.13999999999999999,
+        0.16,
+        0.18,
+        0.19999999999999998,
+        0.22,
+        0.24,
+        0.26,
+        0.28,
+        0.30000000000000004,
+        0.32,
+        0.34,
+        0.36000000000000004,
+        0.38,
+        0.4,
+        0.42000000000000004,
+        0.44,
+        0.46,
+        0.48000000000000004,
+        0.5,
+        0.52,
+        0.54,
+        0.56,
+        0.5800000000000001,
+        0.6,
+        0.62,
+        0.64,
+        0.66,
+        0.68,
+        0.7000000000000001,
+        0.7200000000000001,
+        0.74,
+        0.76,
+        0.78,
+        0.8,
+        0.8200000000000001,
+        0.8400000000000001,
+        0.86,
+        0.88,
+        0.9,
+        0.92,
+        0.9400000000000001,
+        0.9600000000000001,
+        0.98
+      ],
+      "curves": {
+        "inverse_brier_logodds": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -0.054054054054054106,
+          -0.0694444444444445,
+          -0.1785714285714289,
+          -0.2941176470588235,
+          -0.2878787878787882,
+          -0.40625000000000044,
+          -0.3790322580645163,
+          0.16666666666666663,
+          0.025862068965517074,
+          0.35714285714285704,
+          0.3240740740740739,
+          0.28846153846153827,
+          0.25,
+          0.2083333333333333,
+          0.16304347826086948,
+          0.1136363636363635,
+          0.40476190476190466,
+          0.4999999999999999,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "equal_logodds": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.03378378378378366,
+          -0.0694444444444445,
+          -0.1785714285714289,
+          -0.2941176470588235,
+          -0.4166666666666669,
+          -0.5468750000000002,
+          -0.5322580645161291,
+          -0.5833333333333335,
+          -0.517241379310345,
+          -0.6250000000000001,
+          0.111111111111111,
+          0.28846153846153827,
+          0.25,
+          0.2083333333333333,
+          0.16304347826086948,
+          0.1136363636363635,
+          0.05952380952380932,
+          -0.2500000000000002,
+          0.49999999999999983,
+          0.49999999999999983,
+          0.24999999999999992,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "best_agent_selected": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.1666666666666666,
+          0.16666666666666663,
+          0.33333333333333326,
+          0.3333333333333333,
+          0.38513513513513503,
+          0.4166666666666666,
+          0.46428571428571425,
+          0.41176470588235303,
+          0.7424242424242425,
+          1.0,
+          1.0,
+          0.75,
+          0.75,
+          0.7499999999999998,
+          0.75,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.25,
+          0.25,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "base_rate": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          -1.1818181818181819,
+          -1.0555555555555556,
+          -1.0540540540540542,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Historian": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.08333333333333343,
+          0.08333333333333341,
+          0.0833333333333334,
+          0.08333333333333341,
+          0.0833333333333334,
+          0.08333333333333341,
+          0.03378378378378366,
+          -0.0694444444444445,
+          -0.1785714285714289,
+          -0.4264705882352942,
+          -0.537878787878788,
+          -0.6562500000000003,
+          -1.0322580645161292,
+          -1.166666666666667,
+          -1.8103448275862066,
+          -1.9642857142857142,
+          -1.9166666666666667,
+          -2.076923076923077,
+          -2.0,
+          -1.8958333333333337,
+          -2.054347826086957,
+          -1.9090909090909094,
+          -1.7261904761904767,
+          -1.1249999999999998,
+          -1.2236842105263155,
+          -1.3333333333333333,
+          -0.970588235294118,
+          -0.5312499999999999,
+          -0.5833333333333336,
+          -0.6428571428571428,
+          -0.7115384615384617,
+          -0.7916666666666665,
+          -0.8863636363636368,
+          -1.0,
+          -1.1388888888888897,
+          -1.3125000000000004,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Runoff": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0833333333333334,
+          0.08333333333333341,
+          0.03378378378378366,
+          0.027777777777777648,
+          -0.07142857142857181,
+          -0.05882352941176476,
+          -0.030303030303030335,
+          -0.12500000000000014,
+          -0.22580645161290344,
+          -0.16666666666666682,
+          -0.517241379310345,
+          -0.6250000000000001,
+          -0.527777777777778,
+          -0.6346153846153847,
+          -0.75,
+          -0.8749999999999999,
+          -1.0108695652173916,
+          -0.8409090909090913,
+          -0.6309523809523814,
+          -0.7500000000000001,
+          -0.4736842105263156,
+          -0.5833333333333333,
+          -0.4705882352941181,
+          -0.5625000000000006,
+          -0.6666666666666674,
+          -0.7857142857142867,
+          -0.2115384615384613,
+          -0.29166666666666696,
+          -0.38636363636363624,
+          -0.7499999999999997,
+          0.2499999999999997,
+          0.25000000000000033,
+          0.2500000000000002,
+          0.2500000000000002,
+          0.2500000000000003,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Satellite": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.03378378378378366,
+          -0.0694444444444445,
+          -0.1785714285714289,
+          -0.2941176470588235,
+          -0.4166666666666669,
+          -0.40625000000000044,
+          -0.3790322580645163,
+          -0.16666666666666682,
+          -0.2672413793103449,
+          -0.03571428571428574,
+          -0.10185185185185214,
+          -0.1730769230769232,
+          -0.25,
+          -0.33333333333333365,
+          -0.42391304347826103,
+          -0.5227272727272727,
+          -0.6309523809523814,
+          -0.3749999999999998,
+          -0.7236842105263156,
+          -0.8333333333333335,
+          -0.9558823529411771,
+          -1.0937500000000004,
+          -1.5000000000000009,
+          -0.6428571428571428,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Skeptic": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.1666666666666666,
+          0.16666666666666663,
+          0.33333333333333326,
+          0.3333333333333333,
+          0.38513513513513503,
+          0.4166666666666666,
+          0.46428571428571425,
+          0.41176470588235303,
+          0.7424242424242425,
+          1.0,
+          1.0,
+          0.75,
+          0.75,
+          0.7499999999999998,
+          0.75,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.25,
+          0.25,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "Weather": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0833333333333334,
+          0.0833333333333334,
+          0.08333333333333343,
+          0.08333333333333341,
+          0.0833333333333334,
+          0.08333333333333341,
+          0.0833333333333334,
+          -0.09722222222222231,
+          -0.12837837837837834,
+          -0.22222222222222243,
+          -0.2142857142857145,
+          -0.30882352941176466,
+          -0.40909090909090917,
+          -0.5156250000000002,
+          -0.6290322580645163,
+          -0.7500000000000003,
+          -0.8793103448275866,
+          -0.6250000000000001,
+          -0.31481481481481466,
+          -0.1730769230769232,
+          -0.25,
+          -0.33333333333333365,
+          -0.42391304347826103,
+          -0.1363636363636365,
+          -0.1904761904761907,
+          -0.2500000000000002,
+          -0.3157894736842108,
+          -0.6388888888888888,
+          -0.720588235294118,
+          -0.8125000000000001,
+          0.24999999999999992,
+          0.2499999999999999,
+          0.24999999999999978,
+          0.2500000000000002,
+          0.24999999999999975,
+          0.2500000000000003,
+          0.2499999999999997,
+          0.25000000000000033,
+          0.2500000000000002,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      },
+      "peaks": {
+        "inverse_brier_logodds": {
+          "r": 0.6,
+          "value": 0.4999999999999999
+        },
+        "equal_logodds": {
+          "r": 0.62,
+          "value": 0.49999999999999983
+        },
+        "best_agent_selected": {
+          "r": 0.36000000000000004,
+          "value": 1.0
+        },
+        "base_rate": {
+          "r": 0.02,
+          "value": 0.0
+        },
+        "Historian": {
+          "r": 0.13999999999999999,
+          "value": 0.08333333333333343
+        },
+        "Runoff": {
+          "r": 0.8400000000000001,
+          "value": 0.25000000000000033
+        },
+        "Satellite": {
+          "r": 0.26,
+          "value": 0.03378378378378366
+        },
+        "Skeptic": {
+          "r": 0.36000000000000004,
+          "value": 1.0
+        },
+        "Weather": {
+          "r": 0.8400000000000001,
+          "value": 0.25000000000000033
+        }
+      }
+    },
+    "robustness": {
+      "liar": {
+        "avg_liar_weight": 0.04548719028453509,
+        "brier_with_liar": 0.21474036380709374,
+        "brier_without_liar": 0.18362085506269418,
+        "brier_change": 0.03111950874439956,
+        "weight_ratio": 0.27292314170721055
+      },
+      "coin": {
+        "avg_coin_weight": 0.10075957163681039,
+        "brier_with_coin": 0.19468811291288812,
+        "brier_without_coin": 0.18362085506269418,
+        "brier_change": 0.01106725785019394
+      },
+      "herd": {
+        "worst_agent": "Historian",
+        "n_copies": 3,
+        "inverse_brier": {
+          "brier_original": 0.18362085506269418,
+          "brier_with_herd": 0.21845239957140325,
+          "degradation": 0.03483154450870907
+        },
+        "bates_granger": {
+          "brier_original": 0.1701100968079908,
+          "brier_with_herd": 0.17047258746952298,
+          "degradation": 0.00036249066153218323
+        },
+        "bg_resists_better": true
+      },
+      "degradation": {
+        "n_agents": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "mean_brier": [
+          0.22884999999999997,
+          0.20629258643932807,
+          0.19080036272206244,
+          0.18897157250886376,
+          0.18362085506269415
+        ],
+        "std_brier": [
+          0.06756692341266639,
+          0.04955092403671246,
+          0.038077443788966686,
+          0.02593510636321363,
+          2.7755575615628914e-17
+        ]
+      },
+      "clip": {
+        "[0.01, 0.99]": 0.18362085506269418,
+        "[0.03, 0.97]": 0.18362085506269418,
+        "[0.05, 0.95]": 0.18362085506269418,
+        "[0.01, 0.99]_change": 0.0,
+        "[0.05, 0.95]_change": 0.0
+      },
+      "missing": {
+        "10%_missing": {
+          "mean_brier": 0.18693581836447418,
+          "std_brier": 0.008216055349577327,
+          "min_brier": 0.1610568601794327,
+          "max_brier": 0.2081548425892885
+        },
+        "20%_missing": {
+          "mean_brier": 0.18490791814658827,
+          "std_brier": 0.011876726428251305,
+          "min_brier": 0.1530309398387307,
+          "max_brier": 0.22379831336031425
+        },
+        "30%_missing": {
+          "mean_brier": 0.19505819178295777,
+          "std_brier": 0.01719848079793419,
+          "min_brier": 0.14636275808445448,
+          "max_brier": 0.23314203440996414
+        }
+      }
+    }
   }
 }

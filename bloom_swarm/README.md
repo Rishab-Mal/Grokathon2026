@@ -185,3 +185,83 @@ For each week t:
 | `LAKE_NAME` | Lake name for display | `Lake Erie` |
 | `LAKE_LAT` | Lake latitude | `41.6833` |
 | `LAKE_LON` | Lake longitude | `-82.3833` |
+
+---
+
+## Person 4: Evaluation Package
+
+The `scripts/swarm/` directory contains a rigorous forecast aggregation and evaluation package.
+
+### Package Structure
+
+```
+scripts/swarm/
+├── config.json          # All settings (pre-registered primary method)
+├── core.py              # Data loading, math primitives
+├── aggregators.py       # 9 aggregation methods
+├── protocols.py         # Leave-one-out and walk-forward evaluation
+├── metrics.py           # Scoring rules, decomposition, AUC, calibration
+├── significance.py      # Statistical tests, bootstrap, Holm correction
+├── diversity.py         # Error correlation, diversity theorem
+├── shapley.py           # Exact Shapley value attribution
+├── decision.py          # Cost-loss economic value analysis
+├── robustness.py        # Adversarial and degradation stress tests
+├── report.py            # Generates data.json, pitch files, figures
+├── check.py             # Integration validator
+├── aggregate.py         # Main entry point
+└── tests/test_all.py    # Unit tests
+```
+
+### Makefile Targets (Person 4)
+
+| Target | Description |
+|--------|-------------|
+| `make swarm` | Run full evaluation pipeline |
+| `make check` | Validate data quality |
+| `make test` | Run unit tests |
+| `make figures` | Generate figures only |
+| `make final` | Full pipeline: check + swarm |
+
+### Aggregation Methods
+
+1. **base_rate**: Historical bloom frequency
+2. **equal_linear**: Plain mean of probabilities
+3. **equal_logodds**: Equal-weight log-odds pooling
+4. **inverse_brier_logodds** (PRIMARY): Weight by inverse Brier, pool in log-odds
+5. **bates_granger**: Covariance-aware weighting (handles correlated errors)
+6. **stacked_logistic**: Logistic regression on agent logits
+7. **extremized_primary**: Multiplies pooled logit to correct underconfidence
+8. **best_agent_selected**: Uses only the best-performing agent
+9. **hedge_online**: Multiplicative weights for online learning
+
+**Pre-registration note**: The primary method (inverse_brier_logodds) was fixed before seeing results to avoid cherry-picking. All other methods are secondary comparisons.
+
+### New Data for Frontend (Person 1)
+
+The evaluation adds these to `frontend/data.json`:
+
+1. **methods** (per week): All method predictions under LOO and walk-forward
+   ```json
+   "methods": {"inverse_brier_logodds": {"loo": 0.58, "wf": 0.55}, ...}
+   ```
+
+2. **evaluation** (top level): Full evaluation results
+   - `leaderboard`: Ranked methods/agents by Brier, BSS, AUC
+   - `calibration`: Per-bin reliability with Wilson intervals
+   - `significance`: Statistical test results with verdicts
+   - `diversity`: Correlation matrix, effective N
+   - `shapley`: Agent attribution values
+   - `economic_value`: Value curves at different cost ratios
+
+**Demo-worthy features** (ranked by impact):
+1. Shapley attribution bar chart (who contributes most?)
+2. Economic value curves (practical decision impact)
+3. Reliability diagram (calibration visualization)
+4. Effective N metric ("5 agents behave like 1.2 independent forecasters")
+
+### Outputs
+
+- `frontend/data.json`: Updated with `evaluation` key
+- `pitch/numbers.md`: Key statistics for presentation
+- `pitch/appendix.md`: Methodology notes for judges
+- `pitch/figures/*.png`: Backup visualizations

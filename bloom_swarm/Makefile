@@ -1,4 +1,4 @@
-.PHONY: data fake agents swarm serve demo clean help
+.PHONY: data fake agents swarm serve demo clean help check test figures final bankroll
 
 # Build real week files (NOAA labels + weather + satellite) into data/weeks/
 data:
@@ -36,7 +36,7 @@ agents-check:
 bankroll:
 	python scripts/agents/bankroll.py
 
-# Aggregate agent outputs into frontend/data.json
+# Aggregate agent outputs into frontend/data.json (full evaluation)
 swarm:
 	python scripts/swarm/aggregate.py
 
@@ -52,25 +52,55 @@ clean:
 	rm -rf data/weeks/*.json
 	rm -rf outputs/*.json
 	rm -f frontend/data.json
+	rm -rf pitch/
 
 # Validate week data files
 validate:
 	python scripts/data/build_weeks.py --validate_only
 
+# Run integration checks (Person 4)
+check:
+	python scripts/swarm/check.py
+
+# Run tests (Person 4)
+test:
+	python scripts/swarm/tests/test_all.py
+
+# Generate figures only (Person 4)
+figures:
+	python scripts/swarm/aggregate.py --figures
+
+# Full final run: check + swarm + figures (Person 4)
+final: check swarm
+
+# Demo without serve: fake + swarm + figures (Person 4)
+demo-no-serve: fake swarm
+
 # Show help
 help:
 	@echo "Bloom Swarm - Makefile targets"
 	@echo ""
+	@echo "Data Generation:"
 	@echo "  make fake        Generate fake test data (16 weeks + agent outputs)"
 	@echo "  make fake-weeks  Generate only week input files"
+	@echo "  make clean       Remove generated files"
+	@echo ""
+	@echo "Agent Pipeline:"
 	@echo "  make agents      Run LLM agents (requires ANTHROPIC_API_KEY in .env)"
 	@echo "  make agents-force  Run agents, overwriting existing outputs"
 	@echo "  make agents-dry  Print prompts without calling API"
-	@echo "  make swarm       Aggregate outputs to frontend/data.json"
 	@echo "  make bankroll    Bankroll race data for frontend/bankroll.html"
+	@echo ""
+	@echo "Swarm Evaluation (Person 4):"
+	@echo "  make swarm       Full evaluation: aggregation + metrics + figures"
+	@echo "  make check       Run integration validation checks"
+	@echo "  make test        Run unit tests"
+	@echo "  make figures     Generate figures only"
+	@echo "  make final       Full pipeline: check + swarm"
+	@echo ""
+	@echo "Frontend:"
 	@echo "  make serve       Start local server at http://localhost:8000"
 	@echo "  make demo        Full pipeline: fake + swarm + serve"
-	@echo "  make clean       Remove generated files"
 	@echo "  make validate    Validate week data files"
 	@echo ""
 	@echo "Quick start:"

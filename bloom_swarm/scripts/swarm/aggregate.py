@@ -1,274 +1,291 @@
 #!/usr/bin/env python3
 """
-Aggregate agent outputs using leave-one-out weighted scoring.
+Aggregate agent outputs and run full evaluation pipeline.
 
-This is the core swarm aggregation logic:
-1. Load all week inputs and agent outputs
-2. For each week, compute agent weights based on their Brier scores on OTHER weeks
-3. Combine probabilities using weighted logit averaging
-4. Compare against simple average and base rate baselines
-5. Output frontend/data.json and print a scoreboard
+This is the thin entry point that calls all evaluation modules in order.
+Maintains backward compatibility with frontend/data.json format.
 
 Usage:
-    python scripts/swarm/aggregate.py
+    python scripts/swarm/aggregate.py [--phase N] [--figures]
+
+Phases:
+    1: Aggregators and protocols
+    2: Metrics and significance
+    3: Diversity and Shapley
+    4: Decision value and robustness
+    5: Reporting and figures
+    all: Run all phases (default)
 """
 
+import argparse
 import json
 import os
 import sys
+import time
 from pathlib import Path
 
 import numpy as np
-import pandas as pd
-from dotenv import load_dotenv
 
-AGENT_NAMES = ["Weather", "Runoff", "Satellite", "Historian", "Skeptic"]
-MIN_WEEKS_FOR_WEIGHTS = 3
+# Add scripts to path for imports
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from swarm.core import load_data, set_seed, CONFIG, brier
+from swarm.aggregators import METHODS, PRIMARY_METHOD
+from swarm.protocols import (
+    evaluate_all_methods,
+    evaluate_agents,
+    print_leaderboard,
+)
+from swarm.metrics import compute_metrics_for_all, print_metrics_summary
+from swarm.significance import compare_to_baselines, print_significance_table
+from swarm.diversity import compute_diversity_analysis, print_diversity_summary
+from swarm.shapley import compute_shapley_analysis, print_shapley_summary
+from swarm.decision import compute_economic_analysis, print_economic_summary
+from swarm.robustness import compute_robustness_analysis, print_robustness_summary
+from swarm.report import (
+    update_frontend_data,
+    write_numbers_md,
+    write_appendix_md,
+    generate_all_figures,
+)
 
-def clip_p(p: float) -> float:
-    """Clip probability to [0.03, 0.97]."""
-    return float(np.clip(p, 0.03, 0.97))
-
-
-def logit(p: float) -> float:
-    """Logit transform: log(p / (1 - p))."""
-    p = clip_p(p)
-    return float(np.log(p / (1 - p)))
-
-
-def sigmoid(x: float) -> float:
-    """Sigmoid transform: 1 / (1 + exp(-x))."""
-    return float(1 / (1 + np.exp(-x)))
-
-
-def brier_score(p: float, actual: int) -> float:
-    """Compute Brier score: (p - actual)^2."""
-    return (p - actual) ** 2
-
-
-def load_weeks(weeks_dir: Path) -> dict[str, dict]:
-    """Load all week input files."""
-    weeks = {}
-    for path in sorted(weeks_dir.glob("*.json")):
-        with open(path) as f:
-            data = json.load(f)
-            weeks[data["week"]] = data
-    return weeks
-
-
-def load_agent_outputs(outputs_dir: Path) -> dict[str, dict[str, dict]]:
-    """
-    Load all agent output files.
-    Returns: {week: {agent_name: output_dict}}
-    """
-    outputs = {}
-    for path in sorted(outputs_dir.glob("*.json")):
-        # Parse filename: YYYY-MM-DD_AgentName.json
-        parts = path.stem.rsplit("_", 1)
-        if len(parts) != 2:
-            print(f"Warning: Skipping malformed filename {path}")
-            continue
-        week_str, agent_name = parts
-        if agent_name not in AGENT_NAMES:
-            print(f"Warning: Unknown agent {agent_name} in {path}")
-            continue
-
-        with open(path) as f:
-            data = json.load(f)
-
-        # Clip p to valid range
-        data["p"] = clip_p(data["p"])
-
-        if week_str not in outputs:
-            outputs[week_str] = {}
-        outputs[week_str][agent_name] = data
-
-    return outputs
-
-
-def compute_leave_one_out_weights(
-    week_str: str,
-    all_weeks: dict[str, dict],
-    all_outputs: dict[str, dict[str, dict]],
-    agent_names: list[str],
-) -> dict[str, float]:
-    """
-    Compute agent weights for a given week using leave-one-out Brier scores.
-
-    For each agent, compute their Brier score on all OTHER weeks,
-    then weight = 1 / brier, normalized to sum to 1.
-    """
-    other_weeks = [w for w in all_weeks.keys() if w != week_str]
-
-    if len(other_weeks) < MIN_WEEKS_FOR_WEIGHTS:
-        # Not enough data: use equal weights
-        n_agents = len(agent_names)
-        return {name: 1.0 / n_agents for name in agent_names}
-
-    agent_briers = {}
-    for agent_name in agent_names:
-        scores = []
-        for other_week in other_weeks:
-            if other_week in all_outputs and agent_name in all_outputs[other_week]:
-                agent_p = all_outputs[other_week][agent_name]["p"]
-                actual = all_weeks[other_week]["actual"]
-                scores.append(brier_score(agent_p, actual))
-
-        if scores:
-            # Average Brier score across other weeks
-            agent_briers[agent_name] = np.mean(scores)
-        else:
-            # No data for this agent: assign high Brier (low weight)
-            agent_briers[agent_name] = 0.5
-
-    # Convert Brier scores to weights: lower Brier = higher weight
-    # weight = 1 / brier, but avoid division by zero
-    raw_weights = {}
-    for agent_name, brier in agent_briers.items():
-        # Add small epsilon to avoid division by zero
-        raw_weights[agent_name] = 1.0 / (brier + 0.01)
-
-    # Normalize to sum to 1
-    total = sum(raw_weights.values())
-    weights = {name: w / total for name, w in raw_weights.items()}
-
-    return weights
-
-
-def compute_base_rate(week_str: str, all_weeks: dict[str, dict]) -> float:
-    """Compute base rate from all OTHER weeks (leave-one-out)."""
-    other_actuals = [w["actual"] for w_str, w in all_weeks.items() if w_str != week_str]
-    if not other_actuals:
-        return 0.5
-    return np.mean(other_actuals)
-
-
-def aggregate_week(
-    week_str: str,
-    week_data: dict,
-    agent_outputs: dict[str, dict],
-    weights: dict[str, float],
-) -> dict:
-    """
-    Aggregate agent outputs for a single week.
-
-    Returns dict with agents (including weights), swarm_p, simple_avg_p, base_rate_p, actual.
-    """
-    # Get available agents for this week
-    available_agents = [name for name in AGENT_NAMES if name in agent_outputs]
-
-    if not available_agents:
-        # No agent outputs for this week
-        return None
-
-    # Renormalize weights for available agents
-    total_weight = sum(weights.get(name, 0) for name in available_agents)
-    if total_weight == 0:
-        total_weight = len(available_agents)
-        renorm_weights = {name: 1.0 / total_weight for name in available_agents}
-    else:
-        renorm_weights = {name: weights.get(name, 0) / total_weight for name in available_agents}
-
-    # Build agents list with weights
-    agents = []
-    logits = []
-    for name in available_agents:
-        output = agent_outputs[name]
-        agent_weight = renorm_weights[name]
-        agents.append({
-            "name": output["name"],
-            "p": output["p"],
-            "reason": output["reason"],
-            "evidence": output["evidence"],
-            "weight": round(agent_weight, 4),
-        })
-        logits.append(logit(output["p"]))
-
-    # Compute swarm_p: sigmoid(weighted sum of logits)
-    weighted_logit_sum = sum(
-        renorm_weights[name] * logit(agent_outputs[name]["p"])
-        for name in available_agents
-    )
-    swarm_p = sigmoid(weighted_logit_sum)
-
-    # Compute simple_avg_p: sigmoid(mean of logits)
-    mean_logit = np.mean(logits)
-    simple_avg_p = sigmoid(mean_logit)
-
-    return {
-        "agents": agents,
-        "swarm_p": round(swarm_p, 4),
-        "simple_avg_p": round(simple_avg_p, 4),
-        "actual": week_data["actual"],
-    }
-
-
-def compute_overall_scores(
-    aggregated_weeks: list[dict],
-    all_weeks: dict[str, dict],
-    all_outputs: dict[str, dict[str, dict]],
-) -> dict[str, float]:
-    """Compute overall Brier scores for agents, swarm, simple_avg, and base_rate."""
-    scores = {}
-
-    # Agent scores
-    for agent_name in AGENT_NAMES:
-        agent_scores = []
-        for week_str, week_data in all_weeks.items():
-            if week_str in all_outputs and agent_name in all_outputs[week_str]:
-                p = all_outputs[week_str][agent_name]["p"]
-                actual = week_data["actual"]
-                agent_scores.append(brier_score(p, actual))
-        if agent_scores:
-            scores[agent_name] = round(np.mean(agent_scores), 4)
-        else:
-            scores[agent_name] = None
-
-    # Swarm and simple_avg scores
-    swarm_scores = []
-    simple_avg_scores = []
-    base_rate_scores = []
-
-    for week_result in aggregated_weeks:
-        actual = week_result["actual"]
-        swarm_scores.append(brier_score(week_result["swarm_p"], actual))
-        simple_avg_scores.append(brier_score(week_result["simple_avg_p"], actual))
-        base_rate_scores.append(brier_score(week_result["base_rate_p"], actual))
-
-    scores["swarm"] = round(np.mean(swarm_scores), 4) if swarm_scores else None
-    scores["simple_avg"] = round(np.mean(simple_avg_scores), 4) if simple_avg_scores else None
-    scores["base_rate"] = round(np.mean(base_rate_scores), 4) if base_rate_scores else None
-
-    return scores
-
-
-def print_scoreboard(scores: dict[str, float]):
-    """Print a sorted scoreboard table to terminal."""
-    print("\n" + "=" * 50)
-    print("SCOREBOARD (Brier Score - lower is better)")
-    print("=" * 50)
-
-    # Sort by score (lower is better)
-    sorted_scores = sorted(
-        [(name, score) for name, score in scores.items() if score is not None],
-        key=lambda x: x[1],
-    )
-
-    print(f"{'Rank':<6}{'Name':<15}{'Brier Score':<12}")
-    print("-" * 33)
-    for rank, (name, score) in enumerate(sorted_scores, 1):
-        print(f"{rank:<6}{name:<15}{score:<12.4f}")
-
-    print("=" * 50)
-
-
-def main():
-    # Load environment
+try:
+    from dotenv import load_dotenv
     load_dotenv()
+except ImportError:
+    pass
+
+
+def run_phase1(weeks, agents, P, y, meta):
+    """Phase 1: Aggregators and protocols."""
+    print("\n" + "=" * 80)
+    print("PHASE 1: AGGREGATORS AND PROTOCOLS")
+    print("=" * 80)
+
+    set_seed()
+
+    print("\nEvaluating all methods under LOO and walk-forward protocols...")
+    method_results = evaluate_all_methods(P, y, agents)
+    agent_results = evaluate_agents(P, y, agents)
+    print_leaderboard(method_results, agent_results)
+
+    return method_results, agent_results
+
+
+def run_phase2(method_results, agent_results, P, y, agents):
+    """Phase 2: Metrics and significance."""
+    print("\n" + "=" * 80)
+    print("PHASE 2: METRICS AND SIGNIFICANCE")
+    print("=" * 80)
+
+    # Build agent predictions dict
+    agent_preds = {agent: P[:, k] for k, agent in enumerate(agents)}
+
+    # Compute metrics
+    print("\nComputing detailed metrics...")
+    all_metrics = compute_metrics_for_all(method_results, agent_preds, y)
+    print_metrics_summary(all_metrics, PRIMARY_METHOD)
+
+    # Significance testing
+    print("\nRunning significance tests...")
+    primary_preds = method_results[PRIMARY_METHOD]["loo"]["preds"]
+    baselines = {
+        "base_rate": method_results["base_rate"]["loo"]["preds"],
+        "equal_logodds": method_results["equal_logodds"]["loo"]["preds"],
+        "best_agent_selected": method_results["best_agent_selected"]["loo"]["preds"],
+    }
+    # Add agents
+    for k, agent in enumerate(agents):
+        valid = ~np.isnan(P[:, k])
+        if valid.all():
+            baselines[agent] = P[:, k]
+
+    significance = compare_to_baselines(primary_preds, baselines, y)
+    print_significance_table(significance)
+
+    return all_metrics, significance
+
+
+def run_phase3(P, y, agents, method_results):
+    """Phase 3: Diversity and Shapley."""
+    print("\n" + "=" * 80)
+    print("PHASE 3: DIVERSITY AND SHAPLEY")
+    print("=" * 80)
+
+    # Get primary weights for weighted analysis
+    primary_weights = method_results[PRIMARY_METHOD]["loo"]["weights"][0]
+    if primary_weights:
+        weights_array = np.array([primary_weights.get(a, 0.0) for a in agents])
+    else:
+        weights_array = None
+
+    # Diversity
+    print("\nRunning diversity analysis...")
+    diversity = compute_diversity_analysis(P, y, agents, weights_array)
+    print_diversity_summary(diversity)
+
+    # Shapley
+    base_rate_brier = method_results["base_rate"]["loo"]["brier"]
+    print("\nRunning Shapley analysis...")
+    shapley = compute_shapley_analysis(P, y, agents, base_rate_brier)
+    print_shapley_summary(shapley)
+
+    return diversity, shapley
+
+
+def run_phase4(P, y, agents, method_results):
+    """Phase 4: Decision value and robustness."""
+    print("\n" + "=" * 80)
+    print("PHASE 4: DECISION VALUE AND ROBUSTNESS")
+    print("=" * 80)
+
+    # Economic analysis
+    print("\nRunning economic analysis...")
+    forecasts = {
+        PRIMARY_METHOD: method_results[PRIMARY_METHOD]["loo"]["preds"],
+        "equal_logodds": method_results["equal_logodds"]["loo"]["preds"],
+        "best_agent_selected": method_results["best_agent_selected"]["loo"]["preds"],
+        "base_rate": method_results["base_rate"]["loo"]["preds"],
+    }
+    # Add agents
+    for k, agent in enumerate(agents):
+        valid = ~np.isnan(P[:, k])
+        if valid.all():
+            forecasts[agent] = P[:, k]
+
+    economic = compute_economic_analysis(forecasts, y)
+    print_economic_summary(economic)
+
+    # Robustness
+    print("\nRunning robustness analysis...")
+    robustness = compute_robustness_analysis(P, y, agents)
+    print_robustness_summary(robustness)
+
+    return economic, robustness
+
+
+def run_phase5(
+    weeks, agents, P, y, meta,
+    method_results, agent_results, metrics, significance,
+    diversity, shapley, economic, robustness,
+    figures_only: bool = False,
+):
+    """Phase 5: Reporting and figures."""
+    print("\n" + "=" * 80)
+    print("PHASE 5: REPORTING AND FIGURES")
+    print("=" * 80)
+
+    frontend_dir = Path("frontend")
+    pitch_dir = Path("pitch")
+    figures_dir = pitch_dir / "figures"
+
+    frontend_dir.mkdir(exist_ok=True)
+    pitch_dir.mkdir(exist_ok=True)
+    figures_dir.mkdir(exist_ok=True)
+
+    # Build base frontend data first
+    existing_data = build_base_frontend_data(weeks, agents, P, y, meta, method_results)
+
+    # Update with evaluation
+    print("\nUpdating frontend/data.json...")
+    updated_data = update_frontend_data(
+        existing_data, CONFIG, method_results, agent_results,
+        metrics, significance, diversity, shapley, economic, robustness
+    )
+
+    frontend_path = frontend_dir / "data.json"
+    with open(frontend_path, "w") as f:
+        json.dump(updated_data, f, indent=2)
+    print(f"  Wrote {frontend_path}")
+
+    # Write pitch files
+    print("\nWriting pitch files...")
+    write_numbers_md(pitch_dir / "numbers.md", method_results, agent_results,
+                     significance, diversity, shapley, economic, robustness)
+    print(f"  Wrote {pitch_dir / 'numbers.md'}")
+
+    write_appendix_md(pitch_dir / "appendix.md")
+    print(f"  Wrote {pitch_dir / 'appendix.md'}")
+
+    # Generate figures
+    print("\nGenerating figures...")
+    generate_all_figures(metrics, diversity, shapley, economic, robustness, figures_dir)
+
+    return updated_data
+
+
+def build_base_frontend_data(weeks, agents, P, y, meta, method_results):
+    """Build base frontend data structure."""
     lake_name = os.getenv("LAKE_NAME", "Lake Erie")
     lake_lat = float(os.getenv("LAKE_LAT", "41.6833"))
     lake_lon = float(os.getenv("LAKE_LON", "-82.3833"))
+
+    T, K = P.shape
+    primary_preds = method_results[PRIMARY_METHOD]["loo"]["preds"]
+    primary_weights = method_results[PRIMARY_METHOD]["loo"]["weights"]
+    simple_avg_preds = method_results["equal_logodds"]["loo"]["preds"]
+    base_rate_preds = method_results["base_rate"]["loo"]["preds"]
+
+    weeks_data = []
+    for t, week_str in enumerate(weeks):
+        agents_data = []
+        week_weights = primary_weights[t] if primary_weights[t] else {}
+
+        for k, agent_name in enumerate(agents):
+            if np.isnan(P[t, k]):
+                continue
+            agent_meta = meta.get(week_str, {}).get(agent_name, {})
+            agents_data.append({
+                "name": agent_name,
+                "p": round(float(P[t, k]), 4),
+                "reason": agent_meta.get("reason", ""),
+                "evidence": agent_meta.get("evidence", []),
+                "weight": round(week_weights.get(agent_name, 1.0 / len(agents)), 4),
+            })
+
+        methods_data = {}
+        for method_name, result in method_results.items():
+            methods_data[method_name] = {
+                "loo": round(float(result["loo"]["preds"][t]), 4),
+                "wf": round(float(result["wf"]["preds"][t]), 4),
+            }
+
+        weeks_data.append({
+            "week": week_str,
+            "agents": agents_data,
+            "swarm_p": round(float(primary_preds[t]), 4),
+            "simple_avg_p": round(float(simple_avg_preds[t]), 4),
+            "base_rate_p": round(float(base_rate_preds[t]), 4),
+            "actual": int(y[t]),
+            "methods": methods_data,
+        })
+
+    scores = {}
+    for k, agent_name in enumerate(agents):
+        valid = ~np.isnan(P[:, k])
+        if valid.sum() > 0:
+            scores[agent_name] = round(float(np.mean(brier(P[valid, k], y[valid]))), 4)
+
+    scores["swarm"] = round(method_results[PRIMARY_METHOD]["loo"]["brier"], 4)
+    scores["simple_avg"] = round(method_results["equal_logodds"]["loo"]["brier"], 4)
+    scores["base_rate"] = round(method_results["base_rate"]["loo"]["brier"], 4)
+
+    return {
+        "lake": {"name": lake_name, "lat": lake_lat, "lon": lake_lon},
+        "weeks": weeks_data,
+        "scores": scores,
+    }
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Swarm aggregation and evaluation")
+    parser.add_argument("--phase", type=str, default="all",
+                        help="Phase to run: 1, 2, 3, 4, 5, or all")
+    parser.add_argument("--figures", action="store_true",
+                        help="Only generate figures (assumes data exists)")
+    args = parser.parse_args()
+
+    start_time = time.time()
 
     # Setup paths
     weeks_dir = Path("data/weeks")
@@ -277,83 +294,64 @@ def main():
     frontend_dir.mkdir(exist_ok=True)
 
     # Load data
-    print("Loading week data...")
-    all_weeks = load_weeks(weeks_dir)
-    if not all_weeks:
+    print("Loading data...")
+    weeks, agents, P, y, meta = load_data(weeks_dir, outputs_dir)
+
+    if len(weeks) == 0:
         print("Error: No week files found in data/weeks/")
         sys.exit(1)
-    print(f"  Loaded {len(all_weeks)} weeks")
 
-    print("Loading agent outputs...")
-    all_outputs = load_agent_outputs(outputs_dir)
-    if not all_outputs:
-        print("Error: No agent output files found in outputs/")
-        sys.exit(1)
-    print(f"  Loaded outputs for {len(all_outputs)} weeks")
+    print(f"  Loaded {len(weeks)} weeks, {len(agents)} agents")
+    print(f"  Bloom rate: {y.mean():.1%}")
 
-    # Check for missing agent outputs
-    for week_str in all_weeks:
-        if week_str not in all_outputs:
-            print(f"  Warning: No agent outputs for week {week_str}")
-        else:
-            missing = [name for name in AGENT_NAMES if name not in all_outputs[week_str]]
-            if missing:
-                print(f"  Warning: Week {week_str} missing agents: {missing}")
+    # Run phases
+    phase = args.phase.lower()
 
-    # Aggregate each week
-    print("\nAggregating swarm predictions...")
-    aggregated_weeks = []
+    # Phase 1 is always needed
+    method_results, agent_results = run_phase1(weeks, agents, P, y, meta)
 
-    for week_str in sorted(all_weeks.keys()):
-        week_data = all_weeks[week_str]
-        agent_outputs = all_outputs.get(week_str, {})
+    if phase in ["2", "3", "4", "5", "all"]:
+        metrics, significance = run_phase2(method_results, agent_results, P, y, agents)
+    else:
+        metrics, significance = {}, []
 
-        if not agent_outputs:
-            print(f"  Skipping {week_str}: no agent outputs")
-            continue
+    if phase in ["3", "4", "5", "all"]:
+        diversity, shapley = run_phase3(P, y, agents, method_results)
+    else:
+        diversity, shapley = {}, {}
 
-        # Compute weights (leave-one-out on other weeks)
-        available_agents = [name for name in AGENT_NAMES if name in agent_outputs]
-        weights = compute_leave_one_out_weights(
-            week_str, all_weeks, all_outputs, available_agents
+    if phase in ["4", "5", "all"]:
+        economic, robustness = run_phase4(P, y, agents, method_results)
+    else:
+        economic, robustness = {}, {}
+
+    if phase in ["5", "all"] or args.figures:
+        run_phase5(
+            weeks, agents, P, y, meta,
+            method_results, agent_results, metrics, significance,
+            diversity, shapley, economic, robustness,
+            figures_only=args.figures,
         )
 
-        # Aggregate
-        result = aggregate_week(week_str, week_data, agent_outputs, weights)
-        if result is None:
-            continue
+    elapsed = time.time() - start_time
+    print(f"\n{'=' * 50}")
+    print(f"COMPLETE in {elapsed:.1f}s")
+    print(f"{'=' * 50}")
 
-        # Add base rate (leave-one-out)
-        result["base_rate_p"] = round(compute_base_rate(week_str, all_weeks), 4)
-        result["week"] = week_str
+    # Final summary
+    print(f"\nPrimary method: {PRIMARY_METHOD}")
+    print(f"  LOO Brier: {method_results[PRIMARY_METHOD]['loo']['brier']:.4f}")
+    print(f"  WF Brier:  {method_results[PRIMARY_METHOD]['wf']['brier']:.4f}")
 
-        aggregated_weeks.append(result)
+    best_agent = min(agent_results.items(), key=lambda x: x[1]["brier"])
+    print(f"Best agent: {best_agent[0]} with Brier {best_agent[1]['brier']:.4f}")
 
-    print(f"  Aggregated {len(aggregated_weeks)} weeks")
+    if diversity:
+        print(f"Effective N: {diversity.get('effective_n', 0):.2f}")
+    if shapley:
+        print(f"Most valuable agent: {shapley.get('most_valuable_agent', 'N/A')}")
 
-    # Compute overall scores
-    print("\nComputing overall scores...")
-    scores = compute_overall_scores(aggregated_weeks, all_weeks, all_outputs)
-
-    # Build final output
-    output = {
-        "lake": {
-            "name": lake_name,
-            "lat": lake_lat,
-            "lon": lake_lon,
-        },
-        "weeks": aggregated_weeks,
-        "scores": scores,
-    }
-
-    # Write to frontend/data.json
-    output_path = frontend_dir / "data.json"
-    with open(output_path, "w") as f:
-        json.dump(output, f, indent=2)
-    print(f"\nWrote {output_path}")
-
-    # Print scoreboard
-    print_scoreboard(scores)
+    return method_results, agent_results
 
 
 if __name__ == "__main__":

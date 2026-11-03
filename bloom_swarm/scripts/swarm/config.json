@@ -1,0 +1,15 @@
+{
+  "primary_method": "inverse_brier_logodds",
+  "clip": [0.03, 0.97],
+  "seed": 7,
+  "walk_forward_warmup": 4,
+  "hedge_eta": 2.0,
+  "extremize_grid": [1.0, 1.25, 1.5, 2.0, 2.5],
+  "stack_l2_grid": [0.3, 1.0, 3.0, 10.0],
+  "bg_shrinkage": 0.5,
+  "bootstrap_n": 5000,
+  "block_length": 3,
+  "permutation_n": 10000,
+  "calibration_bins": 5,
+  "cost_loss_grid_n": 49
+}
