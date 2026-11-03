@@ -8,7 +8,7 @@ fake:
 fake-weeks:
 	python scripts/make_fake_data.py --weeks_only
 
-# Run all agents against week data (requires XAI_API_KEY)
+# Run all agents against week data (requires ANTHROPIC_API_KEY)
 agents:
 	python scripts/agents/run_agents.py
 
@@ -19,6 +19,14 @@ agents-force:
 # Dry run agents (print prompts without API calls)
 agents-dry:
 	python scripts/agents/run_agents.py --dry_run
+
+# Blind round + group-chat round (outputs_debate/)
+agents-debate:
+	python scripts/agents/run_agents.py --debate
+
+# Check agent outputs: missing, fake, stuck agents
+agents-check:
+	python scripts/agents/check_outputs.py --debate
 
 # Aggregate agent outputs into frontend/data.json
 swarm:
@@ -47,7 +55,7 @@ help:
 	@echo ""
 	@echo "  make fake        Generate fake test data (16 weeks + agent outputs)"
 	@echo "  make fake-weeks  Generate only week input files"
-	@echo "  make agents      Run LLM agents (requires XAI_API_KEY in .env)"
+	@echo "  make agents      Run LLM agents (requires ANTHROPIC_API_KEY in .env)"
 	@echo "  make agents-force  Run agents, overwriting existing outputs"
 	@echo "  make agents-dry  Print prompts without calling API"
 	@echo "  make swarm       Aggregate outputs to frontend/data.json"

@@ -1,6 +1,6 @@
 # Bloom Swarm
 
-A swarm of LLM agents (Grok via xAI API) that predict harmful algal blooms on lakes. Each agent analyzes different data sources, and their predictions are combined using accuracy-weighted aggregation. The system includes backtesting against historical outcomes and a web frontend for visualization.
+A swarm of LLM agents (Claude via the Anthropic API) that predict harmful algal blooms on lakes. Each agent analyzes different data sources, and their predictions are combined using accuracy-weighted aggregation. The system includes backtesting against historical outcomes and a web frontend for visualization.
 
 ## Quick Start
 
@@ -14,7 +14,7 @@ pip install -r requirements.txt
 
 # 3. Configure environment
 cp .env.example .env
-# Edit .env to add your XAI_API_KEY (optional for demo)
+# Edit .env to add your ANTHROPIC_API_KEY (optional for demo)
 
 # 4. Run demo with fake data
 make demo
@@ -27,7 +27,9 @@ make demo
 |--------|-------------|
 | `make fake` | Generate 16 weeks of fake test data + agent outputs |
 | `make fake-weeks` | Generate only week input files (no agent outputs) |
-| `make agents` | Run LLM agents against week data (requires XAI_API_KEY) |
+| `make agents` | Run LLM agents against week data (requires ANTHROPIC_API_KEY); replaces fake outputs |
+| `make agents-debate` | Blind round, then a group-chat round where agents read each other's bets (`outputs_debate/`) |
+| `make agents-check` | Flag missing or fake outputs and agents stuck at one value |
 | `make agents-force` | Run agents, overwriting existing outputs |
 | `make agents-dry` | Print prompts without calling the API |
 | `make swarm` | Aggregate outputs into `frontend/data.json` |
@@ -68,6 +70,8 @@ Notes:
 ```
 
 Agent names: `Weather`, `Runoff`, `Satellite`, `Historian`, `Skeptic`
+
+Real agent runs also write `model`, `mode` (`blind` or `debate`; debate files add `p_blind`) and `prompt_hash` (a week is re-run when its data or prompt changes). A file without `model` came from `make_fake_data.py`. `outputs_debate/` uses the same format for the group-chat round.
 
 ### Schema 3: Final Output (`frontend/data.json`)
 
@@ -159,8 +163,8 @@ For each week t:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
-| `XAI_API_KEY` | xAI API key for Grok | (required for agents) |
-| `XAI_MODEL` | Model name | `grok-beta` |
+| `ANTHROPIC_API_KEY` | Anthropic API key | (required for agents) |
+| `ANTHROPIC_MODEL` | Claude model | `claude-sonnet-5-5` (or `claude-haiku-5-5`) |
 | `LAKE_NAME` | Lake name for display | `Lake Erie` |
 | `LAKE_LAT` | Lake latitude | `41.6833` |
 | `LAKE_LON` | Lake longitude | `-82.3833` |
