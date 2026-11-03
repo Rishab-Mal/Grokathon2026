@@ -21,10 +21,26 @@ make demo
 # Opens http://localhost:8000
 ```
 
+## Real data run
+
+`data/weeks/` holds 21 real weeks of western Lake Erie data (June to October 2024). The labels come from NOAA
+HAB bulletins; see `../LABELS.md` for the rule. To run without `make` (for example on Windows):
+
+```bash
+python scripts/data/build_weeks.py          # rebuild data/weeks/ (bulletin text is cached)
+python scripts/agents/run_agents.py         # needs ANTHROPIC_API_KEY in .env
+python scripts/agents/check_outputs.py
+python scripts/swarm/aggregate.py
+cd frontend && python -m http.server 8000
+```
+
+`make fake` / `make demo` overwrite `data/weeks/` with synthetic data. Run `make data` to restore the real weeks.
+
 ## Makefile Targets
 
 | Target | Description |
 |--------|-------------|
+| `make data` | Build real week files from NOAA bulletins, Open-Meteo and EPA CyAN |
 | `make fake` | Generate 16 weeks of fake test data + agent outputs |
 | `make fake-weeks` | Generate only week input files (no agent outputs) |
 | `make agents` | Run LLM agents against week data (requires ANTHROPIC_API_KEY); replaces fake outputs |

@@ -36,8 +36,8 @@ phrase, so anyone can spot-check it. The code is in `pipeline/bulletins.py`, in 
 | Field | Source | Notes |
 |---|---|---|
 | weather | Open-Meteo archive API at 41.70, -83.25 | daily `temperature_2m_max`, `precipitation_sum`, aggregated to the week |
-| runoff_proxy | the same rainfall data | **This is a stand-in.** It uses rain over the past 14 days and the number of days with at least 10 mm of rain. There is no streamflow or phosphorus data. |
-| satellite | EPA CyAN API, Sentinel-3 OLCI, whole Lake Erie | covers the **7 days before** the week starts, so the model never sees the imagery the label came from |
+| runoff_proxy | the same rainfall data | **This is a stand-in.** It uses rain over the past 14 days and the number of days with more than 10 mm of rain. There is no streamflow or phosphorus data. |
+| satellite | EPA CyAN API, Sentinel-3 OLCI, whole Lake Erie | covers the **7 days before** the week starts, so the model never sees the imagery the label came from. The agents get `cyano_index`, the share of detected pixels divided by the western basin's 12.7% of the lake area: roughly the fraction of the western basin with detectable cyanobacteria (0.003 in early June, about 0.3 at peak). |
 | history | the same bulletins, 2018–2023 | for each calendar month, the fraction of past seasons with a bloom that month under the same rule. Months with no bulletins count as no bloom. |
 
 ## Run it

@@ -1,0 +1,20 @@
+{
+  "week": "2024-06-24",
+  "weather": {
+    "max_temp_avg": 26.4,
+    "rain_total_mm": 22.6,
+    "hot_days": 1
+  },
+  "runoff": {
+    "rain_last_14d_mm": 44.8,
+    "heavy_rain_days": 1
+  },
+  "satellite": {
+    "cyano_index": 0.009,
+    "change_vs_last_week": -0.012
+  },
+  "history": {
+    "bloom_rate_this_month_past_years": 0.0
+  },
+  "actual": 1
+}

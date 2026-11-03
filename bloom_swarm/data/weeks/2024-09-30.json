@@ -1,0 +1,20 @@
+{
+  "week": "2024-09-30",
+  "weather": {
+    "max_temp_avg": 22.4,
+    "rain_total_mm": 1.9,
+    "hot_days": 0
+  },
+  "runoff": {
+    "rain_last_14d_mm": 37.4,
+    "heavy_rain_days": 1
+  },
+  "satellite": {
+    "cyano_index": 0.24,
+    "change_vs_last_week": -0.047
+  },
+  "history": {
+    "bloom_rate_this_month_past_years": 1.0
+  },
+  "actual": 1
+}

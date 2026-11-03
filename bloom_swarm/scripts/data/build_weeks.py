@@ -239,20 +239,12 @@ def main():
             sys.exit(1)
         return
 
-    print("=" * 60)
-    print("TODO (Person 2): Implement the data pipeline:")
-    print()
-    print("1. Run fetch_weather.py to get weather data")
-    print("2. Implement load_weather_data() to parse the CSV")
-    print("3. Implement load_satellite_data() or mock it")
-    print("4. Implement compute_runoff() from weather data")
-    print("5. Add bloom labels (actual) from real observations")
-    print("6. Call build_week_file() for each week")
-    print("7. Write JSON files to data/weeks/")
-    print()
-    print("For testing, use: make fake")
-    print("This generates synthetic data to test the pipeline.")
-    print("=" * 60)
+    # The real pipeline lives in the repo-root `pipeline` package (NOAA bulletin labels,
+    # Open-Meteo weather, EPA CyAN satellite) and writes data/weeks/ in this schema.
+    repo_root = Path(__file__).resolve().parents[3]
+    sys.path.insert(0, str(repo_root))
+    from pipeline import build_inputs
+    build_inputs.main()
 
 
 if __name__ == "__main__":

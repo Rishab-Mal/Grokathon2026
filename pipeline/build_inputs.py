@@ -2,7 +2,8 @@
 
     python -m pipeline.build_inputs
 
-Writes data/inputs/week_YYYY-MM-DD.json and data/labels.csv.
+Writes data/inputs/week_YYYY-MM-DD.json (full detail, label evidence), data/labels.csv, and
+bloom_swarm/data/weeks/YYYY-MM-DD.json (the agents' input_week schema).
 """
 import json
 from collections import defaultdict
@@ -22,10 +23,45 @@ SEASON_END = date(2024, 11, 3)    # last Sunday covered
 HISTORY_YEARS = range(2018, 2024) # every archived season before the target year
 HISTORY_SAMPLES_PER_MONTH = 4
 LABEL_SAMPLES_PER_WEEK = 3        # bulletins spread across the week
-HEAVY_RAIN_MM = 10.0
+HEAVY_RAIN_MM = 10.0              # a heavy rain day has MORE than this
+HOT_DAY_C = 30.0                  # bloom_swarm schema: hot day = max temp >= 30C
+# CyAN only gives whole-lake histograms; the western basin is ~12.7% of Lake Erie's area
+# (3,280 of 25,738 km2), so detected-pixel share / 0.127 ~ share of the western basin.
+WESTERN_BASIN_SHARE = 3280 / 25738
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "data" / "inputs"
+SWARM_WEEKS = ROOT / "bloom_swarm" / "data" / "weeks"
+
+
+def cyano_index(sat_summary):
+    """0-1 index for the agents: approx. fraction of the western basin with detectable cyanobacteria."""
+    if sat_summary is None:
+        return None
+    return round(min(1.0, sat_summary["pct_pixels_cyano_detected"] / 100 / WESTERN_BASIN_SHARE), 3)
+
+
+def swarm_week(rec, index, prev_index):
+    """Map a full weekly record onto bloom_swarm/schemas/input_week.schema.json."""
+    w = rec["weather"]
+    return {
+        "week": rec["week_start"],
+        "weather": {
+            "max_temp_avg": w["temp_max_mean_c"],
+            "rain_total_mm": w["precip_week_mm"],
+            "hot_days": sum(d["temp_max_c"] >= HOT_DAY_C for d in w["daily"]),
+        },
+        "runoff": {
+            "rain_last_14d_mm": rec["runoff_proxy"]["rain_past_14d_mm"],
+            "heavy_rain_days": rec["runoff_proxy"]["heavy_rain_days_past_14d"],
+        },
+        "satellite": None if index is None else {
+            "cyano_index": index,
+            "change_vs_last_week": round(index - prev_index, 3) if prev_index is not None else 0.0,
+        },
+        "history": {"bloom_rate_this_month_past_years": rec["history"]["bloom_fraction_past_years"]},
+        "actual": rec["actual"]["bloom"],
+    }
 
 
 def fetch_texts(items):
@@ -93,13 +129,22 @@ def main():
 
     print("satellite (EPA CyAN) ...")
     try:
-        sat = cyan.daily_histograms(cyan.LAKE_ERIE_OBJECTID, SEASON_START - timedelta(7), SEASON_END)
+        # from 14 days back so the first week also has a previous-week value to diff against
+        sat = cyan.daily_histograms(cyan.LAKE_ERIE_OBJECTID, SEASON_START - timedelta(14), SEASON_END)
     except Exception as e:  # satellite is optional by design
         print("  CyAN unavailable:", e)
         sat = {}
 
     print("labels ...")
     listing = bulletins.list_bulletins(TARGET_YEAR)
+
+    SWARM_WEEKS.mkdir(parents=True, exist_ok=True)
+    for old in SWARM_WEEKS.glob("*.json"):  # drop fake/stale weeks
+        old.unlink()
+
+    def sat_for(window_end):
+        days = [window_end - timedelta(i) for i in range(7, 0, -1)]
+        return days, (cyan.summarize([sat[d] for d in days if d in sat]) if sat else None)
 
     rows = []
     week = SEASON_START
@@ -114,8 +159,8 @@ def main():
         w = wx.loc[str(week):str(end)]
         r14 = wx.loc[str(end - timedelta(13)):str(end)]
 
-        sat_window = [week - timedelta(i) for i in range(7, 0, -1)]
-        s = cyan.summarize([sat[d] for d in sat_window if d in sat]) if sat else None
+        sat_window, s = sat_for(week)
+        _, s_prev = sat_for(week - timedelta(7))
         satellite = {
             "available": s is not None,
             "source": f"EPA CyAN, Sentinel-3 OLCI, whole Lake Erie (objectid {cyan.LAKE_ERIE_OBJECTID})",
@@ -146,7 +191,7 @@ def main():
             },
             "runoff_proxy": {
                 "rain_past_14d_mm": round(float(r14.precip_mm.sum()), 1),
-                "heavy_rain_days_past_14d": int((r14.precip_mm >= HEAVY_RAIN_MM).sum()),
+                "heavy_rain_days_past_14d": int((r14.precip_mm > HEAVY_RAIN_MM).sum()),
                 "heavy_rain_threshold_mm": HEAVY_RAIN_MM,
                 "note": "Stand-in for nutrient runoff: rainfall only, no streamflow or phosphorus data.",
             },
@@ -161,6 +206,8 @@ def main():
         }
         path = OUT / f"week_{week.isoformat()}.json"
         path.write_text(json.dumps(rec, indent=2), encoding="utf-8")
+        (SWARM_WEEKS / f"{week.isoformat()}.json").write_text(
+            json.dumps(swarm_week(rec, cyano_index(s), cyano_index(s_prev)), indent=2) + "\n", encoding="utf-8")
         rows.append({
             "week_start": rec["week_start"],
             "actual_bloom": label["bloom"],

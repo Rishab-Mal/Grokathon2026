@@ -1,6 +1,10 @@
-.PHONY: fake agents swarm serve demo clean help
+.PHONY: data fake agents swarm serve demo clean help
 
-# Generate fake test data (weeks + agent outputs)
+# Build real week files (NOAA labels + weather + satellite) into data/weeks/
+data:
+	python scripts/data/build_weeks.py
+
+# Generate fake test data (weeks + agent outputs). Overwrites data/weeks/ - run `make data` to restore.
 fake:
 	python scripts/make_fake_data.py
 
