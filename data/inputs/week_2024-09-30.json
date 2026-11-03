@@ -1,0 +1,108 @@
+{
+  "lake": "Lake Erie (western basin)",
+  "latitude": 41.7,
+  "longitude": -83.25,
+  "week_start": "2024-09-30",
+  "week_end": "2024-10-06",
+  "month": 9,
+  "weather": {
+    "source": "Open-Meteo archive API (ERA5)",
+    "temp_max_mean_c": 22.4,
+    "temp_max_peak_c": 26.1,
+    "days_above_25c": 2,
+    "precip_week_mm": 1.9,
+    "daily": [
+      {
+        "date": "2024-09-30",
+        "temp_max_c": 22.0,
+        "precip_mm": 1.0
+      },
+      {
+        "date": "2024-10-01",
+        "temp_max_c": 25.5,
+        "precip_mm": 0.6
+      },
+      {
+        "date": "2024-10-02",
+        "temp_max_c": 18.8,
+        "precip_mm": 0.0
+      },
+      {
+        "date": "2024-10-03",
+        "temp_max_c": 23.4,
+        "precip_mm": 0.0
+      },
+      {
+        "date": "2024-10-04",
+        "temp_max_c": 21.7,
+        "precip_mm": 0.3
+      },
+      {
+        "date": "2024-10-05",
+        "temp_max_c": 19.6,
+        "precip_mm": 0.0
+      },
+      {
+        "date": "2024-10-06",
+        "temp_max_c": 26.1,
+        "precip_mm": 0.0
+      }
+    ]
+  },
+  "runoff_proxy": {
+    "rain_past_14d_mm": 37.4,
+    "heavy_rain_days_past_14d": 1,
+    "heavy_rain_threshold_mm": 10.0,
+    "note": "Stand-in for nutrient runoff: rainfall only, no streamflow or phosphorus data."
+  },
+  "satellite": {
+    "available": true,
+    "source": "EPA CyAN, Sentinel-3 OLCI, whole Lake Erie (objectid 3012931)",
+    "window": "2024-09-23 to 2024-09-29 (7 days before week_start, so it is not the label's own imagery)",
+    "days_with_clear_pixels": 7,
+    "valid_pixels": 200981,
+    "pct_pixels_cyano_detected": 3.059,
+    "pct_pixels_ge_100k_cells_ml": 2.113,
+    "mean_cells_ml_where_detected": 239846,
+    "note": "Whole-lake pixel histogram; blooms sit in the western basin, so percentages are small but move with the bloom."
+  },
+  "history": {
+    "month": 9,
+    "bloom_fraction_past_years": 1.0,
+    "years": {
+      "2018": 1,
+      "2019": 1,
+      "2020": 1,
+      "2021": 1,
+      "2022": 1,
+      "2023": 1
+    },
+    "note": "Fraction of 2018-2023 seasons with a bloom in this calendar month (same label rule)."
+  },
+  "actual": {
+    "bloom": 1,
+    "max_reported_area_sq_mi": 500.0,
+    "rule": "1 if any NOAA bulletin issued this week reports a bloom >= 50 sq mi, or (no area given) describes a Microcystis bloom as present/continuing; else 0. See LABELS.md",
+    "source": "NOAA NCCOS Lake Erie HAB Forecast bulletins (NCEI archive)",
+    "bulletins_used": [
+      {
+        "date": "2024-10-01",
+        "bloom": 1,
+        "area_sq_mi": 500.0,
+        "reason": "area 500 sq mi"
+      },
+      {
+        "date": "2024-10-03",
+        "bloom": 1,
+        "area_sq_mi": 60.0,
+        "reason": "area 60 sq mi"
+      },
+      {
+        "date": "2024-10-06",
+        "bloom": 0,
+        "area_sq_mi": 30.0,
+        "reason": "area 30 sq mi"
+      }
+    ]
+  }
+}

@@ -1,0 +1,47 @@
+Lake Erie Harmful Algal Bloom Forecast
+2024-10-03
+ Summary
+ The cyanobacteria bloom in western Lake Erie has an approximate area of 60 square miles, which is an increase in area since
+Oct 02. The Microcystis bloom is present in western Lake Erie, but at reduced concentrations as compared to mid-September,
+likely due to wind-driven water column mixing and sediment resuspension. As of October 2nd, the bloom extended from
+Monroe, MI to Cedar Point National Wildlife Refuge, OH. Sandusky Bay continues to have a local bloom of mixed
+cyanobacteria. Toxins have been detected below the recreational limit. They can be highly concentrated in scums! If you see
+scum, keep your pets and yourself out of the water. In the satellite imagery or bloom forecast position products, any areas that
+are orange or red are likely to have scum, especially during calm winds, see Mixing Forecast product. --NCCOS HAB
+Forecasting Team 3 October 2024.
+The past few days of imagery can be seen at the HAB monitoring site. The Lake Erie Forecast is operated by the National
+Centers for Coastal Ocean Science. Contact hab@noaa.gov for technical Questions. Last Updated: 2024-10-03 09 PM EST
+Current Lake Erie Sentinel-3 satellite imagery from the Ocean and Land Color Imager (OLCI) on Oct 03, 2024, showing bloom
+location and extent in the western basin. Grey indicates clouds or missing data. The estimated threshold of cyanobacteria
+detection is 20,000 cells/mL. Inset shows a truecolor image of the entire lake. Data derived from Copernicus Sentinel-3.
+Wind speed and direction from SouthBassIs, OH. Blooms mix through water column at
+wind speeds > 15 knots.
+Where the bloom is present in
+western Lake Erie, the potential
+risk of scum.
+For more information visit: coastalscience.noaa.gov/science-areas/habs/hab-forecasts/lake-erie/
+
+Lake Erie Harmful Algal Bloom Forecast
+2024-10-03
+Forecast surface bloom position for Oct 04, modeled from the last satellite image with water currents estimated from the Lake
+Erie Operational Forecast System (LEOFS). Potential for bloom movement is forecast in 3-dimensions with a hydrodynamic
+model using satellite imagery and currents. The modeled output does not contain clouds. Black indicates the absence of
+chlorophyll and gray indicates area with no data. The arrows show forecasted currents. Water temperature and winds (in
+magenta) are the averages for the western basin from the model.
+Forecast surface bloom position for Oct 08. Black indicates the absence of chlorophyll and gray indicates area with no data.
+The arrows show forecasted currents. Water temperature and winds (in magenta) are the averages for the western basin from
+the model.
+ Additional resources:
+●
+Archived Lake Erie Forecasts
+●
+More information about our bloom monitoring imagery
+●
+FAQs - Frequently Asked Questions about cyanobacteria and the forecasts NOAA issues
+●
+Contributors and Data Providers
+●
+Lake Erie HAB Forecast Guide - User guide to help navigate the forecast products
+●
+Lake Erie Hypoxia Forecast
+For more information visit: coastalscience.noaa.gov/science-areas/habs/hab-forecasts/lake-erie/

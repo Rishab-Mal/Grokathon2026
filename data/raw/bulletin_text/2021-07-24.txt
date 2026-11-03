@@ -1,0 +1,35 @@
+Lake Erie Harmful Algal Bloom Forecast
+Imagery Analysis & Forecast - 2021-07-24
+Cyanobacteria is not currently detectable by satellite in western Lake Erie. Traces of cyanobacteria are detectable in
+Sandusky Bay. This is unrelated to western Lake Erie blooms. The seasonal forecast was issued June 30. No recent
+toxin data currently available. --Tomlinson 07/23
+Lake Erie current Sentinel-3B satellite imagery from the Ocean and Land Color Imager (OLCI) on Jul 22, 2021,
+showing bloom location and extent in the western basin. Grey indicates clouds or missing data. The estimated
+threshold of cyanobacteria detection is 20,000 cells/mL. Inset shows truecolor image of the entire lake. Data derived
+from Copernicus Sentinel-3.
+Wind speed and direction from Marblehead, OH. Blooms
+mix through water column at wind speeds > 15 knots.
+Where the bloom is present in western Lake Erie, the
+potential risk of scum (left), and risk of mixing of the
+bloom down into the water column every 6 hours over the
+next 5 days. Mixing is weakest during mild winds.
+
+Forecast surface bloom position for Jul 24, modeled from the last satellite image with water currents estimated from the
+Lake Erie Operational Forecast System (LEOFS). Potential for bloom movement is forecast in 3-dimensions with a
+hydrodynamic model using satellite imagery and currents. The modeled output does not contain clouds. Black indicates
+the absence of chlorophyll and gray indicates area with no data. The arrows show forecasted currents. Water
+temperature and winds (in magenta) are the averages for the western basin from the model.
+Forecast surface bloom position for Jul 28. Black indicates the absence of chlorophyll and gray indicates area with no
+data. The arrows show forecasted currents. Water temperature and winds (in magenta) are the averages for the
+western basin from the model.
+Additional resource:
+●
+Archived Lake Erie Forecasts
+●
+More information about our bloom monitoring imagery
+●
+FAQs - Frequently Asked Questions about cyanobacteria and the forecasts NOAA issues
+●
+Contributors and Data Providers
+●
+Lake Erie HAB Forecast Guide - User guide to help navigate the forecast products

@@ -1,0 +1,24 @@
+Lake Erie Harmful Algal Bloom Forecast
+Imagery Analysis & Forecasts - Last Updated 2020/09/03 09:52 EDT
+**Due to the upcoming federal holiday, the next forecast analysis will be issued on Tuesday, September 8. .
+A bloom of Microcystis cyanobacteria continues in the western basin of Lake Erie. Recent satellite imagery indicates the
+bloom is present along the Michigan coast to Brest Bay, along the Ohio coast to towards the Marblehead Peninsula, and
+offshore up to 8 miles from West Sister Island. Recent mixing of western basin bloom concentrations has continued to
+reduce visible surface chlorophyll, no longer visible through the islands towards Point Pelee. Sampling (9/1) indicates
+toxin concentrations continue to decrease and are below the recreational threshold at all locations. Keep pets and
+yourself out of the water in areas where scum is forming. 
+Cyanobacterial Index from Copernicus Sentinel-3b collected 2020/09/02 11:00 EDT. Grey indicates clouds or missing
+data. The estimated threshold of cyanobacteria detection is 20,000 cells/mL.
+Forecast Lake Erie Conditions at 2020/09/03 10:00 (EDT) Each point on the map represents a point used by the
+HAB Tracker Model. Blooms mix through the water column at wind speeds greater than 15 knots (or 7.7 m/s).
+Modeled Bloom Position & Vertical Mixing at 2020/09/03 10:00 (EDT)
+72-Hour Bloom Position & Vertical Mixing at 2020/09/06 11:00 (EDT)
+Additional Resources
+Find a safe place for recreation through the Ohio Dept. of Health's Beach Water Quality Advisory,
+Learn more about water quality sampling and data monitoring by visiting the
+Great Lakes HAB monitoring data and forecast research by
+Frequently Asked Questions -
+BeachGuard.
+Ohio EPA's site for HABs.
+NOAA's GLERL.
+FAQ's.

@@ -1,0 +1,49 @@
+P or t C l i n to n
+H u r o n
+C l e v e l a nd
+Ly p p s  B e a c h
+Mo n r o e
+Lake Erie Harmful Algal Bloom Bulletin
+24 August, 2018, Bulletin 19
+Analysis
+The Microcystis cyanobacteria bloom continues in the western basin of Lake Erie. In recent satellite imagery (8/23), the bloom extends from
+Maumee Bay north along the Michigan coast to Brest Bay, and extends along the Ohio coast to 3 miles past the Vermillion River. Low
+concentrations are present surrounding the Bass Islands to Kelleys Island and extending north to 6 miles northeast of Pelee Island. Winds
+observed Wednesday and Thursday (8/22-23) promoted mixing of surface Microcystis concentrations. Toxin concentrations were detected at all
+sampling sites and most are below the recreational threshold. Toxin levels exceed the recreational threshold 3 miles north of Magee Marsh
+Wildlife Refuge. Keep pets and yourself out of the water in areas where scum is forming. The persistent cyanobacteria bloom in Sandusky Bay
+continues.
+Forecasts
+Winds (6-19 kn) forecast over the weekend (8/25-26) will lead to further mixing of surface Microcystis concentrations. Winds will promote the
+northeastward transport of Microcystis today through Monday (8/24-27) towards the central basin. Clouds will likely obscure the lake through
+Sunday.  --Ludema, Davis
+Figure 1. Cyanobacterial Index from modified Copernicus Sentinel 3 data collected 23 August, 2018 at 12:12 EST. Grey indicates clouds or missing
+data. The estimated threshold for cyanobacteria detection is 20,000 cells/mL.
+Figure 2.  Cyanobacterial Index from modified Copernicus Sentinel
+3 data collected 23 August, 2018 at 12:12.
+Wind speed and direction from Marblehead, OH.  Blooms mix through the
+water column at wind speeds greater than 15 knots (or 7.7 m/s).
+For more information and to subscribe to this bulletin, go to: https://tidesandcurrents.noaa.gov/hab/lakeerie.html
+The images below are "GeoPDF". Please visit https://go.usa.gov/xReTC for instructions on viewing longitude and latitude.
+Additional Resources
+To find a safe place for recreation, visit the Ohio DOH "BeachGuard" site: http://publicapps.odh.ohio.gov/beachguardpublic/
+Ohio EPA's site on harmful algal blooms: http://epa.ohio.gov/HAB-Algae
+NOAA's GLERL provides additional HAB data here: http://www.glerl.noaa.gov/res/HABs_and_Hypoxia
+Figure 3. Nowcast position of bloom for 24 August, 2018 using LEOFS modelled currents to move the bloom from the 23 August, 2018
+Figure 4. Forecast position of bloom for 27 August, 2018 using LEOFS modelled currents to move the bloom from the 23 August, 2018
+Averaged forecasted currents from the
+Lake Erie Operational Forecast System
+over the next 72 hours.
+For more information and to subscribe, please visit
+the NOAA HAB Forecast page:
+https://tidesandcurrents.noaa.gov/hab/lakeerie.html
+P or t C l i n to n
+H u r o n
+C l e v e l a nd
+Ly p p s  B e a c h
+Mo n r o e
+P or t C l i n to n
+H u r o n
+C l e v e l a nd
+Ly p p s  B e a c h
+Mo n r o e

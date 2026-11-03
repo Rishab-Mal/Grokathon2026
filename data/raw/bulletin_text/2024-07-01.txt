@@ -1,0 +1,41 @@
+Lake Erie Harmful Algal Bloom Forecast
+2024-07-01
+ Summary
+ A Microcystis bloom is observed in Northern Maumee Bay and offshore of Monroe, MI. Sandusky Bay has a mixed bloom of
+cyanobacteria. --NCCOS HAB Forecasting Team 01 July 2024
+The past few days of imagery can be seen at the HAB monitoring site. The Lake Erie Forecast is operated by the National
+Centers for Coastal Ocean Science. Contact hab@noaa.gov for technical Questions. Last Updated: 2024-07-01 09 PM EST
+Current Lake Erie Sentinel-3 satellite imagery from the Ocean and Land Color Imager (OLCI) on Jul 01, 2024, showing bloom
+location and extent in the western basin. Grey indicates clouds or missing data. The estimated threshold of cyanobacteria
+detection is 20,000 cells/mL. Inset shows a truecolor image of the entire lake. Data derived from Copernicus Sentinel-3.
+Wind speed and direction from SouthBassIs, OH. Blooms mix through water column at
+wind speeds > 15 knots.
+Where the bloom is present in
+western Lake Erie, the potential
+risk of scum.
+For more information visit: coastalscience.noaa.gov/science-areas/habs/hab-forecasts/lake-erie/
+
+Lake Erie Harmful Algal Bloom Forecast
+2024-07-01
+Forecast surface bloom position for Jul 02, modeled from the last satellite image with water currents estimated from the Lake
+Erie Operational Forecast System (LEOFS). Potential for bloom movement is forecast in 3-dimensions with a hydrodynamic
+model using satellite imagery and currents. The modeled output does not contain clouds. Black indicates the absence of
+chlorophyll and gray indicates area with no data. The arrows show forecasted currents. Water temperature and winds (in
+magenta) are the averages for the western basin from the model.
+Forecast surface bloom position for Jul 06. Black indicates the absence of chlorophyll and gray indicates area with no data. The
+arrows show forecasted currents. Water temperature and winds (in magenta) are the averages for the western basin from the
+model.
+ Additional resources:
+●
+Archived Lake Erie Forecasts
+●
+More information about our bloom monitoring imagery
+●
+FAQs - Frequently Asked Questions about cyanobacteria and the forecasts NOAA issues
+●
+Contributors and Data Providers
+●
+Lake Erie HAB Forecast Guide - User guide to help navigate the forecast products
+●
+Lake Erie Hypoxia Forecast
+For more information visit: coastalscience.noaa.gov/science-areas/habs/hab-forecasts/lake-erie/
