@@ -5,86 +5,78 @@ Bankroll race and blind-vs-debate comparison for frontend/bankroll.html.
 Every bettor starts with $100 and each week stakes its forecast against a fair coin:
 its bankroll is multiplied by 2p if a bloom happened, or 2(1 - p) if not. Above $100 means
 it beat a coin flip. This is the log scoring rule, so ranking by final bankroll is ranking
-by log score. The swarm bets the swarm_p from scripts/swarm/aggregate.py (same leave-one-out
-weights as the scoreboard); the base-rate bettor bets the leave-one-out bloom rate.
+by log score. The swarm, simple average and base rate use the swarm package's leave-one-out
+predictions (the primary method from scripts/swarm/config.json), the same numbers as the
+scoreboard in frontend/data.json.
 
 Usage:
     python scripts/agents/bankroll.py        # writes frontend/bankroll.json
 """
 
 import json
-import statistics as st
 import sys
 from pathlib import Path
 
+import numpy as np
+
 sys.path.insert(0, str(Path(__file__).parent.parent))
-from swarm.aggregate import (
-    AGENT_NAMES,
-    aggregate_week,
-    clip_p,
-    compute_base_rate,
-    compute_leave_one_out_weights,
-    load_agent_outputs,
-    load_weeks,
-)
+from swarm.aggregators import PRIMARY_METHOD
+from swarm.core import clip, load_data
+from swarm.protocols import leave_one_out
 
 ROOT = Path(__file__).resolve().parents[2]
 START = 100.0
+AGENT_NAMES = ["Weather", "Runoff", "Satellite", "Historian", "Skeptic"]
+POOLED = {"Swarm": PRIMARY_METHOD, "Simple avg": "equal_logodds", "Base rate": "base_rate"}
 
 
-def score_round(all_weeks: dict, outputs_dir: Path) -> dict | None:
+def score_round(weeks_dir: Path, outputs_dir: Path) -> dict | None:
     """Swarm forecasts, bankroll paths and Brier scores for one round of outputs."""
     if not outputs_dir.is_dir():
         return None
-    all_outputs = load_agent_outputs(outputs_dir)
-    weeks = [w for w in sorted(all_weeks) if len(all_outputs.get(w, {})) == len(AGENT_NAMES)]
-    if not weeks:
+    weeks, agents, P, y, _ = load_data(weeks_dir, outputs_dir)
+    if not set(AGENT_NAMES) <= set(agents):
         return None
+    P = P[:, [agents.index(n) for n in AGENT_NAMES]]
+    complete = ~np.isnan(P).any(axis=1)
+    if not complete.any():
+        return None
+    weeks = [w for w, ok in zip(weeks, complete) if ok]
+    P, y = P[complete], y[complete]
 
-    forecasts = {name: [] for name in [*AGENT_NAMES, "Swarm", "Simple avg", "Base rate"]}
-    for w in weeks:
-        outs = all_outputs[w]
-        weights = compute_leave_one_out_weights(w, all_weeks, all_outputs, AGENT_NAMES)
-        agg = aggregate_week(w, all_weeks[w], outs, weights)
-        for name in AGENT_NAMES:
-            forecasts[name].append(outs[name]["p"])
-        forecasts["Swarm"].append(agg["swarm_p"])
-        forecasts["Simple avg"].append(agg["simple_avg_p"])
-        forecasts["Base rate"].append(compute_base_rate(w, all_weeks))
+    forecasts = {name: P[:, k] for k, name in enumerate(AGENT_NAMES)}
+    for label, method in POOLED.items():
+        forecasts[label], _ = leave_one_out(method, P, y, AGENT_NAMES)
 
-    actual = [all_weeks[w]["actual"] for w in weeks]
     bankroll, brier = {}, {}
     for name, ps in forecasts.items():
-        path = [START]
-        for p, a in zip(ps, actual):
-            p = clip_p(p)
-            path.append(path[-1] * 2 * (p if a == 1 else 1 - p))
-        bankroll[name] = [round(b, 2) for b in path]
-        brier[name] = round(st.mean((p - a) ** 2 for p, a in zip(ps, actual)), 4)
+        ps = clip(np.asarray(ps, dtype=float))
+        stakes = 2 * np.where(y == 1, ps, 1 - ps)
+        bankroll[name] = [round(float(b), 2) for b in START * np.concatenate([[1.0], np.cumprod(stakes)])]
+        brier[name] = round(float(np.mean((ps - y) ** 2)), 4)
 
-    fake = any("model" not in all_outputs[w][n] for w in weeks for n in AGENT_NAMES)
-    spread = st.mean(st.pstdev(all_outputs[w][n]["p"] for n in AGENT_NAMES) for w in weeks)
-    moves = [abs(o["p"] - o["p_blind"]) for w in weeks for o in all_outputs[w].values() if "p_blind" in o]
+    raw = [json.loads((outputs_dir / f"{w}_{n}.json").read_text()) for w in weeks for n in AGENT_NAMES]
+    moves = [abs(o["p"] - o["p_blind"]) for o in raw if "p_blind" in o]
     return {
         "weeks": weeks,
-        "actual": actual,
-        "swarm_p": [round(p, 4) for p in forecasts["Swarm"]],
+        "actual": [int(a) for a in y],
+        "swarm_p": [round(float(p), 4) for p in forecasts["Swarm"]],
         "bankroll": {n: bankroll[n] for n in [*AGENT_NAMES, "Swarm", "Base rate"]},
         "brier": brier,
-        "spread": round(spread, 4),
-        "avg_move": round(st.mean(moves), 4) if moves else None,
-        "fake_outputs": fake,
+        "spread": round(float(np.std(P, axis=1).mean()), 4),
+        "avg_move": round(float(np.mean(moves)), 4) if moves else None,
+        "fake_outputs": any("model" not in o for o in raw),
     }
 
 
 def main():
-    all_weeks = load_weeks(ROOT / "data" / "weeks")
-    if not all_weeks:
+    weeks_dir = ROOT / "data" / "weeks"
+    if not any(weeks_dir.glob("*.json")):
         sys.exit("No week files in data/weeks/")
-    blind = score_round(all_weeks, ROOT / "outputs")
+    blind = score_round(weeks_dir, ROOT / "outputs")
     if blind is None:
         sys.exit("No complete weeks in outputs/; run the agents first")
-    debate = score_round(all_weeks, ROOT / "outputs_debate")
+    debate = score_round(weeks_dir, ROOT / "outputs_debate")
 
     out = {"start": START, "blind": blind, "debate": debate}
     path = ROOT / "frontend" / "bankroll.json"
