@@ -3,314 +3,1042 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bloom Swarm - Algal Bloom Prediction</title>
-
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-
+    <title>Will the lake bloom this week?</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <style>
-        body {
-            font-family: monospace;
-            margin: 20px;
-            background: #f5f5f5;
+        :root {
+            --ink: #4a534e;
+            --muted: #8a938c;
+            --paper: #f6f3ee;
+            --card: #fffcf8;
+            --line: rgba(120, 110, 96, 0.12);
+            --bloom: #8cba9e;
+            --sans: "Avenir Next", "Segoe UI", sans-serif;
+            --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, serif;
         }
-        h1 { margin-bottom: 10px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section { margin-bottom: 20px; padding: 15px; background: white; border: 1px solid #ccc; }
-        .section h2 { margin-top: 0; }
-        select { padding: 5px; font-size: 16px; }
-        #map { height: 300px; width: 100%; }
-        .agent-list { list-style: none; padding: 0; }
-        .agent-list li { padding: 10px; margin: 5px 0; background: #f0f0f0; border-left: 4px solid #666; }
-        .agent-name { font-weight: bold; }
-        .agent-p { font-size: 1.2em; color: #333; }
-        .agent-reason { font-style: italic; color: #666; }
-        .swarm-p { font-size: 2em; font-weight: bold; }
-        .actual-bloom { color: #c00; }
-        .actual-no-bloom { color: #0a0; }
-        table { border-collapse: collapse; width: 100%; }
-        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-        th { background: #eee; }
-        .best-score { background: #d4edda; }
-        #chart-container { height: 300px; }
-        .loading { color: #666; font-style: italic; }
-        .error { color: red; }
+
+        * { box-sizing: border-box; }
+
+        [hidden] { display: none !important; }
+
+        html, body {
+            margin: 0;
+            height: 100%;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+        }
+
+        body { overflow: hidden; }
+
+        button, input { font-family: inherit; }
+
+        #boot {
+            min-height: 100dvh;
+            display: grid;
+            place-items: center;
+            padding: 32px;
+            text-align: center;
+        }
+
+        #boot p {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: 28px;
+        }
+
+        #boot .detail {
+            margin-top: 10px;
+            font-family: var(--sans);
+            font-size: 15px;
+            color: var(--muted);
+        }
+
+        .app {
+            height: 100dvh;
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 12px 18px 12px;
+            display: grid;
+            grid-template-rows: auto minmax(150px, 1fr) auto auto minmax(180px, 1.05fr);
+            gap: 10px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+        }
+
+        .kicker {
+            margin: 0 0 4px;
+            font-size: 12px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: clamp(30px, 3.6vw, 48px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+        }
+
+        .weekline {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 10px;
+            margin: 8px 0 0;
+            font-size: 16px;
+            color: var(--muted);
+        }
+
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px 3px 8px;
+            border-radius: 999px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .chip i {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .chip.bloom { background: #f6ebe7; color: #a67c76; }
+        .chip.bloom i { background: #d49692; }
+        .chip.clear { background: #e7f0ea; color: #6d947c; }
+        .chip.clear i { background: #8cba9e; }
+
+        .hero { text-align: right; min-width: 180px; }
+
+        .prob {
+            font-family: var(--serif);
+            font-size: clamp(64px, 7vw, 92px);
+            line-height: 0.82;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            color: var(--bloom);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .prob-label {
+            margin-top: 6px;
+            font-size: 13px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .map-wrap {
+            position: relative;
+            min-height: 0;
+            height: 100%;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #e7efe9;
+            box-shadow: 0 10px 28px rgba(120, 100, 80, 0.06);
+        }
+
+        #map { position: absolute; inset: 0; }
+
+        .legend {
+            position: absolute;
+            z-index: 500;
+            left: 12px;
+            bottom: 12px;
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 999px;
+            padding: 8px 12px 9px;
+            box-shadow: 0 8px 22px rgba(120, 100, 80, 0.08);
+        }
+
+        .legend span {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 5px;
+        }
+
+        .scale {
+            width: 168px;
+            height: 10px;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #b7d4c4 0%, #ead7ae 50%, #e7c2bc 100%);
+        }
+
+        .agents {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 10px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .card {
+            position: relative;
+            background: var(--card);
+            border-radius: 24px;
+            padding: 12px 14px 13px;
+            border: none;
+            box-shadow: 0 8px 22px rgba(120, 100, 80, 0.06);
+            min-height: 118px;
+            outline: none;
+        }
+
+        .name::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            margin-right: 7px;
+            border-radius: 50%;
+            background: var(--accent, #c5cdc6);
+            transform: translateY(-1px);
+        }
+
+        .card:focus-visible {
+            box-shadow: 0 0 0 3px rgba(20, 32, 27, 0.25);
+        }
+
+        .card.is-skeptic {
+            background: #f3f2f6;
+        }
+
+        .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .name {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: -0.01em;
+        }
+
+        .role {
+            margin-top: 1px;
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.25;
+        }
+
+        .card.is-skeptic .role {
+            color: #8b87a8;
+            font-weight: 700;
+        }
+
+        .pct {
+            font-variant-numeric: tabular-nums;
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: -0.03em;
+        }
+
+        .bar {
+            margin: 8px 0 7px;
+            height: 7px;
+            border-radius: 99px;
+            background: rgba(20, 32, 27, 0.08);
+            overflow: hidden;
+        }
+
+        .bar span {
+            display: block;
+            height: 100%;
+            border-radius: inherit;
+            background: var(--bar, var(--accent));
+        }
+
+        .reason {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.35;
+            color: #5c675f;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .tip {
+            display: none;
+            position: absolute;
+            left: 0;
+            bottom: calc(100% + 8px);
+            width: max(100%, 250px);
+            background: #fffcf8;
+            color: #4a534e;
+            border-radius: 18px;
+            padding: 10px 12px;
+            z-index: 20;
+            box-shadow: 0 14px 32px rgba(120, 100, 80, 0.14);
+        }
+
+        .card:nth-child(4) .tip,
+        .card:nth-child(5) .tip {
+            left: auto;
+            right: 0;
+        }
+
+        .card:hover .tip,
+        .card:focus .tip,
+        .card:focus-within .tip {
+            display: block;
+        }
+
+        .tip strong {
+            display: block;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #9aa39c;
+            margin-bottom: 6px;
+        }
+
+        .tip ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .tip .weight {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #7d877f;
+        }
+
+        .scrub {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 10px;
+            align-items: center;
+            background: var(--card);
+            border-radius: 999px;
+            padding: 8px 12px;
+            border: none;
+            box-shadow: 0 8px 22px rgba(120, 100, 80, 0.06);
+        }
+
+        .scrub button {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: #f3efe8;
+            color: var(--ink);
+            font-size: 26px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .scrub button:hover { background: #e7eee8; }
+        .scrub button:focus-visible { outline: 3px solid rgba(20, 32, 27, 0.3); }
+        .scrub button:disabled { opacity: 0.35; cursor: default; }
+
+        .scrub-main { min-width: 0; }
+
+        .scrub-meta {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 99px;
+            background: #efeae3;
+            outline: none;
+            margin: 8px 0 0;
+            cursor: grab;
+        }
+
+        input[type="range"]:active { cursor: grabbing; }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bloom);
+            border: 3px solid #fff;
+            box-shadow: 0 1px 4px rgba(20, 32, 27, 0.35);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--bloom);
+            border: 3px solid #fff;
+            box-shadow: 0 1px 4px rgba(20, 32, 27, 0.35);
+        }
+
+        input[type="range"]::-moz-range-track {
+            height: 8px;
+            background: transparent;
+            border: none;
+        }
+
+        .charts {
+            display: grid;
+            grid-template-columns: 1.35fr 0.8fr;
+            gap: 10px;
+            min-height: 0;
+            height: 100%;
+        }
+
+        .panel {
+            background: var(--card);
+            border-radius: 26px;
+            border: none;
+            box-shadow: 0 8px 22px rgba(120, 100, 80, 0.06);
+            padding: 10px 12px 8px;
+            min-width: 0;
+            min-height: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel h2 {
+            margin: 0;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .hint {
+            margin: 3px 0 8px;
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.35;
+            min-height: 18px;
+        }
+
+        .chart-box {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+        }
+
+        .leaflet-control-attribution {
+            font-size: 10px;
+            background: rgba(255, 252, 248, 0.8);
+        }
+
+        .leaflet-bar {
+            border: none !important;
+            box-shadow: 0 8px 20px rgba(120, 100, 80, 0.1) !important;
+        }
+
+        .leaflet-bar a,
+        .leaflet-bar a:hover {
+            border: none !important;
+            color: #6d7872;
+        }
+
+        .leaflet-bar a:first-child { border-radius: 14px 14px 4px 4px !important; }
+        .leaflet-bar a:last-child { border-radius: 4px 4px 14px 14px !important; }
+
+        @media (max-width: 980px), (max-height: 680px) {
+            body { overflow: auto; }
+            .app {
+                height: auto;
+                min-height: 100dvh;
+                display: flex;
+                flex-direction: column;
+            }
+            header { align-items: flex-start; flex-direction: column; }
+            .hero { text-align: left; }
+            .map-wrap { height: 240px; }
+            .agents { grid-template-columns: 1fr 1fr; }
+            .card:nth-child(4) .tip,
+            .card:nth-child(5) .tip { left: 0; right: auto; }
+            .charts { grid-template-columns: 1fr; height: auto; }
+            .panel { height: auto; }
+            .chart-box { height: 240px; flex: none; }
+        }
+
+        @media (max-width: 640px) {
+            .agents { grid-template-columns: 1fr; }
+            .prob { font-size: 72px; }
+        }
     </style>
 </head>
 <body>
-    <!--
-    =================================================================
-    PERSON 1 OWNS THIS FILE
-
-    Planned sections:
-    1. [DONE] Map - Leaflet map showing lake location
-    2. [TODO] Agent cards - styled cards for each agent
-    3. [TODO] Week slider - replace dropdown with range slider
-    4. [TODO] Backtest chart - Chart.js line chart of predictions vs actuals
-    5. [DONE] Scoreboard - Brier scores table
-
-    Current status: Minimal working version. Ugly but functional.
-    =================================================================
-    -->
-
-    <div class="container">
-        <h1>Bloom Swarm</h1>
-        <p id="lake-info" class="loading">Loading...</p>
-
-        <!-- Week Selector -->
-        <div class="section">
-            <h2>Select Week</h2>
-            <select id="week-select">
-                <option value="">Loading weeks...</option>
-            </select>
-        </div>
-
-        <!-- Map -->
-        <div class="section">
-            <h2>Lake Location</h2>
-            <div id="map"></div>
-        </div>
-
-        <!-- Swarm Prediction -->
-        <div class="section">
-            <h2>Swarm Prediction</h2>
-            <p>Probability: <span id="swarm-p" class="swarm-p">-</span></p>
-            <p>Actual: <span id="actual">-</span></p>
-            <p>Simple Average: <span id="simple-avg">-</span> | Base Rate: <span id="base-rate">-</span></p>
-        </div>
-
-        <!-- Agent List -->
-        <div class="section">
-            <h2>Agent Predictions</h2>
-            <ul id="agent-list" class="agent-list">
-                <li class="loading">Loading agents...</li>
-            </ul>
-        </div>
-
-        <!-- Backtest Chart -->
-        <div class="section">
-            <h2>Backtest Chart</h2>
-            <div id="chart-container">
-                <canvas id="backtest-chart"></canvas>
-            </div>
-        </div>
-
-        <!-- Scoreboard -->
-        <div class="section">
-            <h2>Scoreboard (Brier Score - lower is better)</h2>
-            <table id="scoreboard">
-                <thead>
-                    <tr>
-                        <th>Rank</th>
-                        <th>Name</th>
-                        <th>Brier Score</th>
-                    </tr>
-                </thead>
-                <tbody id="scoreboard-body">
-                    <tr><td colspan="3" class="loading">Loading...</td></tr>
-                </tbody>
-            </table>
+    <div id="boot">
+        <div>
+            <p>Loading the season…</p>
+            <div class="detail" id="boot-detail">Reading data.json</div>
         </div>
     </div>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <!-- Chart.js -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <main class="app" id="app" hidden>
+        <header>
+            <div>
+                <p class="kicker">Algal bloom forecast</p>
+                <h1>Will <span id="lake-name">the lake</span> bloom this week?</h1>
+                <p class="weekline">
+                    <span id="week-label">—</span>
+                    <span id="outcome" class="chip clear"><i></i><span>Observed: —</span></span>
+                </p>
+            </div>
+            <div class="hero">
+                <div class="prob" id="prob">—</div>
+                <div class="prob-label">Swarm probability</div>
+            </div>
+        </header>
 
+        <section class="map-wrap" aria-label="Lake map">
+            <div id="map"></div>
+            <div class="legend">
+                <span><em style="font-style:normal">Clear</em><em style="font-style:normal">Bloom</em></span>
+                <div class="scale"></div>
+            </div>
+        </section>
+
+        <section class="agents" id="agents" aria-label="Agent forecasts"></section>
+
+        <section class="scrub">
+            <button type="button" id="prev" aria-label="Previous week">‹</button>
+            <div class="scrub-main">
+                <div class="scrub-meta">
+                    <span id="scale-start"></span>
+                    <span id="scale-now">Drag to replay the season</span>
+                    <span id="scale-end"></span>
+                </div>
+                <input id="slider" type="range" min="0" value="0" step="1" aria-label="Week">
+            </div>
+            <button type="button" id="next" aria-label="Next week">›</button>
+        </section>
+
+        <section class="charts">
+            <article class="panel">
+                <h2>Backtest</h2>
+                <p class="hint">Thick line is the swarm. Thin lines are each agent. Dots are what actually happened.</p>
+                <div class="chart-box"><canvas id="backtest"></canvas></div>
+            </article>
+            <article class="panel">
+                <h2>Scoreboard</h2>
+                <p class="hint" id="score-hint">Brier score. Lower is better. The swarm bar is highlighted.</p>
+                <div class="chart-box"><canvas id="scores"></canvas></div>
+            </article>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
     <script>
+        const ORDER = ["Weather", "Runoff", "Satellite", "Historian", "Skeptic"];
+        const ROLES = {
+            Weather: "Heat and rain",
+            Runoff: "Farm runoff",
+            Satellite: "CyAN chlorophyll",
+            Historian: "Past seasons",
+            Skeptic: "Argues against a bloom"
+        };
+        const AGENT_COLOR = {
+            Weather: "#a9c0e2",
+            Runoff: "#d9c6a4",
+            Satellite: "#9dcdc4",
+            Historian: "#c9bce2",
+            Skeptic: "#b7b6d4"
+        };
+
         let data = null;
+        let selected = 0;
         let map = null;
-        let chart = null;
+        let lakePoly = null;
+        let lakeHalo = null;
+        let backtest = null;
+        let scoreChart = null;
+
+        function bloomColor(p) {
+            const t = Math.min(1, Math.max(0, Number(p) || 0));
+            const stops = [
+                [0, [140, 186, 158]],
+                [0.5, [214, 186, 130]],
+                [1, [212, 150, 146]]
+            ];
+            let i = 0;
+            while (i < stops.length - 2 && t > stops[i + 1][0]) i += 1;
+            const [t0, c0] = stops[i];
+            const [t1, c1] = stops[i + 1];
+            const u = (t - t0) / (t1 - t0);
+            const rgb = c0.map((channel, k) => Math.round(channel + (c1[k] - channel) * u));
+            return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+        }
+
+        function bloomInk(p) {
+            const parts = bloomColor(p).match(/\d+/g).map(Number);
+            return `rgb(${parts.map((channel) => Math.round(channel * 0.78)).join(", ")})`;
+        }
+
+        function esc(value) {
+            return String(value ?? "").replace(/[&<>"']/g, (ch) => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            }[ch]));
+        }
+
+        function formatWeek(iso) {
+            const date = new Date(`${iso}T00:00:00`);
+            if (Number.isNaN(date.getTime())) return iso;
+            return date.toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric"
+            });
+        }
+
+        function shortWeek(iso) {
+            const date = new Date(`${iso}T00:00:00`);
+            if (Number.isNaN(date.getTime())) return iso;
+            return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
+        }
+
+        function percent(p, digits) {
+            return `${(Number(p) * 100).toFixed(digits)}%`;
+        }
+
+        function lakeLatLngs(lat, lon) {
+            const cos = Math.cos((lat * Math.PI) / 180) || 1;
+            const count = 48;
+            const ring = [];
+            for (let i = 0; i < count; i += 1) {
+                const angle = (i / count) * Math.PI * 2;
+                const wobble = 1 + 0.07 * Math.sin(angle * 3) + 0.04 * Math.cos(angle * 5);
+                const x = Math.cos(angle) * wobble;
+                const y = Math.sin(angle) * wobble * 0.62;
+                ring.push([lat + y * 0.155, lon + (x * 0.28) / cos]);
+            }
+            return ring;
+        }
+
+        function orderedAgents(agents) {
+            const byName = new Map(agents.map((agent) => [agent.name, agent]));
+            const known = ORDER.filter((name) => byName.has(name)).map((name) => byName.get(name));
+            const extra = agents.filter((agent) => !ORDER.includes(agent.name));
+            return known.concat(extra);
+        }
+
+        function agentColor(name) {
+            return AGENT_COLOR[name] || "#5c6d64";
+        }
 
         async function loadData() {
+            const detail = document.getElementById("boot-detail");
             try {
-                const response = await fetch('data.json');
-                if (!response.ok) throw new Error('Failed to load data.json');
+                const response = await fetch("data.json");
+                if (!response.ok) throw new Error(`Could not load data.json (${response.status})`);
                 data = await response.json();
-                initializeUI();
+                if (!data.weeks || !data.weeks.length) throw new Error("data.json has no weeks");
+                data.weeks.sort((a, b) => String(a.week).localeCompare(String(b.week)));
+                document.getElementById("boot").hidden = true;
+                document.getElementById("app").hidden = false;
+                init();
             } catch (error) {
-                document.getElementById('lake-info').textContent = 'Error: ' + error.message;
-                document.getElementById('lake-info').className = 'error';
+                detail.textContent = `${error.message}. Serve this folder (make serve) and open http://localhost:8000.`;
             }
         }
 
-        function initializeUI() {
-            // Lake info
-            document.getElementById('lake-info').textContent =
-                `${data.lake.name} (${data.lake.lat.toFixed(4)}, ${data.lake.lon.toFixed(4)})`;
-            document.getElementById('lake-info').className = '';
-
-            // Initialize map
+        function init() {
+            document.getElementById("lake-name").textContent = data.lake.name;
+            document.title = `Will ${data.lake.name} bloom this week?`;
             initMap();
-
-            // Populate week selector
-            const select = document.getElementById('week-select');
-            select.innerHTML = '';
-            data.weeks.forEach((week, index) => {
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = week.week + (week.actual ? ' (BLOOM)' : '');
-                select.appendChild(option);
+            initSlider();
+            initBacktest();
+            initScoreboard();
+            setWeek(data.weeks.length - 1);
+            requestAnimationFrame(() => {
+                map.invalidateSize();
+                backtest.resize();
+                scoreChart.resize();
             });
-            select.addEventListener('change', () => updateWeekDisplay(parseInt(select.value)));
-
-            // Initialize scoreboard
-            updateScoreboard();
-
-            // Initialize chart
-            initChart();
-
-            // Show first week
-            if (data.weeks.length > 0) {
-                updateWeekDisplay(0);
-            }
+            window.addEventListener("resize", () => map.invalidateSize());
         }
 
         function initMap() {
-            map = L.map('map').setView([data.lake.lat, data.lake.lon], 10);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; OpenStreetMap contributors'
+            const lat = data.lake.lat;
+            const lon = data.lake.lon;
+            map = L.map("map", {
+                scrollWheelZoom: false,
+                zoomControl: true,
+                attributionControl: true
+            });
+            L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}", {
+                attribution: "Tiles &copy; Esri",
+                maxZoom: 18
             }).addTo(map);
-            L.marker([data.lake.lat, data.lake.lon])
-                .addTo(map)
-                .bindPopup(data.lake.name);
+            lakeHalo = L.circle([lat, lon], {
+                radius: 28000,
+                stroke: false,
+                fillColor: bloomColor(0),
+                fillOpacity: 0.22,
+                interactive: false
+            }).addTo(map);
+            lakePoly = L.polygon(lakeLatLngs(lat, lon), {
+                color: "rgba(150, 140, 128, 0.45)",
+                weight: 1.5,
+                fillColor: bloomColor(0),
+                fillOpacity: 0.55,
+                interactive: false
+            }).addTo(map);
+            map.fitBounds(lakePoly.getBounds(), { padding: [28, 28] });
         }
 
-        function updateWeekDisplay(weekIndex) {
-            const week = data.weeks[weekIndex];
+        function paintLake(p) {
+            const color = bloomColor(p);
+            lakePoly.setStyle({ fillColor: color });
+            lakeHalo.setStyle({ fillColor: color });
+        }
 
-            // Swarm prediction
-            document.getElementById('swarm-p').textContent = (week.swarm_p * 100).toFixed(1) + '%';
+        function initSlider() {
+            const slider = document.getElementById("slider");
+            const weeks = data.weeks;
+            slider.max = String(weeks.length - 1);
+            document.getElementById("scale-start").textContent = shortWeek(weeks[0].week);
+            document.getElementById("scale-end").textContent = shortWeek(weeks[weeks.length - 1].week);
+            slider.addEventListener("input", () => setWeek(Number(slider.value)));
+            document.getElementById("prev").addEventListener("click", () => setWeek(selected - 1));
+            document.getElementById("next").addEventListener("click", () => setWeek(selected + 1));
+            slider.focus({ preventScroll: true });
+        }
 
-            // Actual outcome
-            const actualSpan = document.getElementById('actual');
-            if (week.actual === 1) {
-                actualSpan.textContent = 'BLOOM';
-                actualSpan.className = 'actual-bloom';
-            } else {
-                actualSpan.textContent = 'No bloom';
-                actualSpan.className = 'actual-no-bloom';
+        function setWeek(index) {
+            const weeks = data.weeks;
+            selected = Math.min(weeks.length - 1, Math.max(0, index));
+            const week = weeks[selected];
+            const color = bloomColor(week.swarm_p);
+            document.documentElement.style.setProperty("--bloom", color);
+
+            const prob = document.getElementById("prob");
+            prob.textContent = percent(week.swarm_p, 0);
+            prob.style.color = bloomInk(week.swarm_p);
+
+            document.getElementById("week-label").textContent = `Week of ${formatWeek(week.week)}`;
+            const outcome = document.getElementById("outcome");
+            const bloomed = Number(week.actual) === 1;
+            outcome.className = bloomed ? "chip bloom" : "chip clear";
+            outcome.querySelector("span").textContent = bloomed ? "Observed: bloom" : "Observed: no bloom";
+
+            const slider = document.getElementById("slider");
+            slider.value = String(selected);
+            slider.setAttribute("aria-valuetext", `${formatWeek(week.week)}, swarm ${percent(week.swarm_p, 0)}`);
+            const span = Math.max(1, weeks.length - 1);
+            const along = (selected / span) * 100;
+            slider.style.background = `linear-gradient(90deg, ${color} ${along}%, #efeae3 ${along}%)`;
+            document.getElementById("scale-now").textContent = `${selected + 1} of ${weeks.length}`;
+            document.getElementById("prev").disabled = selected === 0;
+            document.getElementById("next").disabled = selected === weeks.length - 1;
+
+            paintLake(week.swarm_p);
+            renderAgents(week);
+
+            if (backtest) {
+                backtest.$weekIndex = selected;
+                backtest.update("none");
             }
+        }
 
-            // Baselines
-            document.getElementById('simple-avg').textContent = (week.simple_avg_p * 100).toFixed(1) + '%';
-            document.getElementById('base-rate').textContent = (week.base_rate_p * 100).toFixed(1) + '%';
-
-            // Agent list
-            const agentList = document.getElementById('agent-list');
-            agentList.innerHTML = '';
-            week.agents.forEach(agent => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <span class="agent-name">${agent.name}</span>
-                    <span class="agent-p">(${(agent.p * 100).toFixed(0)}%, weight: ${(agent.weight * 100).toFixed(1)}%)</span>
-                    <br>
-                    <span class="agent-reason">${agent.reason}</span>
-                    <br>
-                    <small>Evidence: ${agent.evidence.join(' | ')}</small>
+        function renderAgents(week) {
+            const root = document.getElementById("agents");
+            root.innerHTML = orderedAgents(week.agents).map((agent) => {
+                const skeptic = agent.name === "Skeptic";
+                const color = agentColor(agent.name);
+                const bar = skeptic ? color : bloomColor(agent.p);
+                const evidence = (agent.evidence || []).map((item) => `<li>${esc(item)}</li>`).join("");
+                const weight = Number.isFinite(agent.weight) ? `${(agent.weight * 100).toFixed(0)}% of the swarm this week` : "";
+                return `
+                    <article class="card${skeptic ? " is-skeptic" : ""}" tabindex="0" style="--accent:${color};--bar:${bar}">
+                        <div class="card-top">
+                            <div>
+                                <div class="name">${esc(agent.name)}</div>
+                                <div class="role">${esc(ROLES[agent.name] || "Agent")}</div>
+                            </div>
+                            <div class="pct">${percent(agent.p, 0)}</div>
+                        </div>
+                        <div class="bar" aria-hidden="true"><span style="width:${Math.round(agent.p * 100)}%"></span></div>
+                        <p class="reason">${esc(agent.reason)}</p>
+                        <div class="tip" role="tooltip">
+                            <strong>Evidence</strong>
+                            <ul>${evidence || "<li>No evidence listed.</li>"}</ul>
+                            ${weight ? `<div class="weight">${esc(weight)}</div>` : ""}
+                        </div>
+                    </article>
                 `;
-                agentList.appendChild(li);
+            }).join("");
+        }
+
+        const weekCursor = {
+            id: "weekCursor",
+            afterDatasetsDraw(chart) {
+                const index = chart.$weekIndex;
+                const yScale = chart.scales.y;
+                const point = chart.getDatasetMeta(0).data[index];
+                if (index == null || !yScale || !point) return;
+                const x = point.x;
+                const ctx = chart.ctx;
+                ctx.save();
+                ctx.beginPath();
+                ctx.moveTo(x, yScale.top);
+                ctx.lineTo(x, yScale.bottom);
+                ctx.strokeStyle = "rgba(120, 110, 100, 0.45)";
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([3, 4]);
+                ctx.stroke();
+                ctx.restore();
+            }
+        };
+
+        const barValues = {
+            id: "barValues",
+            afterDatasetsDraw(chart) {
+                const meta = chart.getDatasetMeta(0);
+                const values = chart.data.datasets[0].data;
+                const ctx = chart.ctx;
+                ctx.save();
+                ctx.font = "600 12px Avenir Next, Segoe UI, sans-serif";
+                ctx.fillStyle = "#6a736d";
+                ctx.textAlign = "left";
+                ctx.textBaseline = "middle";
+                meta.data.forEach((bar, i) => {
+                    ctx.fillText(Number(values[i]).toFixed(3), bar.x + 8, bar.y);
+                });
+                ctx.restore();
+            }
+        };
+
+        function initBacktest() {
+            const weeks = data.weeks;
+            const labels = weeks.map((week) => shortWeek(week.week));
+            const agentNames = orderedAgents(weeks[0].agents).map((agent) => agent.name);
+            const datasets = agentNames.map((name) => ({
+                label: name,
+                data: weeks.map((week) => {
+                    const agent = week.agents.find((item) => item.name === name);
+                    return agent ? agent.p : null;
+                }),
+                borderColor: agentColor(name),
+                backgroundColor: agentColor(name),
+                borderWidth: name === "Skeptic" ? 1.75 : 1.25,
+                pointRadius: 0,
+                pointStyle: "line",
+                tension: 0.28,
+                spanGaps: true,
+                order: 1
+            }));
+
+            datasets.unshift({
+                label: "Swarm",
+                data: weeks.map((week) => week.swarm_p),
+                borderColor: "#7d8a84",
+                backgroundColor: "#7d8a84",
+                borderWidth: 3,
+                pointStyle: "line",
+                tension: 0.28,
+                pointRadius: (ctx) => (ctx.dataIndex === selected ? 6 : 0),
+                pointHoverRadius: 7,
+                pointBackgroundColor: (ctx) => bloomColor(weeks[ctx.dataIndex].swarm_p),
+                pointBorderColor: "#ffffff",
+                pointBorderWidth: (ctx) => (ctx.dataIndex === selected ? 2 : 0),
+                order: 2
             });
 
-            // Update chart highlight
-            if (chart) {
-                chart.options.plugins.annotation = {
-                    annotations: {
-                        selectedWeek: {
-                            type: 'line',
-                            xMin: weekIndex,
-                            xMax: weekIndex,
-                            borderColor: 'rgba(255, 99, 132, 0.5)',
-                            borderWidth: 2,
-                        }
-                    }
-                };
-                chart.update();
-            }
-        }
-
-        function updateScoreboard() {
-            const tbody = document.getElementById('scoreboard-body');
-            tbody.innerHTML = '';
-
-            // Sort scores (lower is better)
-            const scores = Object.entries(data.scores)
-                .filter(([_, score]) => score !== null)
-                .sort((a, b) => a[1] - b[1]);
-
-            const bestScore = scores.length > 0 ? scores[0][1] : null;
-
-            scores.forEach(([name, score], index) => {
-                const tr = document.createElement('tr');
-                if (score === bestScore) tr.className = 'best-score';
-                tr.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${name}</td>
-                    <td>${score.toFixed(4)}</td>
-                `;
-                tbody.appendChild(tr);
+            datasets.push({
+                label: "Observed",
+                data: weeks.map((week) => week.actual),
+                showLine: false,
+                pointRadius: 6,
+                pointHoverRadius: 8,
+                pointStyle: "circle",
+                pointBackgroundColor: weeks.map((week) => (Number(week.actual) === 1 ? "#e0b0aa" : "#b7d4c4")),
+                pointBorderColor: "#ffffff",
+                pointBorderWidth: 2,
+                order: 3
             });
-        }
 
-        function initChart() {
-            const ctx = document.getElementById('backtest-chart').getContext('2d');
+            Chart.defaults.font.family = '"Avenir Next", "Segoe UI", sans-serif';
+            Chart.defaults.color = "#8a938c";
 
-            const labels = data.weeks.map(w => w.week);
-            const swarmData = data.weeks.map(w => w.swarm_p);
-            const actualData = data.weeks.map(w => w.actual);
-            const baseRateData = data.weeks.map(w => w.base_rate_p);
-
-            chart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: labels,
-                    datasets: [
-                        {
-                            label: 'Swarm Prediction',
-                            data: swarmData,
-                            borderColor: 'rgb(75, 192, 192)',
-                            backgroundColor: 'rgba(75, 192, 192, 0.1)',
-                            tension: 0.1,
-                        },
-                        {
-                            label: 'Actual',
-                            data: actualData,
-                            borderColor: 'rgb(255, 99, 132)',
-                            backgroundColor: 'rgba(255, 99, 132, 0.1)',
-                            stepped: true,
-                        },
-                        {
-                            label: 'Base Rate',
-                            data: baseRateData,
-                            borderColor: 'rgb(201, 203, 207)',
-                            borderDash: [5, 5],
-                            tension: 0.1,
-                        },
-                    ],
-                },
+            backtest = new Chart(document.getElementById("backtest"), {
+                type: "line",
+                plugins: [weekCursor],
+                data: { labels, datasets },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    animation: false,
+                    interaction: { mode: "index", intersect: false },
+                    onClick(event) {
+                        const value = backtest.scales.x.getValueForPixel(event.x);
+                        if (value == null || Number.isNaN(value)) return;
+                        setWeek(Math.round(value));
+                    },
+                    plugins: {
+                        legend: {
+                            position: "top",
+                            align: "start",
+                            labels: {
+                                boxWidth: 8,
+                                boxHeight: 8,
+                                usePointStyle: true,
+                                padding: 12,
+                                font: { size: 12 },
+                                sort(a, b) {
+                                    const rank = (label) => (label === "Swarm" ? 0 : label === "Observed" ? 2 : 1);
+                                    return rank(a.text) - rank(b.text);
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: "#6f7872",
+                            titleColor: "#fffcf8",
+                            bodyColor: "#f6f3ee",
+                            padding: 10,
+                            callbacks: {
+                                label(ctx) {
+                                    const value = ctx.parsed.y;
+                                    if (value == null) return `${ctx.dataset.label}: —`;
+                                    if (ctx.dataset.label === "Observed") {
+                                        return value >= 0.5 ? "Observed: bloom" : "Observed: no bloom";
+                                    }
+                                    return `${ctx.dataset.label}: ${percent(value, 0)}`;
+                                }
+                            }
+                        }
+                    },
                     scales: {
                         y: {
                             min: 0,
                             max: 1,
-                            title: { display: true, text: 'Probability' }
+                            ticks: {
+                                stepSize: 0.5,
+                                callback: (value) => `${Math.round(value * 100)}%`
+                            },
+                            grid: { color: "rgba(120, 110, 100, 0.1)" },
+                            title: { display: false }
                         },
                         x: {
-                            title: { display: true, text: 'Week' }
+                            grid: { display: false },
+                            ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 }
+                        }
+                    }
+                }
+            });
+            backtest.$weekIndex = selected;
+        }
+
+        function scoreEntries() {
+            const scores = data.scores || {};
+            const labels = {
+                swarm: "Swarm",
+                simple_avg: "Average",
+                base_rate: "Base rate"
+            };
+            return Object.entries(scores)
+                .filter(([, score]) => score != null && Number.isFinite(Number(score)))
+                .map(([key, score]) => ({
+                    key,
+                    label: labels[key] || key,
+                    score: Number(score)
+                }))
+                .sort((a, b) => a.score - b.score);
+        }
+
+        function initScoreboard() {
+            const rows = scoreEntries();
+            const scores = data.scores || {};
+            const hint = document.getElementById("score-hint");
+            if (Number.isFinite(scores.swarm)) {
+                const agents = ORDER.filter((name) => Number.isFinite(scores[name]));
+                const beatAgents = agents.filter((name) => scores[name] > scores.swarm).length;
+                const baselines = ["simple_avg", "base_rate"].filter((name) => Number.isFinite(scores[name]));
+                const beatBase = baselines.filter((name) => scores[name] > scores.swarm).length;
+                hint.textContent = `Brier score, lower is better. Swarm ${scores.swarm.toFixed(3)} · beats ${beatAgents} of ${agents.length} agents and ${beatBase} of ${baselines.length} baselines.`;
+            }
+
+            const maxScore = rows.reduce((max, row) => Math.max(max, row.score), 0);
+
+            scoreChart = new Chart(document.getElementById("scores"), {
+                type: "bar",
+                plugins: [barValues],
+                data: {
+                    labels: rows.map((row) => row.label),
+                    datasets: [{
+                        data: rows.map((row) => row.score),
+                        backgroundColor: rows.map((row) => {
+                            if (row.key === "swarm") return "#e4d3a8";
+                            if (row.key === "simple_avg" || row.key === "base_rate") return "#e4ddd4";
+                            return agentColor(row.key);
+                        }),
+                        borderColor: "transparent",
+                        borderWidth: 0,
+                        borderRadius: 10,
+                        barThickness: 16
+                    }]
+                },
+                options: {
+                    indexAxis: "y",
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: false,
+                    layout: { padding: { right: 52 } },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: "#6f7872",
+                            callbacks: {
+                                label(ctx) { return `Brier ${Number(ctx.parsed.x).toFixed(3)}`; }
+                            }
                         }
                     },
-                    plugins: {
-                        legend: { position: 'top' },
-                        title: { display: false }
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            suggestedMax: maxScore * 1.28,
+                            grid: { color: "rgba(120, 110, 100, 0.1)" },
+                            ticks: { maxTicksLimit: 4 }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { size: 13 }, color: "#6a736d", autoSkip: false }
+                        }
                     }
                 }
             });
         }
 
-        // Load data on page load
         loadData();
     </script>
 </body>
